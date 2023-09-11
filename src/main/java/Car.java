@@ -37,7 +37,7 @@ public class Car {
     }
 
     public boolean isDistanceEqualTo(int distance) {
-        return getDistance() == distance;
+        return this.distance == distance;
     }
 
     public void joinGame(List<Car> playCars) {
