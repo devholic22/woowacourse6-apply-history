@@ -2,12 +2,13 @@ import java.util.List;
 
 public class Car {
 
+    private static final int START_DISTANCE = 0;
     private final String name;
     private int distance;
 
     private Car(String name) {
         this.name = name;
-        this.distance = 0;
+        this.distance = START_DISTANCE;
     }
 
     public static Car of(String name) {
