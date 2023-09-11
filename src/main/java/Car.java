@@ -3,6 +3,7 @@ import java.util.List;
 public class Car {
 
     private static final int START_DISTANCE = 0;
+    private static final int ACCELERATE_MINIMUM_VALUE = 4;
     private final String name;
     private int distance;
 
@@ -16,8 +17,10 @@ public class Car {
     }
 
     public static boolean isValueSatisfiedToAccelerate(int value) {
-        final int ACCELERATE_MINIMUM_VALUE = 4;
-        return value >= ACCELERATE_MINIMUM_VALUE;
+        if (value >= ACCELERATE_MINIMUM_VALUE) {
+            return true;
+        }
+        return false;
     }
 
 
