@@ -20,13 +20,6 @@ public class Car {
         return value >= ACCELERATE_MINIMUM_VALUE;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public int getDistance() {
-        return this.distance;
-    }
 
     public String answerDistance() {
         return "-".repeat(Math.max(0, getDistance()));
@@ -46,5 +39,13 @@ public class Car {
 
     public void joinGame(List<Car> playCars) {
         playCars.add(this);
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getDistance() {
+        return this.distance;
     }
 }
