@@ -44,7 +44,7 @@ public class GameController {
             if (!validateName(carName)) {
                 continue;
             }
-            Car playCar = Car.of(stripCarName);
+            Car playCar = Car.from(stripCarName);
             playCar.joinGame(playCars);
         }
     }
