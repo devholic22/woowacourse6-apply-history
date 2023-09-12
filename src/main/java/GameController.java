@@ -6,6 +6,8 @@ import java.util.List;
 
 public class GameController {
 
+    private static final int MINIMUM_CAR_NAME_LENGTH = 1;
+    private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
     private static BufferedReader br;
     private static List<Car> playCars;
     private int playDistance = 0;
@@ -58,9 +60,6 @@ public class GameController {
     }
 
     private boolean validateName(String name) {
-        final int MINIMUM_CAR_NAME_LENGTH = 1;
-        final int MAXIMUM_CAR_NAME_LENGTH = 5;
-
         return !isNameLengthLowerThan(name, MINIMUM_CAR_NAME_LENGTH) &&
                 !isNameLengthLongerThan(name, MAXIMUM_CAR_NAME_LENGTH) &&
                 !isUsedName(name);
