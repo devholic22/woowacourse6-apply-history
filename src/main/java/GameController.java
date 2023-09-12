@@ -8,27 +8,27 @@ public class GameController {
 
     private static final int MINIMUM_CAR_NAME_LENGTH = 1;
     private static final int MAXIMUM_CAR_NAME_LENGTH = 5;
-    private static BufferedReader br;
+    private static BufferedReader inputReader;
     private static List<Car> playCars;
     private int playDistance = 0;
 
     private static void init() {
-        br = new BufferedReader(new InputStreamReader(System.in));
+        inputReader = new BufferedReader(new InputStreamReader(System.in));
         playCars = new ArrayList<>();
     }
 
     private static void close() throws IOException {
-        br.close();
+        inputReader.close();
     }
 
     public void play() throws IOException {
         init();
 
         Printer.askCarNames();
-        createCars(br.readLine());
+        createCars(inputReader.readLine());
 
         Printer.askGameCount();
-        saveGameCount(br.readLine());
+        saveGameCount(inputReader.readLine());
 
         Printer.alertResultMessage();
         while (isWinnerNotExist())
