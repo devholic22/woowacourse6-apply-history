@@ -76,7 +76,7 @@ public class GameController {
 
     private boolean isUsedName(String name) {
         for (Car car : playCars) {
-            if (car.getName().equals(name))
+            if (car.hasName(name))
                 return true;
         }
         return false;

@@ -23,7 +23,6 @@ public class Car {
         return false;
     }
 
-
     public String answerDistance() {
         return "-".repeat(Math.max(0, getDistance()));
     }
@@ -42,6 +41,10 @@ public class Car {
 
     public void joinGame(List<Car> playCars) {
         playCars.add(this);
+    }
+
+    public boolean hasName(String name) {
+        return name.equals(this.name);
     }
 
     public String getName() {
