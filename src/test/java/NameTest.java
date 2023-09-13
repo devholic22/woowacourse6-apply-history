@@ -18,4 +18,17 @@ public class NameTest {
         // then
         Assertions.assertThat(nameList.size()).isEqualTo(3);
     }
+
+    @Test
+    @DisplayName("중복 이름이 있다면 한 번만 저장되어야 한다.")
+    public void duplicateNameTest() {
+        // given
+        String nameInput = "test1, test1, test2";
+
+        // when
+        List<Name> nameList = Name.createNameList(nameInput);
+
+        // then
+        Assertions.assertThat(nameList.size()).isEqualTo(2);
+    }
 }
