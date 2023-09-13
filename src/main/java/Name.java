@@ -36,10 +36,6 @@ public class Name {
         return Name.from(name);
     }
 
-    public boolean isYourName(String name) {
-        return name.equals(this.name);
-    }
-
     public String getName() {
         return this.name;
     }
