@@ -37,8 +37,8 @@ public class GameController {
     }
 
     private void createCars(String input) {
-        String[] carNames = input.split(",");
-        for (String carName : carNames) {
+        List<String> nameCandidates = Name.createNameList(input);
+        for (String carName : nameCandidates) {
             String stripCarName = carName.strip();
             if (!validateName(carName)) {
                 continue;
