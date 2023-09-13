@@ -21,6 +21,7 @@ public class Name {
     public static List<Name> createNameList(String input) {
         String[] splitNames = input.split(NAME_SPLITTER);
         return Arrays.stream(splitNames)
+                .map(String::strip)
                 .filter(Name::validateNameLength)
                 .map(Name::convertStringToName)
                 .distinct()
