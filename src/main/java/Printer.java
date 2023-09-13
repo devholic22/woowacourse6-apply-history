@@ -3,6 +3,8 @@ import java.util.List;
 
 public class Printer {
 
+    private static final String DISTANCE_MARK = "-";
+
     public static void askCarNames() {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
     }
@@ -32,6 +34,10 @@ public class Printer {
 
     public static void alertEndMessage() {
         System.out.println("가 최종 우승했습니다.");
+    }
+
+    public static void printCarDistanceStatus(String name, int start, int end) {
+        System.out.println(name + " : " + DISTANCE_MARK.repeat(Math.max(start, end)));
     }
 
     private static void chainingWinnerNames(List<String> names) {

@@ -23,16 +23,12 @@ public class Car {
         return false;
     }
 
-    public String answerDistance() {
-        return "-".repeat(Math.max(0, getDistance()));
-    }
-
     public void accelerate() {
         this.distance++;
     }
 
     public void answerStatus() {
-        System.out.println(this.getName() + " : " + this.answerDistance());
+        Printer.printCarDistanceStatus(name.getName(), START_DISTANCE, distance);
     }
 
     public boolean isDistanceEqualTo(int distance) {
