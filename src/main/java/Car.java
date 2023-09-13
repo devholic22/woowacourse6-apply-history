@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Car {
 
     private static final int START_DISTANCE = 0;
@@ -35,14 +33,6 @@ public class Car {
         return this.distance == distance;
     }
 
-    public void joinGame(List<Car> playCars) {
-        playCars.add(this);
-    }
-
-    public boolean hasName(String testName) {
-        return this.name.isYourName(testName);
-    }
-
     public void racing(int dice) {
         if (Car.isValueSatisfiedToAccelerate(dice)) {
             this.accelerate();
@@ -52,9 +42,5 @@ public class Car {
 
     public String getName() {
         return name.getName();
-    }
-
-    public int getDistance() {
-        return this.distance;
     }
 }
