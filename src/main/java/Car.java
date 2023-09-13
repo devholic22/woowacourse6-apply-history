@@ -4,11 +4,11 @@ public class Car {
 
     private static final int START_DISTANCE = 0;
     private static final int ACCELERATE_MINIMUM_VALUE = 4;
-    private final String name;
+    private final Name name;
     private int distance;
 
     private Car(String name) {
-        this.name = name;
+        this.name = Name.from(name);
         this.distance = START_DISTANCE;
     }
 
@@ -43,12 +43,12 @@ public class Car {
         playCars.add(this);
     }
 
-    public boolean hasName(String name) {
-        return name.equals(this.name);
+    public boolean hasName(String testName) {
+        return this.name.isYourName(testName);
     }
 
     public String getName() {
-        return this.name;
+        return name.getName();
     }
 
     public int getDistance() {
