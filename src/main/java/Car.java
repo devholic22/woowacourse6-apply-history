@@ -7,12 +7,12 @@ public class Car {
     private final Name name;
     private int distance;
 
-    private Car(String name) {
-        this.name = Name.from(name);
+    private Car(Name name) {
+        this.name = name;
         this.distance = START_DISTANCE;
     }
 
-    public static Car from(String name) {
+    public static Car from(Name name) {
         return new Car(name);
     }
 
@@ -41,6 +41,13 @@ public class Car {
 
     public boolean hasName(String testName) {
         return this.name.isYourName(testName);
+    }
+
+    public void racing(int dice) {
+        if (Car.isValueSatisfiedToAccelerate(dice)) {
+            this.accelerate();
+        }
+        this.answerStatus();
     }
 
     public String getName() {

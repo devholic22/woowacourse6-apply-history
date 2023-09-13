@@ -18,13 +18,9 @@ public class Printer {
         System.out.println("실행 결과");
     }
 
-    public static void alertWinners(List<Car> playCars, int playDistance) {
+    public static void alertWinners(Cars playCars, int playDistance) {
         List<String> winners = new ArrayList<>();
-        playCars.forEach(car -> {
-            if (car.isDistanceEqualTo(playDistance)) {
-                winners.add(car.getName());
-            }
-        });
+        playCars.getWinnersName(winners, playDistance);
         if (isOnlyOneWinner(winners)) {
             System.out.print(winners.get(0));
             return;
