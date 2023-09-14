@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class NameTest {
 
     @Test
@@ -61,7 +63,6 @@ public class NameTest {
     @Test
     @DisplayName("공백 이름이 입력된 경우 무시되어야 한다.")
     public void whiteSpaceInputTest() {
-
         // given
         String nameInput = "test1, , test2, ";
 
@@ -70,5 +71,17 @@ public class NameTest {
 
         // then
         Assertions.assertThat(nameList.size()).isEqualTo(2);
+    }
+
+    @Test
+    @DisplayName("null 입력이 주어진 경우 예외가 발생해야 한다.")
+    public void invalidInputTest() {
+        // given
+        String nameInput = null;
+
+        // when & then
+        assertThrows(NullPointerException.class, () -> {
+            Name.createNameList(nameInput);
+        });
     }
 }
