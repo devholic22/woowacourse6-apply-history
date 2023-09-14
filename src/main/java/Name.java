@@ -34,7 +34,6 @@ public class Name {
     }
 
     private static Name convertStringToName(String name) {
-        name = name.strip();
         return Name.from(name);
     }
 
