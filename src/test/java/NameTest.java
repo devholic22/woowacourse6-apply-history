@@ -84,4 +84,17 @@ public class NameTest {
             Name.createNameList(nameInput);
         });
     }
+
+    @Test
+    @DisplayName("Name 객체의 getName 메서드가 정상적으로 동작해야 한다.")
+    public void getNameTest() {
+        // given
+        Name name = Name.from("test");
+
+        // when
+        String retrievedName = name.getName();
+
+        // then
+        Assertions.assertThat(retrievedName).isEqualTo("test");
+    }
 }
