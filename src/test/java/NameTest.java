@@ -57,4 +57,18 @@ public class NameTest {
         // then
         Assertions.assertThat(nameList).isEmpty();
     }
+
+    @Test
+    @DisplayName("공백 이름이 입력된 경우 무시되어야 한다.")
+    public void whiteSpaceInputTest() {
+
+        // given
+        String nameInput = "test1, , test2, ";
+
+        // when
+        List<Name> nameList = Name.createNameList(nameInput);
+
+        // then
+        Assertions.assertThat(nameList.size()).isEqualTo(2);
+    }
 }
