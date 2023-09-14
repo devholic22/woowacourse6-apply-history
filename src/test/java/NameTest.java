@@ -44,4 +44,17 @@ public class NameTest {
         // then
         Assertions.assertThat(nameList.size()).isEqualTo(1);
     }
+
+    @Test
+    @DisplayName("빈 문자열 입력 시 빈 리스트를 반환해야 한다.")
+    public void emptyInputTest() {
+        // given
+        String nameInput = "";
+
+        // when
+        List<Name> nameList = Name.createNameList(nameInput);
+
+        // then
+        Assertions.assertThat(nameList).isEmpty();
+    }
 }
