@@ -46,4 +46,19 @@ public class CarTest {
         // then
         Assertions.assertThat(newCar.isDistanceEqualTo(0)).isTrue();
     }
+
+    @Test
+    @DisplayName("값이 문제가 없다면 거리는 1번 전진되어야 한다.")
+    public void distanceIncreaseTest() {
+        // given
+        Name name = Name.from("hello");
+        Car newCar = Car.from(name);
+        int addDistance = 5;
+
+        // when
+        newCar.racing(addDistance);
+
+        // then
+        Assertions.assertThat(newCar.isDistanceEqualTo(1)).isTrue();
+    }
 }
