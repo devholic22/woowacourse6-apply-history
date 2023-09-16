@@ -48,7 +48,7 @@ public class CarTest {
     }
 
     @Test
-    @DisplayName("값이 문제가 없다면 거리는 1번 전진되어야 한다.")
+    @DisplayName("값이 최소 조건 값을 충족하면 거리는 1번 전진되어야 한다.")
     public void distanceIncreaseTest() {
         // given
         Name name = Name.from("hello");
