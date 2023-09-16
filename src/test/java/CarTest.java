@@ -76,4 +76,19 @@ public class CarTest {
         // then
         Assertions.assertThat(newCar.isDistanceEqualTo(0)).isTrue();
     }
+
+    @Test
+    @DisplayName("값이 최소 조건 값을 충족하면 거리는 전진되지 않아야 한다.")
+    public void distanceNotIncreaseTest() {
+        // given
+        Name name = Name.from("hello");
+        Car newCar = Car.from(name);
+        int addDistance = 3;
+
+        // when
+        newCar.racing(addDistance);
+
+        // then
+        Assertions.assertThat(newCar.isDistanceEqualTo(0)).isTrue();
+    }
 }
