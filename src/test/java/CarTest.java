@@ -2,6 +2,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class CarTest {
 
     @Test
@@ -15,5 +18,19 @@ public class CarTest {
 
         // then
         Assertions.assertThat(newCar.getName()).isEqualTo(name.getName());
+    }
+
+    @Test
+    @DisplayName("이름이 잘못되었다면 자동차 자체가 생성이 되지 않아야 한다.")
+    public void carNameErrorTest() {
+        // given
+        String nameInput = "hello, springboot, test";
+        List<Name> names = Name.createNameList(nameInput);
+
+        // when
+        List<Car> cars = names.stream().map(Car::from).collect(Collectors.toList());
+
+        // then
+        Assertions.assertThat(cars.size()).isEqualTo(2);
     }
 }
