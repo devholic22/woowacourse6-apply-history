@@ -91,4 +91,19 @@ public class CarTest {
         // then
         Assertions.assertThat(newCar.isDistanceEqualTo(0)).isTrue();
     }
+
+    @Test
+    @DisplayName("값이 최대 조건 값을 초과할 경우 거리는 전진되지 않아야 한다.")
+    public void distanceExceedErrorTest() {
+        // given
+        Name name = Name.from("hello");
+        Car newCar = Car.from(name);
+        int addDistance = 10000;
+
+        // when
+        newCar.racing(addDistance);
+
+        // then
+        Assertions.assertThat(newCar.isDistanceEqualTo(0)).isTrue();
+    }
 }
