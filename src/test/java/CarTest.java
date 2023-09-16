@@ -44,6 +44,6 @@ public class CarTest {
         Car newCar = Car.from(name);
 
         // then
-        Assertions.assertThat(newCar.getDistance()).isEqualTo(0);
+        Assertions.assertThat(newCar.isDistanceEqualTo(0)).isTrue();
     }
 }

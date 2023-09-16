@@ -44,7 +44,4 @@ public class Car {
         return name.getName();
     }
 
-    public int getDistance() {
-        return distance;
-    }
 }
