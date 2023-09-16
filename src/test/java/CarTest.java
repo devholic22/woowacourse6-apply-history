@@ -33,4 +33,17 @@ public class CarTest {
         // then
         Assertions.assertThat(cars.size()).isEqualTo(2);
     }
+
+    @Test
+    @DisplayName("처음 진행된 거리는 0이어야 한다.")
+    public void initCarDistanceTest() {
+        // given
+        Name name = Name.from("hello");
+
+        // when
+        Car newCar = Car.from(name);
+
+        // then
+        Assertions.assertThat(newCar.getDistance()).isEqualTo(0);
+    }
 }
