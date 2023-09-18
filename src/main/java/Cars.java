@@ -25,6 +25,7 @@ public class Cars {
     }
 
     public void racing() {
-        cars.forEach(car -> car.racing(Dice.getRandomValue()));
+        final Dice dice = new DiceImpl();
+        cars.forEach(car -> car.racing(dice));
     }
 }

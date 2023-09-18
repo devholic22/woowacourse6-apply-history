@@ -34,8 +34,9 @@ public class Car {
         return this.distance == distance;
     }
 
-    public void racing(int dice) {
-        if (Car.isValueSatisfiedToAccelerate(dice)) {
+    public void racing(Dice dice) {
+        final int randomNumber = dice.random();
+        if (Car.isValueSatisfiedToAccelerate(randomNumber)) {
             this.accelerate();
         }
         this.answerStatus();
