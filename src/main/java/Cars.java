@@ -11,8 +11,7 @@ public class Cars {
 
     public boolean hasNotWinnerDistance(int distance) {
         return cars.stream()
-                .noneMatch(car -> car
-                        .isDistanceEqualTo(distance));
+                .noneMatch(car -> car.isDistanceEqualTo(distance));
     }
 
     public void getWinnersName(List<String> winners, int distance) {
