@@ -1,14 +1,17 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class GameController {
 
-    private final BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));
+    private final BufferedReader inputReader;
     private Cars playCars;
     private int playDistance = 0;
+
+    public GameController(BufferedReader inputReader) {
+        this.inputReader = inputReader;
+    }
 
     private void close() throws IOException {
         inputReader.close();
