@@ -6,7 +6,7 @@ public class DiceTest {
 
     @Test
     @DisplayName("숫자가 조건값보다 크거나 같으면 위치를 1 증가")
-    public void carMovableDiceTest() {
+    public void carMovableDice() {
         // given
         Name name = Name.from("hello");
         Car car = Car.from(name);
@@ -21,7 +21,7 @@ public class DiceTest {
 
     @Test
     @DisplayName("숫자가 조건값보다 작으면 위치는 그대로여야 한다.")
-    public void randomNumberLowerThanConditionTest() {
+    public void randomNumberLowerThanCondition() {
         // given
         Name name = Name.from("hello");
         Car car = Car.from(name);
@@ -36,7 +36,7 @@ public class DiceTest {
 
     @Test
     @DisplayName("숫자가 조건값보다 커도 위치는 그대로여야 한다.")
-    public void randomNumberHigherThanConditionTest() {
+    public void randomNumberHigherThanCondition() {
         // given
         Name name = Name.from("hello");
         Car car = Car.from(name);

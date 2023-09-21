@@ -9,7 +9,7 @@ public class CarTest {
 
     @Test
     @DisplayName("이름을 토대로 자동차가 생성되어야 한다.")
-    public void carNameTest() {
+    public void carName() {
         // given
         Name name = Name.from("hello");
 
@@ -22,7 +22,7 @@ public class CarTest {
 
     @Test
     @DisplayName("이름이 잘못되었다면 자동차 자체가 생성이 되지 않아야 한다.")
-    public void carNameErrorTest() {
+    public void carNameError() {
         // given
         String nameInput = "hello, springboot, test";
         List<Name> names = Name.createNameList(nameInput);
@@ -36,7 +36,7 @@ public class CarTest {
 
     @Test
     @DisplayName("처음 진행된 거리는 0이어야 한다.")
-    public void initCarDistanceTest() {
+    public void initCarDistance() {
         // given
         Name name = Name.from("hello");
 

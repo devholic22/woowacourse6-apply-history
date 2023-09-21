@@ -10,7 +10,7 @@ public class NameTest {
 
     @Test
     @DisplayName("정상적인 이름 리스트 입력 시 모두 저장되어야 한다.")
-    public void createNameListTest() {
+    public void createNameList() {
         // given
         String nameInput = "test1, test2, test3";
 
@@ -23,7 +23,7 @@ public class NameTest {
 
     @Test
     @DisplayName("중복 이름이 있다면 한 번만 저장되어야 한다.")
-    public void duplicateNameTest() {
+    public void duplicateName() {
         // given
         String nameInput = "test1, test1, test2";
 
@@ -36,7 +36,7 @@ public class NameTest {
 
     @Test
     @DisplayName("이름은 1자 이상 5자 이하여야만 저장된다.")
-    public void nameLengthTest() {
+    public void nameLength() {
         // given
         String nameInput = "hello12345, test1";
 
@@ -49,7 +49,7 @@ public class NameTest {
 
     @Test
     @DisplayName("빈 문자열 입력 시 빈 리스트를 반환해야 한다.")
-    public void emptyInputTest() {
+    public void emptyInput() {
         // given
         String nameInput = "";
 
@@ -62,7 +62,7 @@ public class NameTest {
 
     @Test
     @DisplayName("공백 이름이 입력된 경우 무시되어야 한다.")
-    public void whiteSpaceInputTest() {
+    public void whiteSpaceInput() {
         // given
         String nameInput = "test1, , test2, ";
 
@@ -75,7 +75,7 @@ public class NameTest {
 
     @Test
     @DisplayName("null 입력이 주어진 경우 예외가 발생해야 한다.")
-    public void invalidInputTest() {
+    public void invalidInput() {
         // given
         String nameInput = null;
 
@@ -87,7 +87,7 @@ public class NameTest {
 
     @Test
     @DisplayName("Name 객체의 getName 메서드가 정상적으로 동작해야 한다.")
-    public void getNameTest() {
+    public void getName() {
         // given
         Name name = Name.from("test");
 
