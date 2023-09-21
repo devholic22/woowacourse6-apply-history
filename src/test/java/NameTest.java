@@ -1,5 +1,4 @@
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -7,8 +6,7 @@ import java.util.List;
 public class NameTest {
 
     @Test
-    @DisplayName("정상적인 이름 리스트 입력 시 모두 저장되어야 한다.")
-    public void createNameList() {
+    public void 정상적인_이름_리스트_입력_시_모두_저장되어야_한다() {
         // given
         String nameInput = "test1, test2, test3";
 
@@ -20,8 +18,7 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("중복 이름이 있다면 한 번만 저장되어야 한다.")
-    public void duplicateName() {
+    public void 중복_이름이_있다면_한_번만_저장되어야_한다() {
         // given
         String nameInput = "test1, test1, test2";
 
@@ -33,8 +30,7 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("이름은 1자 이상 5자 이하여야만 저장된다.")
-    public void nameLength() {
+    public void 이름은_1자_이상_5자_이하여야만_저장된다() {
         // given
         String nameInput = "hello12345, test1";
 
@@ -46,8 +42,7 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("빈 문자열 입력 시 빈 리스트를 반환해야 한다.")
-    public void emptyInput() {
+    public void 빈_문자열_입력_시_빈_리스트를_반환해야_한다() {
         // given
         String nameInput = "";
 
@@ -59,8 +54,7 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("공백 이름이 입력된 경우 무시되어야 한다.")
-    public void whiteSpaceInput() {
+    public void 공백_이름이_입력된_경우_무시되어야_한다() {
         // given
         String nameInput = "test1, , test2, ";
 
@@ -72,8 +66,7 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("null 입력이 주어진 경우 예외가 발생해야 한다.")
-    public void invalidInput() {
+    public void null_입력이_주어진_경우_예외가_발생해야_한다() {
         // given
         String nameInput = null;
 
@@ -83,8 +76,7 @@ public class NameTest {
     }
 
     @Test
-    @DisplayName("Name 객체의 getName 메서드가 정상적으로 동작해야 한다.")
-    public void getName() {
+    public void Name_객체의_getName_메서드가_정상적으로_동작해야_한다() {
         // given
         Name name = Name.from("test");
 

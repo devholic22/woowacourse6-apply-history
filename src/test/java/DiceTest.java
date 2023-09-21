@@ -1,12 +1,10 @@
 import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class DiceTest {
 
     @Test
-    @DisplayName("숫자가 조건값보다 크거나 같으면 위치를 1 증가")
-    public void carMovableDice() {
+    public void 숫자가_조건값보다_크거나_같으면_위치를_1_증가() {
         // given
         Name name = Name.from("hello");
         Car car = Car.from(name);
@@ -20,8 +18,7 @@ public class DiceTest {
     }
 
     @Test
-    @DisplayName("숫자가 조건값보다 작으면 위치는 그대로여야 한다.")
-    public void randomNumberLowerThanCondition() {
+    public void 숫자가_조건값보다_작으면_위치는_그대로여야_한다() {
         // given
         Name name = Name.from("hello");
         Car car = Car.from(name);
@@ -35,8 +32,7 @@ public class DiceTest {
     }
 
     @Test
-    @DisplayName("숫자가 조건값보다 커도 위치는 그대로여야 한다.")
-    public void randomNumberHigherThanCondition() {
+    public void 숫자가_조건값보다_커도_위치는_그대로여야_한다() {
         // given
         Name name = Name.from("hello");
         Car car = Car.from(name);
