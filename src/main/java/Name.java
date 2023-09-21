@@ -24,17 +24,13 @@ public class Name {
         return Arrays.stream(splitNames)
                 .map(String::strip)
                 .filter(Name::validateNameLength)
-                .map(Name::convertStringToName)
+                .map(Name::from)
                 .distinct()
                 .collect(Collectors.toList());
     }
 
     public static boolean validateNameLength(String name) {
         return name.length() >= MINIMUM_CAR_NAME_LENGTH && name.length() <= MAXIMUM_CAR_NAME_LENGTH;
-    }
-
-    private static Name convertStringToName(String name) {
-        return Name.from(name);
     }
 
     @Override
