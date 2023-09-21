@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Printer {
@@ -19,8 +18,7 @@ public class Printer {
     }
 
     public static void alertWinners(Cars playCars, int playDistance) {
-        List<String> winners = new ArrayList<>();
-        playCars.getWinnersName(winners, playDistance);
+        List<String> winners = playCars.getWinnersName(playDistance);
         if (isOnlyOneWinner(winners)) {
             System.out.print(winners.get(0));
             return;

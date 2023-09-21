@@ -14,13 +14,12 @@ public class Cars {
                 .noneMatch(car -> car.isDistanceEqualTo(distance));
     }
 
-    public void getWinnersName(List<String> winners, int distance) {
-        List<String> winnerNames = cars.stream()
+    public List<String> getWinnersName(int distance) {
+
+        return cars.stream()
                 .filter(car -> car.isDistanceEqualTo(distance))
                 .map(Car::getName)
                 .collect(Collectors.toList());
-
-        winners.addAll(winnerNames);
     }
 
     public void racing() {
