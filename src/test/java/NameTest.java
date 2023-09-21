@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 public class NameTest {
 
     @Test
@@ -80,9 +78,8 @@ public class NameTest {
         String nameInput = null;
 
         // when & then
-        assertThrows(NullPointerException.class, () -> {
-            Name.createNameList(nameInput);
-        });
+        Assertions.assertThatThrownBy(() -> Name.createNameList(nameInput))
+                .isInstanceOf(NullPointerException.class);
     }
 
     @Test
