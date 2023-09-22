@@ -24,6 +24,9 @@ public class Cars {
 
     public void racing() {
         final Dice dice = new DiceImpl();
-        cars.forEach(car -> car.racing(dice));
+        cars.forEach(car -> {
+            car.racing(dice);
+            Printer.printCarDistanceStatus(car.getName(), car.getStartDistance(), car.getDistance());
+        });
     }
 }

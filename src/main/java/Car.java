@@ -3,7 +3,7 @@ public class Car {
     private static final int START_DISTANCE = 0;
     private static final int ACCELERATE_MINIMUM_VALUE = 4;
     private static final int ACCELERATE_MAXIMUM_VALUE = 9;
-    
+
     private final Name name;
     private int distance;
 
@@ -27,10 +27,6 @@ public class Car {
         this.distance++;
     }
 
-    public void answerStatus() {
-        Printer.printCarDistanceStatus(name.getName(), START_DISTANCE, distance);
-    }
-
     public boolean isDistanceEqualTo(int distance) {
         return this.distance == distance;
     }
@@ -40,11 +36,17 @@ public class Car {
         if (Car.isValueSatisfiedToAccelerate(randomNumber)) {
             this.accelerate();
         }
-        this.answerStatus();
     }
 
     public String getName() {
         return name.getName();
     }
 
+    public int getStartDistance() {
+        return START_DISTANCE;
+    }
+
+    public int getDistance() {
+        return this.distance;
+    }
 }
