@@ -17,8 +17,7 @@ public class Printer {
         System.out.println("실행 결과");
     }
 
-    public static void alertWinners(Cars playCars, int playDistance) {
-        List<String> winners = playCars.getWinnersName(playDistance);
+    public static void alertWinners(List<String> winners) {
         if (isOnlyOneWinner(winners)) {
             System.out.print(winners.get(0));
             return;

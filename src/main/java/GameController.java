@@ -29,8 +29,8 @@ public class GameController {
             playCars.racing();
             System.out.println();
         }
-
-        Printer.alertWinners(playCars, playDistance);
+        List<String> winners = playCars.getWinnersName(playDistance);
+        Printer.alertWinners(winners);
         Printer.alertEndMessage();
 
         close();
