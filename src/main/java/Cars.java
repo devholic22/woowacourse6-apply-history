@@ -23,7 +23,6 @@ public class Cars {
     }
 
     public List<String> getWinnersName(int distance) {
-
         return cars.stream()
                 .filter(car -> car.isDistanceEqualTo(distance))
                 .map(Car::getName)
