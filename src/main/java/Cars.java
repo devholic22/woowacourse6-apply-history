@@ -3,6 +3,7 @@ import java.util.stream.Collectors;
 
 public class Cars {
 
+    private final Dice dice = new DiceImpl();
     private final List<Car> cars;
 
     private Cars(final List<Car> cars) {
@@ -30,7 +31,6 @@ public class Cars {
     }
 
     public void racing() {
-        final Dice dice = new DiceImpl();
         cars.forEach(car -> {
             car.racing(dice);
             Printer.printCarDistanceStatus(car.getName(), car.getStartDistance(), car.getDistance());
