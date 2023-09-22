@@ -7,13 +7,13 @@ public class Car {
     private final Name name;
     private int distance;
 
-    private Car(Name name) {
+    private Car(final Name name, final int distance) {
         this.name = name;
-        this.distance = START_DISTANCE;
+        this.distance = distance;
     }
 
     public static Car from(Name name) {
-        return new Car(name);
+        return new Car(name, START_DISTANCE);
     }
 
     public static boolean isValueSatisfiedToAccelerate(int value) {
