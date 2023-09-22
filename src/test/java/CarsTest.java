@@ -17,4 +17,18 @@ public class CarsTest {
         // then
         Assertions.assertThat(cars.getCarListCount()).isEqualTo(2);
     }
+
+    @Test
+    public void 처음에는_승자가_없어야_한다() {
+        // given
+        String nameInput = "hello, java";
+        List<Name> names = Name.createNameList(nameInput);
+        Cars cars = Cars.from(names);
+
+        // when
+        List<String> winners = cars.getWinnersName(10);
+
+        // then
+        Assertions.assertThat(winners.size()).isEqualTo(0);
+    }
 }
