@@ -16,7 +16,7 @@ public class Car {
         return new Car(name, START_DISTANCE);
     }
 
-    public static boolean isValueSatisfiedToAccelerate(int value) {
+    public boolean isValueSatisfiedToAccelerate(int value) {
         if (value >= ACCELERATE_MINIMUM_VALUE && value <= ACCELERATE_MAXIMUM_VALUE) {
             return true;
         }
@@ -33,7 +33,7 @@ public class Car {
 
     public void racing(Dice dice) {
         final int randomNumber = dice.random();
-        if (Car.isValueSatisfiedToAccelerate(randomNumber)) {
+        if (isValueSatisfiedToAccelerate(randomNumber)) {
             this.accelerate();
         }
     }
