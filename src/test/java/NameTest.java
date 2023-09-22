@@ -1,7 +1,9 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class NameTest {
 
@@ -14,7 +16,7 @@ public class NameTest {
         List<Name> nameList = Name.createNameList(nameInput);
 
         // then
-        Assertions.assertThat(nameList.size()).isEqualTo(3);
+        assertThat(nameList.size()).isEqualTo(3);
     }
 
     @Test
@@ -26,7 +28,7 @@ public class NameTest {
         List<Name> nameList = Name.createNameList(nameInput);
 
         // then
-        Assertions.assertThat(nameList.size()).isEqualTo(2);
+        assertThat(nameList.size()).isEqualTo(2);
     }
 
     @Test
@@ -38,7 +40,7 @@ public class NameTest {
         List<Name> nameList = Name.createNameList(nameInput);
 
         // then
-        Assertions.assertThat(nameList.size()).isEqualTo(1);
+        assertThat(nameList.size()).isEqualTo(1);
     }
 
     @Test
@@ -50,7 +52,7 @@ public class NameTest {
         List<Name> nameList = Name.createNameList(nameInput);
 
         // then
-        Assertions.assertThat(nameList).isEmpty();
+        assertThat(nameList).isEmpty();
     }
 
     @Test
@@ -62,7 +64,7 @@ public class NameTest {
         List<Name> nameList = Name.createNameList(nameInput);
 
         // then
-        Assertions.assertThat(nameList.size()).isEqualTo(2);
+        assertThat(nameList.size()).isEqualTo(2);
     }
 
     @Test
@@ -71,7 +73,7 @@ public class NameTest {
         String nameInput = null;
 
         // when & then
-        Assertions.assertThatThrownBy(() -> Name.createNameList(nameInput))
+        assertThatThrownBy(() -> Name.createNameList(nameInput))
                 .isInstanceOf(NullPointerException.class);
     }
 
@@ -84,6 +86,6 @@ public class NameTest {
         String retrievedName = name.getName();
 
         // then
-        Assertions.assertThat(retrievedName).isEqualTo("test");
+        assertThat(retrievedName).isEqualTo("test");
     }
 }

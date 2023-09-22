@@ -1,5 +1,6 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarTest {
 
@@ -12,7 +13,7 @@ public class CarTest {
         Car newCar = Car.from(name);
 
         // then
-        Assertions.assertThat(newCar.getName()).isEqualTo(name.getName());
+        assertThat(newCar.getName()).isEqualTo(name.getName());
     }
 
     @Test
@@ -24,6 +25,6 @@ public class CarTest {
         Car newCar = Car.from(name);
 
         // then
-        Assertions.assertThat(newCar.isDistanceEqualTo(0)).isTrue();
+        assertThat(newCar.isDistanceEqualTo(0)).isTrue();
     }
 }

@@ -1,5 +1,6 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DiceTest {
 
@@ -14,7 +15,7 @@ public class DiceTest {
         car.racing(movableDice);
 
         // then
-        Assertions.assertThat(car.isDistanceEqualTo(1)).isTrue();
+        assertThat(car.isDistanceEqualTo(1)).isTrue();
     }
 
     @Test
@@ -28,7 +29,7 @@ public class DiceTest {
         car.racing(movableDice);
 
         // then
-        Assertions.assertThat(car.isDistanceEqualTo(0)).isTrue();
+        assertThat(car.isDistanceEqualTo(0)).isTrue();
     }
 
     @Test
@@ -42,6 +43,6 @@ public class DiceTest {
         car.racing(movableDice);
 
         // then
-        Assertions.assertThat(car.isDistanceEqualTo(0)).isTrue();
+        assertThat(car.isDistanceEqualTo(0)).isTrue();
     }
 }

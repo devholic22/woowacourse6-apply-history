@@ -1,7 +1,8 @@
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CarsTest {
 
@@ -15,7 +16,7 @@ public class CarsTest {
         Cars cars = Cars.from(names);
 
         // then
-        Assertions.assertThat(cars.getCarListCount()).isEqualTo(2);
+        assertThat(cars.getCarListCount()).isEqualTo(2);
     }
 
     @Test
@@ -29,6 +30,6 @@ public class CarsTest {
         List<String> winners = cars.getWinnersName(10);
 
         // then
-        Assertions.assertThat(winners.size()).isEqualTo(0);
+        assertThat(winners.size()).isEqualTo(0);
     }
 }
