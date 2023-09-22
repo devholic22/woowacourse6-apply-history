@@ -2,7 +2,6 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CarTest {
 
@@ -25,10 +24,10 @@ public class CarTest {
         List<Name> names = Name.createNameList(nameInput);
 
         // when
-        List<Car> cars = names.stream().map(Car::from).collect(Collectors.toList());
+        Cars cars = Cars.from(names);
 
         // then
-        Assertions.assertThat(cars.size()).isEqualTo(2);
+        Assertions.assertThat(cars.getCarListCount()).isEqualTo(2);
     }
 
     @Test

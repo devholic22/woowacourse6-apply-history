@@ -5,8 +5,15 @@ public class Cars {
 
     private final List<Car> cars;
 
-    public Cars(final List<Car> cars) {
+    private Cars(final List<Car> cars) {
         this.cars = cars;
+    }
+
+    public static Cars from(final List<Name> names) {
+        List<Car> cars = names.stream()
+                .map(Car::from)
+                .collect(Collectors.toList());
+        return new Cars(cars);
     }
 
     public boolean hasNotWinnerDistance(int distance) {
@@ -28,5 +35,9 @@ public class Cars {
             car.racing(dice);
             Printer.printCarDistanceStatus(car.getName(), car.getStartDistance(), car.getDistance());
         });
+    }
+
+    public int getCarListCount() {
+        return this.cars.size();
     }
 }

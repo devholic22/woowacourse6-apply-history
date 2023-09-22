@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class GameController {
 
@@ -19,7 +18,7 @@ public class GameController {
 
     public void play() throws IOException {
         Printer.askCarNames();
-        playCars = new Cars(createCars(inputReader.readLine()));
+        playCars = Cars.from(createCarNames(inputReader.readLine()));
 
         Printer.askGameCount();
         saveGameCount(inputReader.readLine());
@@ -36,11 +35,8 @@ public class GameController {
         close();
     }
 
-    private List<Car> createCars(String input) {
-        List<Name> candidateNames = Name.createNameList(input);
-        return candidateNames.stream()
-                .map(Car::from)
-                .collect(Collectors.toList());
+    private List<Name> createCarNames(String input) {
+        return Name.createNameList(input);
     }
 
     private void saveGameCount(String input) {
