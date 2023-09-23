@@ -10,7 +10,7 @@ public class CarTest {
         Name name = Name.from("hello");
 
         // when
-        Car newCar = Car.from(name);
+        Car newCar = Car.createDefault(name);
 
         // then
         assertThat(newCar.getName()).isEqualTo(name.getName());
@@ -22,7 +22,7 @@ public class CarTest {
         Name name = Name.from("hello");
 
         // when
-        Car newCar = Car.from(name);
+        Car newCar = Car.createDefault(name);
 
         // then
         assertThat(newCar.isDistanceEqualTo(0)).isTrue();

@@ -8,7 +8,7 @@ public class DiceTest {
     public void 숫자가_조건값보다_크거나_같으면_위치를_1_증가() {
         // given
         Name name = Name.from("hello");
-        Car car = Car.from(name);
+        Car car = Car.createDefault(name);
         Dice movableDice = new DiceMovableImpl();
 
         // when
@@ -22,7 +22,7 @@ public class DiceTest {
     public void 숫자가_조건값보다_작으면_위치는_그대로여야_한다() {
         // given
         Name name = Name.from("hello");
-        Car car = Car.from(name);
+        Car car = Car.createDefault(name);
         Dice movableDice = new LowerDiceImpl();
 
         // when
@@ -36,7 +36,7 @@ public class DiceTest {
     public void 숫자가_조건값보다_커도_위치는_그대로여야_한다() {
         // given
         Name name = Name.from("hello");
-        Car car = Car.from(name);
+        Car car = Car.createDefault(name);
         Dice movableDice = new HigherDiceImpl();
 
         // when

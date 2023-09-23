@@ -12,7 +12,7 @@ public class Cars {
 
     public static Cars from(final List<Name> names) {
         List<Car> cars = names.stream()
-                .map(Car::from)
+                .map(Car::createDefault)
                 .collect(Collectors.toList());
         return new Cars(cars);
     }

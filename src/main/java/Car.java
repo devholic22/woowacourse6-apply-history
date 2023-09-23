@@ -12,7 +12,7 @@ public class Car {
         this.distance = distance;
     }
 
-    public static Car from(Name name) {
+    public static Car createDefault(Name name) {
         return new Car(name, START_DISTANCE);
     }
 
