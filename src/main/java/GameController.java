@@ -18,7 +18,7 @@ public class GameController {
 
     public void play() throws IOException {
         Printer.askCarNames();
-        playCars = Cars.from(createCarNames(inputReader.readLine()));
+        playCars = Cars.from(inputReader.readLine());
 
         Printer.askGameCount();
         saveGameCount(inputReader.readLine());
@@ -33,10 +33,6 @@ public class GameController {
         Printer.alertEndMessage();
 
         close();
-    }
-
-    private List<Name> createCarNames(String input) {
-        return Name.createNameList(input);
     }
 
     private void saveGameCount(String input) {

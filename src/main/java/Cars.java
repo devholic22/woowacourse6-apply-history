@@ -10,7 +10,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars from(final List<Name> names) {
+    public static Cars from(final String nameInput) {
+        List<Name> names = Name.createNameList(nameInput);
         List<Car> cars = names.stream()
                 .map(Car::createDefault)
                 .collect(Collectors.toList());
