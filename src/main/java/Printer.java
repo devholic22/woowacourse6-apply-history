@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 
 public class Printer {
@@ -29,8 +30,10 @@ public class Printer {
         System.out.println("가 최종 우승했습니다.");
     }
 
-    public static void printCarDistanceStatus(String name, int start, int end) {
-        System.out.println(name + " : " + DISTANCE_MARK.repeat(Math.max(start, end)));
+    public static void printAllCarsInfo(HashMap<String, Integer> carsInfo) {
+        for (String car : carsInfo.keySet()) {
+            System.out.println(car + " : " + DISTANCE_MARK.repeat(carsInfo.get(car)));
+        }
     }
 
     private static void chainingWinnerNames(List<String> names) {

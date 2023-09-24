@@ -26,6 +26,7 @@ public class GameController {
         Printer.alertResultMessage();
         while (playCars.hasNotWinnerDistance(playDistance)) {
             playCars.racing();
+            Printer.printAllCarsInfo(playCars.getAllCarsDistanceStatus());
             System.out.println();
         }
         List<String> winners = playCars.getWinnersName(playDistance);

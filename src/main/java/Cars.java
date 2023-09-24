@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,8 +34,15 @@ public class Cars {
     public void racing() {
         cars.forEach(car -> {
             car.racing(dice);
-            Printer.printCarDistanceStatus(car.getName(), car.getStartDistance(), car.getDistance());
         });
+    }
+
+    public HashMap<String, Integer> getAllCarsDistanceStatus() {
+        HashMap<String, Integer> carsInfo = new HashMap<>();
+        cars.forEach(car -> {
+            carsInfo.put(car.getName(), car.getDistance());
+        });
+        return carsInfo;
     }
 
     public int getCarListCount() {

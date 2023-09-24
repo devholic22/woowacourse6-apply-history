@@ -42,10 +42,6 @@ public class Car {
         return name.getName();
     }
 
-    public int getStartDistance() {
-        return START_DISTANCE;
-    }
-
     public int getDistance() {
         return this.distance;
     }
