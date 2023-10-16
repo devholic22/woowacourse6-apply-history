@@ -12,8 +12,19 @@ public class Problem5 {
 
     public static List<Integer> solution(int money) {
         int[] answer = new int[COINS.length];
+
+        for (int i = 0; i < COINS.length; i++) {
+            if (isMoneyCanTakeCoin(money, i)) {
+                answer[i] = money / COINS[i];
+            }
+        }
+
         return Arrays.stream(answer)
                 .boxed()
                 .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    private static boolean isMoneyCanTakeCoin(final int money, final int index) {
+        return money >= COINS[index];
     }
 }
