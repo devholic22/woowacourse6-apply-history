@@ -6,8 +6,38 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Problem2 {
+
     public static String solution(String cryptogram) {
         List<String> tokens = convertStringToList(cryptogram);
+        boolean find = false;
+        int start = 0;
+        int end = 0;
+        while (isExistDuplicate(tokens)) {
+            for (int i = 0; i < tokens.size() - 1; i++) {
+                if (!isExistDuplicate(tokens)) {
+                    break;
+                }
+                if (!find && isBothSame(tokens.get(i), tokens.get(i + 1))) {
+                    find = true;
+                    start = i;
+                    end = i + 1;
+                } else if (find && isBothSame(tokens.get(i), tokens.get(i + 1))) {
+                    end = i + 1;
+                } else if (find && !isBothSame(tokens.get(i), tokens.get(i + 1))) {
+                    find = false;
+                    for (int j = start; j <= end; j++) {
+                        tokens.remove(start);
+                    }
+                    start = i + 1;
+                    end = i + 1;
+                }
+            }
+        }
+        return String.join("", tokens);
+    }
+
+    private static boolean isBothSame(final String origin, final String test) {
+        return origin.equals(test);
     }
 
     private static boolean isExistDuplicate(final List<String> tokens) {
