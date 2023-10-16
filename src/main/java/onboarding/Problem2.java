@@ -17,6 +17,10 @@ public class Problem2 {
                 if (!isExistDuplicate(tokens)) {
                     break;
                 }
+                if (tokens.size() == 2 && isBothSame(tokens.get(i), tokens.get(i + 1))) {
+                    tokens.clear();
+                    break;
+                }
                 if (!find && isBothSame(tokens.get(i), tokens.get(i + 1))) {
                     find = true;
                     start = i;
