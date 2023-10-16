@@ -23,8 +23,7 @@ public class Problem6 {
             WORDS.put(nickname, getAllWordsWithName(nickname));
             appendEmailIfSameWordExist(nickname);
         }
-        List<String> answer = List.of("answer");
-        return answer;
+        return new ArrayList<>(answer);
     }
 
     private static List<String> getAllWordsWithName(final String nickname) {
