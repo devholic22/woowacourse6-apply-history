@@ -1,5 +1,6 @@
 package onboarding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,8 +18,21 @@ public class Problem6 {
             String email = form.get(EMAIL_INDEX);
             USERS.put(nickname, email);
         }
-
         List<String> answer = List.of("answer");
         return answer;
+    }
+
+    private static List<String> getAllWordsWithName(final String nickname) {
+        List<String> words = new ArrayList<>();
+        for (int i = 0; i < nickname.length(); i++) {
+            for (int j = SAME_CONDITION_VALUE; j <= nickname.length(); j++) {
+                int selectEnd = i + j;
+                if (selectEnd <= nickname.length()) {
+                    String word = nickname.substring(i, selectEnd);
+                    words.add(word);
+                }
+            }
+        }
+        return words;
     }
 }
