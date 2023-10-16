@@ -25,19 +25,31 @@ public class Problem2 {
                 clearList(tokens);
                 break;
             }
-            if (!find && isBothSame(tokens.get(i), tokens.get(i + 1))) {
+            if (findNewDuplicate(tokens, find, i)) {
                 find = changeFind(find);
                 start = i;
                 end = i + 1;
-            } else if (find && isBothSame(tokens.get(i), tokens.get(i + 1))) {
+            } else if (findDuplicateToken(tokens, find, i)) {
                 end = i + 1;
-            } else if (find && !isBothSame(tokens.get(i), tokens.get(i + 1))) {
+            } else if (isEndDuplicate(tokens, find, i)) {
                 find = changeFind(find);
                 changeValueToBlankFromStartToEnd(tokens, start, end);
                 start = i + 1;
                 end = i + 1;
             }
         }
+    }
+
+    private static boolean findDuplicateToken(final List<String> tokens, final boolean find, final int index) {
+        return find && isBothSame(tokens.get(index), tokens.get(index + 1));
+    }
+
+    private static boolean isEndDuplicate(final List<String> tokens, final boolean find, final int index) {
+        return find && !isBothSame(tokens.get(index), tokens.get(index + 1));
+    }
+
+    private static boolean findNewDuplicate(final List<String> tokens, final boolean find, final int index) {
+        return !find && isBothSame(tokens.get(index), tokens.get(index + 1));
     }
 
     private static boolean changeFind(boolean find) {
