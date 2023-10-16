@@ -15,15 +15,15 @@ public class Problem4 {
 
         for (String token : tokens) {
             if (isBlank(token)) {
-                addValueIntoToken(token);
+                addValueIntoBuilder(token);
                 continue;
             }
             if (isDictionaryHasKey(token)) {
-                addValueIntoToken(getReverse(token));
+                addValueIntoBuilder(getReverse(token));
                 continue;
             }
             if (isDictionaryHasKey(getLowerCase(token))) {
-                addValueIntoToken(getReverseUpperCase(token));
+                addValueIntoBuilder(getReverseUpperCase(token));
             }
         }
 
@@ -50,7 +50,7 @@ public class Problem4 {
         return DICTIONARY.get(token.toLowerCase()).toUpperCase();
     }
 
-    private static void addValueIntoToken(final String value) {
+    private static void addValueIntoBuilder(final String value) {
         builder.append(value);
     }
 
