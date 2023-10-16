@@ -30,29 +30,49 @@ public class Problem6 {
     private static List<String> getAllWordsWithName(final String nickname) {
         List<String> words = new ArrayList<>();
         for (int i = 0; i < nickname.length(); i++) {
-            for (int j = SAME_CONDITION_VALUE; j <= nickname.length(); j++) {
-                int selectEnd = i + j;
-                if (selectEnd <= nickname.length()) {
-                    String word = nickname.substring(i, selectEnd);
-                    words.add(word);
-                }
-            }
+            saveNicknameWordToWordsStartFromIndex(nickname, i, words);
         }
         return words;
+    }
+
+    private static void saveNicknameWordToWordsStartFromIndex(final String nickname, final int index, final List<String> words) {
+        for (int j = SAME_CONDITION_VALUE; j <= nickname.length(); j++) {
+            int selectEnd = index + j;
+            if (selectEnd <= nickname.length()) {
+                String word = nickname.substring(index, selectEnd);
+                words.add(word);
+            }
+        }
     }
 
     private static void appendEmailIfSameWordExist(final String nickname) {
         List<String> wordsByNickname = getAllWordsWithName(nickname);
         for (String word : wordsByNickname) {
-            for (String otherName : WORDS.keySet()) {
-                if (otherName.equals(nickname)) {
-                    continue;
-                }
-                if (WORDS.get(otherName).contains(word)) {
-                    answer.add(USERS.get(otherName));
-                    answer.add(USERS.get(nickname));
-                }
+            appendEmailIfSameWordInWords(nickname, word);
+        }
+    }
+
+    private static void appendEmailIfSameWordInWords(final String nickname, final String word) {
+        for (String otherName : WORDS.keySet()) {
+            if (isNicknameEqualToOther(nickname, otherName)) {
+                continue;
+            }
+            if (isAlreadySavedOtherNameWord(word, otherName)) {
+                appendEmailByName(otherName);
+                appendEmailByName(nickname);
             }
         }
+    }
+
+    private static void appendEmailByName(final String otherName) {
+        answer.add(USERS.get(otherName));
+    }
+
+    private static boolean isAlreadySavedOtherNameWord(final String word, final String otherName) {
+        return WORDS.get(otherName).contains(word);
+    }
+
+    private static boolean isNicknameEqualToOther(final String nickname, final String otherName) {
+        return otherName.equals(nickname);
     }
 }
