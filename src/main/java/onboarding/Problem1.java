@@ -73,9 +73,9 @@ class Problem1 {
 
     private static int getDigitMultiple(final int number) {
         String[] digits = convertNumberToStringArray(number);
-        int sum = calculateDigitMultiple(digits);
+        int multiple = calculateDigitMultiple(digits);
 
-        return sum;
+        return multiple;
     }
 
     private static int calculateDigitMultiple(final String[] digits) {
