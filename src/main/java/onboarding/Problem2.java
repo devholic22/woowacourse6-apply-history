@@ -26,7 +26,7 @@ public class Problem2 {
                 break;
             }
             if (findNewDuplicate(tokens, find, i)) {
-                find = changeFind(find);
+                find = true;
                 start = i;
                 end = i + 1;
             }
@@ -34,7 +34,7 @@ public class Problem2 {
                 end = i + 1;
             }
             if (isEndDuplicate(tokens, find, i)) {
-                find = changeFind(find);
+                find = false;
                 changeValueToBlankFromStartToEnd(tokens, start, end);
                 start = i + 1;
                 end = i + 1;
@@ -52,10 +52,6 @@ public class Problem2 {
 
     private static boolean findNewDuplicate(final List<String> tokens, final boolean find, final int index) {
         return !find && isBothSame(tokens.get(index), tokens.get(index + 1));
-    }
-
-    private static boolean changeFind(boolean find) {
-        return !find;
     }
 
     private static void clearList(final List<String> tokens) {
