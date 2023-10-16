@@ -32,7 +32,7 @@ class Problem1 {
         return DRAW;
     }
 
-    private static int getResultFromBook(List<Integer> book) throws IllegalArgumentException {
+    private static int getResultFromBook(final List<Integer> book) throws IllegalArgumentException {
         int left = book.get(LEFT);
         int right = book.get(RIGHT);
 
@@ -46,15 +46,15 @@ class Problem1 {
         return Math.max(leftResult, rightResult);
     }
 
-    private static boolean isPageError(int leftPage, int rightPage) {
+    private static boolean isPageError(final int leftPage, final int rightPage) {
         return rightPage - leftPage != 1;
     }
 
-    private static int getMaxValueFromOperations(int number) {
+    private static int getMaxValueFromOperations(final int number) {
         return Math.max(getDigitSum(number), getDigitMultiple(number));
     }
 
-    private static int getDigitSum(int number) {
+    private static int getDigitSum(final int number) {
         String[] digits = convertNumberToStringArray(number);
         int sum = calculateDigitSum(digits);
 
@@ -71,7 +71,7 @@ class Problem1 {
         return sum;
     }
 
-    private static int getDigitMultiple(int number) {
+    private static int getDigitMultiple(final int number) {
         String[] digits = convertNumberToStringArray(number);
         int sum = calculateDigitMultiple(digits);
 
@@ -88,7 +88,7 @@ class Problem1 {
         return sum;
     }
 
-    private static String[] convertNumberToStringArray(int number) {
+    private static String[] convertNumberToStringArray(final int number) {
         return String.valueOf(number).split("");
     }
 }
