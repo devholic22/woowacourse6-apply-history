@@ -16,6 +16,16 @@ class Problem1 {
         return answer;
     }
 
+    private static int getResultFromBook(List<Integer> book) {
+        int left = book.get(LEFT);
+        int right = book.get(RIGHT);
+
+        int leftResult = getMaxValueFromOperations(left);
+        int rightResult = getMaxValueFromOperations(right);
+
+        return Math.max(leftResult, rightResult);
+    }
+
     private static int getMaxValueFromOperations(int number) {
         return Math.max(calculateDigitSum(number), calculateDigitMultiply(number));
     }
