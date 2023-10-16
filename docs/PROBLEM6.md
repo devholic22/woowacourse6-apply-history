@@ -23,7 +23,7 @@
 | [ ["jm@email.com", "제이엠"], ["jason@email.com", "제이슨"], ["woniee@email.com", "워니"], ["mj@email.com", "엠제이"], ["nowm@email.com", "이제엠"] ] | ["jason@email.com", "jm@email.com", "mj@email.com"] |
 
 ## 기능 목록 작성
-- [ ] 연속 판정 수 상수화
+- [x] 연속 판정 수 상수화
 - [ ] 각 form에서 이메일과 닉네임을 분리
   - [ ] HashMap 형태로 저장하여, 닉네임을 key, 이메일을 value로 설정
 - [ ] 새로운 form이 들어올 때 마다 HashMap의 key와 form의 닉네임을 비교
