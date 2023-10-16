@@ -17,6 +17,9 @@ public class Problem4 {
             if (token.isBlank()) {
                 builder.append(token);
             }
+            if (DICTIONARY.containsKey(token)) {
+                builder.append(token);
+            }
         }
 
         return builder.toString();
