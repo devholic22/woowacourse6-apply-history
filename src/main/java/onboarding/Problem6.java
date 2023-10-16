@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
 
 public class Problem6 {
 
@@ -23,7 +24,7 @@ public class Problem6 {
             WORDS.put(nickname, getAllWordsWithName(nickname));
             appendEmailIfSameWordExist(nickname);
         }
-        return new ArrayList<>(answer);
+        return new ArrayList<>(new TreeSet<>(answer));
     }
 
     private static List<String> getAllWordsWithName(final String nickname) {
