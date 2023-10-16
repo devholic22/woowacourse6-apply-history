@@ -24,3 +24,15 @@
 | user | friends | visitors | result |
 | --- | --- | --- | --- |
 | "mrko" | [ ["donut", "andole"], ["donut", "jun"], ["donut", "mrko"], ["shakevan", "andole"], ["shakevan", "jun"], ["shakevan", "mrko"] ] | ["bedi", "bedi", "donut", "bedi", "shakevan"] | ["andole", "jun", "bedi"] |
+
+## 기능 목록 작성
+- [ ] 친구가 아닌 사람을 뽑아놓는다.
+  - [ ] 각 사람의 친구 목록 중에 user의 이름이 있으면 둘은 친구다.
+- [ ] 각 사람과 user의 교집합 수를 이용해 함께 아는 친구의 수를 구한 뒤 10을 곱해 값을 구한다.
+- [ ] 각 사람 당 visitors에서의 존재 수만큼의 값을 구한다.
+- [ ] 함께 아는 친구의 수 x 10점, visitors에서의 존재 수 둘을 비교하여 더 큰 값을 그 사람의 점수로 둔다.
+- [ ] 점수가 0점이면 무시한다.
+- [ ] 정렬을 한다. 이때 1차로 점수가 높은 순서대로 정렬한다.
+  - [ ] 2차로는 알파벳 순으로 정렬한다.
+  - [ ] 정렬 조건이 여러 개 있으므로, 사람을 저장할 때 Person 클래스로 만들어둔다.
+  - [ ] 정렬된 각각의 Person의 name을 result에 최대 5개 담는다.
