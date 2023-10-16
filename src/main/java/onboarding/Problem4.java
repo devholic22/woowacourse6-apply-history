@@ -19,7 +19,7 @@ public class Problem4 {
                 continue;
             }
             if (DICTIONARY.containsKey(token)) {
-                builder.append(token);
+                builder.append(DICTIONARY.get(token));
                 continue;
             }
             if (DICTIONARY.containsKey(token.toLowerCase())) {
