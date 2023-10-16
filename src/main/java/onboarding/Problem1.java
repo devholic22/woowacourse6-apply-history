@@ -16,6 +16,10 @@ class Problem1 {
         return answer;
     }
 
+    private static int getMaxValueFromOperations(int number) {
+        return Math.max(calculateDigitSum(number), calculateDigitMultiply(number));
+    }
+
     private static int calculateDigitSum(int number) {
         int sum = 0;
         String[] digits = convertNumberToStringArray(number);
