@@ -21,6 +21,10 @@ public class Problem5 {
             money %= COINS[i];
         }
 
+        return convertIntArrayToArrayList(answer);
+    }
+
+    private static ArrayList<Integer> convertIntArrayToArrayList(final int[] answer) {
         return Arrays.stream(answer)
                 .boxed()
                 .collect(Collectors.toCollection(ArrayList::new));
