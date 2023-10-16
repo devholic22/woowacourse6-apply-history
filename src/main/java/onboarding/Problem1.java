@@ -12,8 +12,16 @@ class Problem1 {
     private static final int ERROR = -1;
 
     public static int solution(List<Integer> pobi, List<Integer> crong) {
-        int answer = Integer.MAX_VALUE;
-        return answer;
+        int pobiValue = getResultFromBook(pobi);
+        int crongValue = getResultFromBook(crong);
+
+        if (pobiValue > crongValue) {
+            return POBI_WIN;
+        }
+        if (pobiValue < crongValue) {
+            return CRONG_WIN;
+        }
+        return DRAW;
     }
 
     private static int getResultFromBook(List<Integer> book) {
