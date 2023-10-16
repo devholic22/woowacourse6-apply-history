@@ -14,10 +14,11 @@ public class Problem5 {
         int[] answer = new int[COINS.length];
 
         for (int i = 0; i < COINS.length; i++) {
-            if (isMoneyCanTakeCoin(money, i)) {
-                answer[i] = money / COINS[i];
-                money %= COINS[i];
+            if (!isMoneyCanTakeCoin(money, i)) {
+                continue;
             }
+            answer[i] = money / COINS[i];
+            money %= COINS[i];
         }
 
         return Arrays.stream(answer)
