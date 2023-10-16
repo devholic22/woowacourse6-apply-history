@@ -15,4 +15,15 @@ class Problem1 {
         int answer = Integer.MAX_VALUE;
         return answer;
     }
+
+    private static int calculateDigitSum(int number) {
+        int sum = 0;
+        String[] digits = String.valueOf(number).split("");
+
+        for (String digit : digits) {
+            sum += Integer.parseInt(digit);
+        }
+
+        return sum;
+    }
 }
