@@ -64,8 +64,8 @@ public class Problem6 {
         }
     }
 
-    private static void appendEmailByName(final String otherName) {
-        answer.add(USERS.get(otherName));
+    private static void appendEmailByName(final String name) {
+        answer.add(USERS.get(name));
     }
 
     private static boolean isAlreadySavedOtherNameWord(final String word, final String otherName) {
