@@ -51,28 +51,36 @@ class Problem1 {
     }
 
     private static int getMaxValueFromOperations(int number) {
-        return Math.max(calculateDigitSum(number), calculateDigitMultiply(number));
+        return Math.max(getDigitSum(number), getDigitMultiple(number));
     }
 
-    private static int calculateDigitSum(int number) {
+    private static int getDigitSum(int number) {
         int sum = 0;
         String[] digits = convertNumberToStringArray(number);
-
-        for (String digit : digits) {
-            sum += Integer.parseInt(digit);
-        }
+        sum = calculateDigitSum(digits, sum);
 
         return sum;
     }
 
-    private static int calculateDigitMultiply(int number) {
+    private static int calculateDigitSum(final String[] digits, int sum) {
+        for (String digit : digits) {
+            sum += Integer.parseInt(digit);
+        }
+        return sum;
+    }
+
+    private static int getDigitMultiple(int number) {
         int sum = 1;
         String[] digits = convertNumberToStringArray(number);
+        sum = calculateDigitMultiple(digits, sum);
 
+        return sum;
+    }
+
+    private static int calculateDigitMultiple(final String[] digits, int sum) {
         for (String digit : digits) {
             sum *= Integer.parseInt(digit);
         }
-
         return sum;
     }
 
