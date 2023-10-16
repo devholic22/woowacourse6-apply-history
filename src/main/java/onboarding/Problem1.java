@@ -55,32 +55,36 @@ class Problem1 {
     }
 
     private static int getDigitSum(int number) {
-        int sum = 0;
         String[] digits = convertNumberToStringArray(number);
-        sum = calculateDigitSum(digits, sum);
+        int sum = calculateDigitSum(digits);
 
         return sum;
     }
 
-    private static int calculateDigitSum(final String[] digits, int sum) {
+    private static int calculateDigitSum(final String[] digits) {
+        int sum = 0;
+
         for (String digit : digits) {
             sum += Integer.parseInt(digit);
         }
+
         return sum;
     }
 
     private static int getDigitMultiple(int number) {
-        int sum = 1;
         String[] digits = convertNumberToStringArray(number);
-        sum = calculateDigitMultiple(digits, sum);
+        int sum = calculateDigitMultiple(digits);
 
         return sum;
     }
 
-    private static int calculateDigitMultiple(final String[] digits, int sum) {
+    private static int calculateDigitMultiple(final String[] digits) {
+        int sum = 1;
+
         for (String digit : digits) {
             sum *= Integer.parseInt(digit);
         }
+
         return sum;
     }
 
