@@ -11,8 +11,7 @@ public class Problem3 {
         for (int i = 1; i < numbers.length; i++) {
             numbers[i] = numbers[i - 1] + countClap(i);
         }
-        int answer = 0;
-        return answer;
+        return numbers[number];
     }
 
     private static int countClap(final int number) {
