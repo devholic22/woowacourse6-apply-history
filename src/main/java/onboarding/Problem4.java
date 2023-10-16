@@ -16,9 +16,14 @@ public class Problem4 {
         for (String token : tokens) {
             if (token.isBlank()) {
                 builder.append(token);
+                continue;
             }
             if (DICTIONARY.containsKey(token)) {
                 builder.append(token);
+                continue;
+            }
+            if (DICTIONARY.containsKey(token.toLowerCase())) {
+                builder.append(DICTIONARY.get(token.toLowerCase()).toUpperCase());
             }
         }
 
