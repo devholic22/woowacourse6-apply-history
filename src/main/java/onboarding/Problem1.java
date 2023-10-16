@@ -26,4 +26,15 @@ class Problem1 {
 
         return sum;
     }
+
+    private static int calculateDigitMultiply(int number) {
+        int sum = 1;
+        String[] digits = String.valueOf(number).split("");
+
+        for (String digit : digits) {
+            sum *= Integer.parseInt(digit);
+        }
+
+        return sum;
+    }
 }
