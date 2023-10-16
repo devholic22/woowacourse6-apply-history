@@ -18,7 +18,7 @@ class Problem1 {
 
     private static int calculateDigitSum(int number) {
         int sum = 0;
-        String[] digits = String.valueOf(number).split("");
+        String[] digits = convertNumberToStringArray(number);
 
         for (String digit : digits) {
             sum += Integer.parseInt(digit);
@@ -29,12 +29,16 @@ class Problem1 {
 
     private static int calculateDigitMultiply(int number) {
         int sum = 1;
-        String[] digits = String.valueOf(number).split("");
+        String[] digits = convertNumberToStringArray(number);
 
         for (String digit : digits) {
             sum *= Integer.parseInt(digit);
         }
 
         return sum;
+    }
+
+    private static String[] convertNumberToStringArray(int number) {
+        return String.valueOf(number).split("");
     }
 }
