@@ -9,8 +9,17 @@ public class Problem4 {
 
     public static String solution(String word) {
         initDictionary();
-        String answer = "";
-        return answer;
+
+        StringBuilder builder = new StringBuilder();
+        String[] tokens = word.split("");
+
+        for (String token : tokens) {
+            if (token.isBlank()) {
+                builder.append(token);
+            }
+        }
+
+        return builder.toString();
     }
 
     private static void initDictionary() {
