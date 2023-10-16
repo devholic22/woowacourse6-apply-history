@@ -16,6 +16,7 @@ public class Problem5 {
         for (int i = 0; i < COINS.length; i++) {
             if (isMoneyCanTakeCoin(money, i)) {
                 answer[i] = money / COINS[i];
+                money %= COINS[i];
             }
         }
 
