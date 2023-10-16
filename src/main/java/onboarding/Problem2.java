@@ -29,9 +29,11 @@ public class Problem2 {
                 find = changeFind(find);
                 start = i;
                 end = i + 1;
-            } else if (findDuplicateToken(tokens, find, i)) {
+            }
+            if (findDuplicateToken(tokens, find, i)) {
                 end = i + 1;
-            } else if (isEndDuplicate(tokens, find, i)) {
+            }
+            if (isEndDuplicate(tokens, find, i)) {
                 find = changeFind(find);
                 changeValueToBlankFromStartToEnd(tokens, start, end);
                 start = i + 1;
