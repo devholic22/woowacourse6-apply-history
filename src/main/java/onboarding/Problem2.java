@@ -7,8 +7,7 @@ import java.util.stream.IntStream;
 
 public class Problem2 {
     public static String solution(String cryptogram) {
-        String answer = "answer";
-        return answer;
+        List<String> tokens = convertStringToList(cryptogram);
     }
 
     private static boolean isExistDuplicate(final List<String> tokens) {
@@ -22,6 +21,11 @@ public class Problem2 {
     private static List<String> getValuesWithoutBlank(final List<String> tokens) {
         return tokens.stream()
                 .filter(token -> !token.isEmpty())
+                .collect(Collectors.toList());
+    }
+
+    private static List<String> convertStringToList(final String value) {
+        return Arrays.stream(value.split(""))
                 .collect(Collectors.toList());
     }
 }
