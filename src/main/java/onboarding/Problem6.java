@@ -10,6 +10,7 @@ public class Problem6 {
     private static final int EMAIL_INDEX = 0;
     private static final int NICKNAME_INDEX = 1;
     private static final HashMap<String, String> USERS = new HashMap<>();
+    private static final List<String> WORDS = new ArrayList<>();
 
     public static List<String> solution(List<List<String>> forms) {
 
@@ -17,6 +18,9 @@ public class Problem6 {
             String nickname = form.get(NICKNAME_INDEX);
             String email = form.get(EMAIL_INDEX);
             USERS.put(nickname, email);
+            if (isUniqueNickname(nickname)) {
+                WORDS.addAll(getAllWordsWithName(nickname));
+            }
         }
         List<String> answer = List.of("answer");
         return answer;
@@ -34,5 +38,15 @@ public class Problem6 {
             }
         }
         return words;
+    }
+
+    private static boolean isUniqueNickname(final String nickname) {
+        List<String> wordsByNickname = getAllWordsWithName(nickname);
+        for (String word : wordsByNickname) {
+            if (WORDS.contains(word)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
