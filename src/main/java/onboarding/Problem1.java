@@ -12,6 +12,14 @@ class Problem1 {
     private static final int ERROR = -1;
 
     public static int solution(List<Integer> pobi, List<Integer> crong) {
+        try {
+            return getWinnerInBooks(pobi, crong);
+        } catch (IllegalArgumentException e) {
+            return ERROR;
+        }
+    }
+
+    private static int getWinnerInBooks(final List<Integer> pobi, final List<Integer> crong) {
         int pobiValue = getResultFromBook(pobi);
         int crongValue = getResultFromBook(crong);
 
@@ -24,14 +32,22 @@ class Problem1 {
         return DRAW;
     }
 
-    private static int getResultFromBook(List<Integer> book) {
+    private static int getResultFromBook(List<Integer> book) throws IllegalArgumentException {
         int left = book.get(LEFT);
         int right = book.get(RIGHT);
+
+        if (isPageError(left, right)) {
+            throw new IllegalArgumentException();
+        }
 
         int leftResult = getMaxValueFromOperations(left);
         int rightResult = getMaxValueFromOperations(right);
 
         return Math.max(leftResult, rightResult);
+    }
+
+    private static boolean isPageError(int leftPage, int rightPage) {
+        return rightPage - leftPage != 1;
     }
 
     private static int getMaxValueFromOperations(int number) {
