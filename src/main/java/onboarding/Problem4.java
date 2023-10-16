@@ -5,29 +5,57 @@ import java.util.HashMap;
 public class Problem4 {
 
     private static final int A_INDEX = 97;
+    private static final StringBuilder builder = new StringBuilder();
     private static final HashMap<String, String> DICTIONARY = new HashMap<>();
 
     public static String solution(String word) {
         initDictionary();
 
-        StringBuilder builder = new StringBuilder();
-        String[] tokens = word.split("");
+        String[] tokens = getTokensFromWord(word);
 
         for (String token : tokens) {
-            if (token.isBlank()) {
-                builder.append(token);
+            if (isBlank(token)) {
+                addValueIntoToken(token);
                 continue;
             }
-            if (DICTIONARY.containsKey(token)) {
-                builder.append(DICTIONARY.get(token));
+            if (isDictionaryHasKey(token)) {
+                addValueIntoToken(getReverse(token));
                 continue;
             }
-            if (DICTIONARY.containsKey(token.toLowerCase())) {
-                builder.append(DICTIONARY.get(token.toLowerCase()).toUpperCase());
+            if (isDictionaryHasKey(getLowerCase(token))) {
+                addValueIntoToken(getReverseUpperCase(token));
             }
         }
 
         return builder.toString();
+    }
+
+    private static boolean isBlank(final String token) {
+        return token.isBlank();
+    }
+
+    private static String getLowerCase(final String token) {
+        return token.toLowerCase();
+    }
+
+    private static String getReverse(final String token) {
+        return DICTIONARY.get(token);
+    }
+
+    private static boolean isDictionaryHasKey(final String token) {
+        return DICTIONARY.containsKey(token);
+    }
+
+    private static String getReverseUpperCase(final String token) {
+        return DICTIONARY.get(token.toLowerCase()).toUpperCase();
+    }
+
+    private static void addValueIntoToken(final String value) {
+        builder.append(value);
+    }
+
+    private static String[] getTokensFromWord(final String word) {
+        return word.split("");
     }
 
     private static void initDictionary() {
