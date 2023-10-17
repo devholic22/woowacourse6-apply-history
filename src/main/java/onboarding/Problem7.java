@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Problem7 {
 
@@ -46,7 +47,12 @@ public class Problem7 {
             int visitCount = countNameInVisited(person.name, visitors);
             person.score = Math.max(visitCount, person.score);
         }
-        
+
+        List<Person> resultPerson = PERSONS.stream()
+                .filter(person -> person.score > 0)
+                .collect(Collectors.toList());
+
+
         List<String> answer = Collections.emptyList();
         return answer;
     }
