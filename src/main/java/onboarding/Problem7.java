@@ -49,12 +49,9 @@ public class Problem7 {
             person.score = Math.max(visitCount, person.score);
         }
 
-        List<Person> resultPerson = PERSONS.stream()
+        return PERSONS.stream()
                 .filter(person -> person.score > 0)
                 .limit(LIMIT_SIZE)
-                .collect(Collectors.toList());
-
-        return resultPerson.stream()
                 .map(person -> person.name)
                 .collect(Collectors.toList());
     }
