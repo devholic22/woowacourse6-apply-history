@@ -33,7 +33,8 @@ public class Problem7 {
     public static List<String> solution(String user, List<List<String>> friends, List<String> visitors) {
         List<String> notRecommends = getFriendsWithUser(user, friends);
         List<String> recommends = getNotFriends(friends, notRecommends);
-
+        recommends.addAll(getNotFriendsFromVisitors(visitors, notRecommends));
+        
         List<String> answer = Collections.emptyList();
         return answer;
     }
@@ -69,6 +70,17 @@ public class Problem7 {
         return new ArrayList<>(result);
     }
 
+    private static List<String> getNotFriendsFromVisitors(final List<String> visitors, final List<String> notCommends) {
+        HashSet<String> result = new HashSet<>();
+        
+        for (String visitor : visitors) {
+            if (notCommends.contains(visitor)) {
+                continue;
+            }
+            result.add(visitor);
+        }
+        return new ArrayList<>(result);
+    }
     private static boolean isSamePerson(final String originName, final String testName) {
         return originName.equals(testName);
     }
