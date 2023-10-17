@@ -31,6 +31,7 @@ public class Problem7 {
     private static final int LEFT_INDEX = 0;
     private static final int RIGHT_INDEX = 1;
     private static final int FRIEND_SCORE = 10;
+    private static final int LIMIT_SIZE = 5;
     private static final List<Person> PERSONS = new ArrayList<>();
 
     public static List<String> solution(String user, List<List<String>> friends, List<String> visitors) {
@@ -50,6 +51,7 @@ public class Problem7 {
 
         List<Person> resultPerson = PERSONS.stream()
                 .filter(person -> person.score > 0)
+                .limit(LIMIT_SIZE)
                 .collect(Collectors.toList());
 
 
