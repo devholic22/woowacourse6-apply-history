@@ -54,9 +54,9 @@ public class Problem7 {
                 .limit(LIMIT_SIZE)
                 .collect(Collectors.toList());
 
-
-        List<String> answer = Collections.emptyList();
-        return answer;
+        return resultPerson.stream()
+                .map(person -> person.name)
+                .collect(Collectors.toList());
     }
 
     private static List<String> getFriendsWithUser(final String user, final List<List<String>> friends) {
