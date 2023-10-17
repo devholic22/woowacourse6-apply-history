@@ -39,21 +39,31 @@ public class Problem7 {
         List<String> recommends = getNotFriends(friends, notRecommends);
         recommends.addAll(getNotFriendsFromVisitors(visitors, notRecommends));
 
-        for (String recommendName : recommends) {
-            int duplicatePerson = getDuplicateFriends(user, recommendName, friends);
-            PERSONS.add(new Person(duplicatePerson * FRIEND_SCORE, recommendName));
-        }
+        recommends
+                .forEach(recommendName -> {
+                    createPersonWithDuplicatePerson(user, recommendName, friends);
+                });
 
-        for (Person person : PERSONS) {
-            int visitCount = countNameInVisited(person.name, visitors);
-            person.score = Math.max(visitCount, person.score);
-        }
+        PERSONS
+                .forEach(person -> {
+                    decisionPersonScoreVisitOrDuplicate(visitors, person);
+                });
 
         return PERSONS.stream()
                 .filter(person -> person.score > 0)
                 .limit(LIMIT_SIZE)
                 .map(person -> person.name)
                 .collect(Collectors.toList());
+    }
+
+    private static void createPersonWithDuplicatePerson(final String user, final String recommendName, final List<List<String>> friends) {
+        int duplicatePerson = getDuplicateFriends(user, recommendName, friends);
+        PERSONS.add(new Person(duplicatePerson * FRIEND_SCORE, recommendName));
+    }
+
+    private static void decisionPersonScoreVisitOrDuplicate(final List<String> visitors, final Person person) {
+        int visitCount = countNameInVisited(person.name, visitors);
+        person.score = Math.max(visitCount, person.score);
     }
 
     private static List<String> getFriendsWithUser(final String user, final List<List<String>> friends) {
