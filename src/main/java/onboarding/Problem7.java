@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Problem7 {
 
-    private class Person implements Comparable<Person> {
+    private static class Person implements Comparable<Person> {
 
         private int score;
         private String name;
@@ -29,12 +29,19 @@ public class Problem7 {
 
     private static final int LEFT_INDEX = 0;
     private static final int RIGHT_INDEX = 1;
+    private static final int FRIEND_SCORE = 10;
+    private static final List<Person> PERSONS = new ArrayList<>();
 
     public static List<String> solution(String user, List<List<String>> friends, List<String> visitors) {
         List<String> notRecommends = getFriendsWithUser(user, friends);
         List<String> recommends = getNotFriends(friends, notRecommends);
         recommends.addAll(getNotFriendsFromVisitors(visitors, notRecommends));
-        
+
+        for (String recommendName : recommends) {
+            int duplicatePerson = getDuplicateFriends(user, recommendName, friends);
+            PERSONS.add(new Person(duplicatePerson * FRIEND_SCORE, recommendName));
+        }
+
         List<String> answer = Collections.emptyList();
         return answer;
     }
@@ -81,6 +88,32 @@ public class Problem7 {
         }
         return new ArrayList<>(result);
     }
+
+    private static int getDuplicateFriends(final String originName, final String testName, final List<List<String>> friends) {
+        HashSet<String> originNameFriends = getFriendsWithName(originName, friends);
+        HashSet<String> testNameFriends = getFriendsWithName(testName, friends);
+        originNameFriends.retainAll(testNameFriends);
+
+        return originNameFriends.size();
+    }
+
+    private static HashSet<String> getFriendsWithName(final String name, final List<List<String>> friends) {
+        HashSet<String> result = new HashSet<>();
+        for (List<String> friend : friends) {
+            String leftPerson = friend.get(LEFT_INDEX);
+            String rightPerson = friend.get(RIGHT_INDEX);
+            if (isSamePerson(name, leftPerson)) {
+                result.add(rightPerson);
+                continue;
+            }
+            if (isSamePerson(name, rightPerson)) {
+                result.add(leftPerson);
+            }
+        }
+
+        return result;
+    }
+
     private static boolean isSamePerson(final String originName, final String testName) {
         return originName.equals(testName);
     }
