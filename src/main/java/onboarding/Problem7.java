@@ -42,6 +42,10 @@ public class Problem7 {
             PERSONS.add(new Person(duplicatePerson * FRIEND_SCORE, recommendName));
         }
 
+        for (Person person : PERSONS) {
+            int visitCount = countNameInVisited(person.name, visitors);
+        }
+
         List<String> answer = Collections.emptyList();
         return answer;
     }
@@ -114,6 +118,15 @@ public class Problem7 {
         return result;
     }
 
+    private static int countNameInVisited(final String name, final List<String> visitors) {
+        int count = 0;
+        for (String visitor : visitors) {
+            if (isSamePerson(name, visitor)) {
+                count++;
+            }
+        }
+        return count;
+    }
     private static boolean isSamePerson(final String originName, final String testName) {
         return originName.equals(testName);
     }
