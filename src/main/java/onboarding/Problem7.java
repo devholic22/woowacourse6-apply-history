@@ -44,8 +44,9 @@ public class Problem7 {
 
         for (Person person : PERSONS) {
             int visitCount = countNameInVisited(person.name, visitors);
+            person.score = Math.max(visitCount, person.score);
         }
-
+        
         List<String> answer = Collections.emptyList();
         return answer;
     }
