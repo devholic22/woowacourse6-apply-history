@@ -32,6 +32,8 @@ public class Problem7 {
 
     public static List<String> solution(String user, List<List<String>> friends, List<String> visitors) {
         List<String> notRecommends = getFriendsWithUser(user, friends);
+        List<String> recommends = getNotFriends(friends, notRecommends);
+
         List<String> answer = Collections.emptyList();
         return answer;
     }
@@ -44,6 +46,22 @@ public class Problem7 {
             String rightPerson = friend.get(RIGHT_INDEX);
             if (isSamePerson(user, leftPerson) || isSamePerson(user, rightPerson)) {
                 result.add(leftPerson);
+                result.add(rightPerson);
+            }
+        }
+
+        return new ArrayList<>(result);
+    }
+
+    private static List<String> getNotFriends(final List<List<String>> friends, final List<String> notRecommends) {
+        HashSet<String> result = new HashSet<>();
+        for (List<String> friend : friends) {
+            String leftPerson = friend.get(LEFT_INDEX);
+            String rightPerson = friend.get(RIGHT_INDEX);
+            if (!notRecommends.contains(leftPerson)) {
+                result.add(leftPerson);
+            }
+            if (!notRecommends.contains(rightPerson)) {
                 result.add(rightPerson);
             }
         }

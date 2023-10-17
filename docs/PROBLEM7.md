@@ -26,7 +26,7 @@
 | "mrko" | [ ["donut", "andole"], ["donut", "jun"], ["donut", "mrko"], ["shakevan", "andole"], ["shakevan", "jun"], ["shakevan", "mrko"] ] | ["bedi", "bedi", "donut", "bedi", "shakevan"] | ["andole", "jun", "bedi"] |
 
 ## 기능 목록 작성
-- [ ] 친구가 아닌 사람을 뽑아놓는다.
+- [x] 친구가 아닌 사람을 뽑아놓는다.
   - [x] 각 사람의 친구 목록 중에 user의 이름이 있으면 둘은 친구다.
 - [ ] 각 사람과 user의 교집합 수를 이용해 함께 아는 친구의 수를 구한 뒤 10을 곱해 값을 구한다.
 - [ ] 각 사람 당 visitors에서의 존재 수만큼의 값을 구한다.
