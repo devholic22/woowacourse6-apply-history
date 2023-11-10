@@ -15,5 +15,6 @@ public class EventController {
 
     public void start() {
         outputView.printWelcome();
+        outputView.askRequestDay();
     }
 }
