@@ -9,6 +9,7 @@ import java.util.stream.Stream;
 
 public class Orders {
 
+    private static final int MAXIMUM_ORDERS_SIZE = 20;
     private static final String ORDER_SPLITTER = ",";
 
     private final List<Order> orders;
@@ -24,6 +25,7 @@ public class Orders {
                 .toList();
         validateMenusNotDuplicate(orders);
         validateMenusNotOnlyDrink(orders);
+        validateMenusTotalSizeIsNotOver(orders);
 
         return new Orders(orders);
     }
@@ -44,6 +46,16 @@ public class Orders {
                 .count();
 
         if (drinkCount == orders.size()) {
+            throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateMenusTotalSizeIsNotOver(final List<Order> orders) {
+        int orderSizeSum = orders.stream()
+                .mapToInt(Order::getSize)
+                .sum();
+
+        if (orderSizeSum > MAXIMUM_ORDERS_SIZE) {
             throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
         }
     }
