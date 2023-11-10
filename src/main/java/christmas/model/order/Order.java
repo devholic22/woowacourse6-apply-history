@@ -34,6 +34,11 @@ public class Order {
         return new Order(menu, size);
     }
 
+    public static Order createByName(final String nameInput) {
+        Menu menu = Menu.findByName(nameInput);
+        return new Order(menu, MINIMUM_SIZE);
+    }
+
     private static int convertToNumber(final String sizeInput) {
         try {
             return Integer.parseInt(sizeInput);

@@ -1,5 +1,6 @@
 package christmas.controller;
 
+import christmas.model.BonusManager;
 import christmas.model.Day;
 import christmas.model.dto.DayResponse;
 import christmas.model.dto.OrderResponse;
@@ -27,6 +28,9 @@ public class EventController {
         printDayHistory(requestDay);
         printOrdersHistory(orders);
         printTotalCostBeforeDiscount(orders);
+
+        List<Order> bonusOrders = BonusManager.giveBonusOrders(orders.getTotalCost());
+        printBonusOrdersHistory(bonusOrders);
     }
 
     private Day initDay() {
@@ -81,5 +85,13 @@ public class EventController {
                 .sum();
 
         outputView.printCostBeforeDiscount(cost);
+    }
+
+    private void printBonusOrdersHistory(final List<Order> bonusOrder) {
+        List<OrderResponse> responses = bonusOrder.stream()
+                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
+                .toList();
+
+        outputView.printBonusMenus(responses);
     }
 }

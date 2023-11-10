@@ -12,4 +12,5 @@ public interface OutputView {
     void printPreviewOrderAnswer(final String day);
     void printOrderedMenus(final List<OrderResponse> orders);
     void printCostBeforeDiscount(final int cost);
+    void printBonusMenus(final List<OrderResponse> bonusMenus);
 }

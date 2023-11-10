@@ -48,4 +48,22 @@ public class ConsoleOutputView implements OutputView {
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(String.format(MONEY_REGEX, cost) + CURRENCY);
     }
+
+    @Override
+    public void printBonusMenus(final List<OrderResponse> bonusMenus) {
+        System.out.println();
+        System.out.println("<증정 메뉴>");
+
+        if (bonusMenus.isEmpty()) {
+            printEmpty();
+            return;
+        }
+        for (OrderResponse bonusMenu : bonusMenus) {
+            System.out.println(bonusMenu.name() + " " + bonusMenu.size() + SIZE_MARK);
+        }
+    }
+
+    private void printEmpty() {
+        System.out.println("없음");
+    }
 }
