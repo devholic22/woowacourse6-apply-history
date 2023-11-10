@@ -4,6 +4,7 @@ import static christmas.model.menu.MenuType.APPETIZER;
 import static christmas.model.menu.MenuType.DESSERT;
 import static christmas.model.menu.MenuType.DRINK;
 import static christmas.model.menu.MenuType.MAIN_DISH;
+import static christmas.view.exception.InputException.BAD_MENU_EXCEPTION;
 
 public enum Menu {
 
@@ -28,6 +29,15 @@ public enum Menu {
         this.type = type;
         this.name = name;
         this.cost = cost;
+    }
+
+    public static Menu findByName(final String name) {
+        for (Menu menu : values()) {
+            if (name.equals(menu.name)) {
+                return menu;
+            }
+        }
+        throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
     }
 
     public String getType() {
