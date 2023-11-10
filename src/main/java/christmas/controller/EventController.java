@@ -2,9 +2,11 @@ package christmas.controller;
 
 import christmas.model.Day;
 import christmas.model.dto.DayResponse;
+import christmas.model.dto.OrderResponse;
 import christmas.model.order.Orders;
 import christmas.view.input.InputView;
 import christmas.view.output.OutputView;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class EventController {
@@ -22,6 +24,7 @@ public class EventController {
         Day requestDay = initDay();
         Orders orders = initOrders();
         printDayHistory(requestDay);
+        printOrdersHistory(orders);
     }
 
     private Day initDay() {
@@ -58,5 +61,14 @@ public class EventController {
     private void printDayHistory(final Day day) {
         DayResponse dayResponse = DayResponse.from(day.getDay());
         outputView.printPreviewOrderAnswer(dayResponse.day());
+    }
+
+    private void printOrdersHistory(final Orders menuOrders) {
+        List<OrderResponse> responses = menuOrders.orders()
+                .stream()
+                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
+                .toList();
+
+        outputView.printOrderedMenus(responses);
     }
 }

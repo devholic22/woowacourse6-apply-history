@@ -71,4 +71,8 @@ public class Orders {
                 .mapToInt(Order::calculateCost)
                 .sum();
     }
+
+    public List<Order> orders() {
+        return orders;
+    }
 }

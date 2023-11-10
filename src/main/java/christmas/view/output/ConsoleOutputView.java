@@ -1,6 +1,11 @@
 package christmas.view.output;
 
+import christmas.model.dto.OrderResponse;
+import java.util.List;
+
 public class ConsoleOutputView implements OutputView {
+
+    private static final String SIZE_MARK = "개";
 
     @Override
     public void printWelcome() {
@@ -25,5 +30,14 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printPreviewOrderAnswer(final String day) {
         System.out.println("12월 " + day + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+    }
+
+    @Override
+    public void printOrderedMenus(final List<OrderResponse> orders) {
+        System.out.println();
+        System.out.println("<주문 메뉴>");
+        for (OrderResponse order : orders) {
+            System.out.println(order.name() + " " + order.size() + SIZE_MARK);
+        }
     }
 }
