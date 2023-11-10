@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Day;
+import christmas.model.dto.DayResponse;
 import christmas.model.order.Orders;
 import christmas.view.input.InputView;
 import christmas.view.output.OutputView;
@@ -20,6 +21,7 @@ public class EventController {
         outputView.printWelcome();
         Day requestDay = initDay();
         Orders orders = initOrders();
+        printDayHistory(requestDay);
     }
 
     private Day initDay() {
@@ -51,5 +53,10 @@ public class EventController {
             outputView.askOrderMenus();
             return Orders.from(inputView.readLine());
         });
+    }
+
+    private void printDayHistory(final Day day) {
+        DayResponse dayResponse = DayResponse.from(day.getDay());
+        outputView.printPreviewOrderAnswer(dayResponse.day());
     }
 }

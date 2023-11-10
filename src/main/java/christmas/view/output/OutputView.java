@@ -6,4 +6,5 @@ public interface OutputView {
     void askRequestDay();
     void printExceptionMessage(final String message);
     void askOrderMenus();
+    void printPreviewOrderAnswer(final String day);
 }
