@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.model.Day;
 import christmas.model.dto.DayResponse;
 import christmas.model.dto.OrderResponse;
+import christmas.model.order.Order;
 import christmas.model.order.Orders;
 import christmas.view.input.InputView;
 import christmas.view.output.OutputView;
@@ -25,6 +26,7 @@ public class EventController {
         Orders orders = initOrders();
         printDayHistory(requestDay);
         printOrdersHistory(orders);
+        printTotalCostBeforeDiscount(orders);
     }
 
     private Day initDay() {
@@ -70,5 +72,14 @@ public class EventController {
                 .toList();
 
         outputView.printOrderedMenus(responses);
+    }
+
+    private void printTotalCostBeforeDiscount(final Orders menuOrders) {
+        int cost = (int) menuOrders.orders()
+                .stream()
+                .mapToInt(Order::calculateCost)
+                .sum();
+
+        outputView.printCostBeforeDiscount(cost);
     }
 }

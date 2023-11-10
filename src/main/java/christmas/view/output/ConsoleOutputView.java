@@ -6,7 +6,8 @@ import java.util.List;
 public class ConsoleOutputView implements OutputView {
 
     private static final String SIZE_MARK = "개";
-
+    private static final String MONEY_REGEX = "%,d";
+    private static final String CURRENCY = "원";
     @Override
     public void printWelcome() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
@@ -39,5 +40,12 @@ public class ConsoleOutputView implements OutputView {
         for (OrderResponse order : orders) {
             System.out.println(order.name() + " " + order.size() + SIZE_MARK);
         }
+    }
+
+    @Override
+    public void printCostBeforeDiscount(final int cost) {
+        System.out.println();
+        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(String.format(MONEY_REGEX, cost) + CURRENCY);
     }
 }
