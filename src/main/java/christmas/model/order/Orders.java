@@ -13,11 +13,11 @@ public class Orders {
 
     private final List<Order> orders;
 
-    public Orders(final List<Order> orders) {
+    private Orders(final List<Order> orders) {
         this.orders = orders;
     }
 
-    private static Orders from(final String ordersInput) {
+    public static Orders from(final String ordersInput) {
         String[] splitOrders = ordersInput.split(ORDER_SPLITTER);
         List<Order> orders = Stream.of(splitOrders)
                 .map(Order::from)

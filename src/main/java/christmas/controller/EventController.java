@@ -1,6 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Day;
+import christmas.model.order.Orders;
 import christmas.view.input.InputView;
 import christmas.view.output.OutputView;
 import java.util.function.Supplier;
@@ -19,6 +20,7 @@ public class EventController {
         outputView.printWelcome();
         Day requestDay = initDay();
         outputView.askOrderMenus();
+        Orders orders = initOrders();
     }
 
     private Day initDay() {
@@ -43,5 +45,12 @@ public class EventController {
             outputView.printExceptionMessage(exception.getMessage());
         }
         return created;
+    }
+
+    private Orders initOrders() {
+        return createInstance(Orders.class, () -> {
+            outputView.askOrderMenus();
+            return Orders.from(inputView.readLine());
+        });
     }
 }
