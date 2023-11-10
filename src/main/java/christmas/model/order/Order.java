@@ -4,6 +4,7 @@ import static christmas.view.exception.InputException.BAD_MENU_EXCEPTION;
 
 import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
+import java.util.Objects;
 
 public class Order {
 
@@ -64,5 +65,22 @@ public class Order {
         String otherType = type.getType();
 
         return orderType.equals(otherType);
+    }
+
+    @Override
+    public boolean equals(final Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (other == null || getClass() != other.getClass()) {
+            return false;
+        }
+        Order order = (Order) other;
+        return menu == order.menu;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(menu);
     }
 }
