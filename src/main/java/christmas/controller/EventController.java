@@ -19,7 +19,6 @@ public class EventController {
     public void start() {
         outputView.printWelcome();
         Day requestDay = initDay();
-        outputView.askOrderMenus();
         Orders orders = initOrders();
     }
 
