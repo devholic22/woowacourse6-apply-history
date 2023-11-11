@@ -34,7 +34,7 @@ public class EventController {
         Orders orders = initOrders();
         printDayHistory(requestDay);
         printOrdersHistory(orders);
-        printTotalCostBeforeDiscount(orders);
+        outputView.printCostBeforeDiscount(orders.getTotalCost());
 
         List<Order> bonusOrders = BonusManager.giveBonusOrders(orders.getTotalCost());
         printBonusOrdersHistory(bonusOrders);
@@ -104,15 +104,6 @@ public class EventController {
                 .stream()
                 .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
                 .toList();
-    }
-
-    private void printTotalCostBeforeDiscount(final Orders menuOrders) {
-        int cost = (int) menuOrders.orders()
-                .stream()
-                .mapToInt(Order::calculateCost)
-                .sum();
-
-        outputView.printCostBeforeDiscount(cost);
     }
 
     private void printBonusOrdersHistory(final List<Order> bonusOrder) {
