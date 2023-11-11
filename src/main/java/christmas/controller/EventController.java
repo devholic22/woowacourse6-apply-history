@@ -96,9 +96,7 @@ public class EventController {
     }
 
     private List<PromotionResponse> collectPromotionsByRequest(final Day requestDay, final Orders orders) {
-        List<DiscountPolicy> availablePolicies = policies.stream()
-                .filter(policy -> policy.isOrdersAndDayAvailable(requestDay, orders))
-                .toList();
+        List<DiscountPolicy> availablePolicies = Promotion.collectPoliciesByRequest(requestDay, orders);
 
         return availablePolicies.stream()
                 .map(policy -> convertToPromotionResponse(policy, requestDay, orders))

@@ -1,10 +1,13 @@
 package christmas.model;
 
+import christmas.model.order.Orders;
 import christmas.model.policy.ChristmasPolicy;
 import christmas.model.policy.DiscountPolicy;
 import christmas.model.policy.SpecialDayPolicy;
 import christmas.model.policy.WeekDayPolicy;
 import christmas.model.policy.WeekEndPolicy;
+import java.util.Arrays;
+import java.util.List;
 
 public enum Promotion {
 
@@ -28,5 +31,13 @@ public enum Promotion {
             }
         }
         throw new IllegalArgumentException();
+    }
+
+    public static List<DiscountPolicy> collectPoliciesByRequest(final Day requestDay, final Orders orders) {
+        List<Promotion> promotions = Arrays.asList(values());
+        return promotions.stream()
+                .map(promotion -> promotion.discountPolicy)
+                .filter(policy -> policy.isOrdersAndDayAvailable(requestDay, orders))
+                .toList();
     }
 }
