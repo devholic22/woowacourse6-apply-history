@@ -146,9 +146,9 @@ public class OrderTest {
         }
 
         @ParameterizedTest
-        @ValueSource(strings={"abc", "   1  ", "0", "-1"})
+        @ValueSource(strings={"abc", "   1  ", "0", "-1", "50"})
         @NullAndEmptySource
-        @DisplayName("수량의 값에 잘못된 값이 전달되면 예외가 발생한다. (일반 문자, null, 빈 문자, 공백 포함 문자, 1 미만)")
+        @DisplayName("수량의 값에 잘못된 값이 전달되면 예외가 발생한다. (일반 문자, null, 빈 문자, 공백 포함 문자, 1 미만, 20 초과)")
         void unValidSizeInputException(final String value) {
             // given
             String orderInput = TAPAS.getName() + "-" + value;
