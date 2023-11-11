@@ -3,6 +3,7 @@ package christmas.controller;
 import christmas.model.Badge;
 import christmas.model.BadgeManager;
 import christmas.model.BonusManager;
+import christmas.model.Customer;
 import christmas.model.Day;
 import christmas.model.Promotion;
 import christmas.model.dto.OrderResponse;
@@ -26,17 +27,25 @@ public class EventController {
     }
 
     public void start() {
-        outputView.printWelcome();
-        Day requestDay = receiveDay();
-        Orders requestOrders = receiveOrders();
-        printCustomerRequest(requestDay, requestOrders);
+        Customer customer = inviteCustomer();
+        printCustomerRequest(customer.getDay(), customer.getOrders());
 
-        Orders bonusOrders = collectBonusByOrders(requestOrders);
-        List<PromotionResponse> promotions = collectPromotionsByRequest(requestDay, requestOrders);
+        Orders bonusOrders = collectBonusByOrders(customer.getOrders());
+        List<PromotionResponse> promotions = collectPromotionsByRequest(customer.getDay(), customer.getOrders());
 
         printPromotionAndBonusHistory(promotions, bonusOrders);
-        printTotalCostAfterPromotion(promotions, requestOrders);
+        printTotalCostAfterPromotion(promotions, customer.getOrders());
         printBadgeWithCost(promotions, bonusOrders);
+    }
+
+    private Customer inviteCustomer() {
+        outputView.printWelcome();
+
+        Day requestDay = receiveDay();
+        return createInstance(Customer.class, () -> {
+            Orders requestOrders = receiveOrders();
+            return Customer.of(requestDay, requestOrders);
+        });
     }
 
     private Day receiveDay() {
