@@ -75,6 +75,10 @@ public class ConsoleOutputView implements OutputView {
     public void printPromotions(final List<PromotionResponse> promotions) {
         System.out.println();
         System.out.println("<혜택 내역>");
+        if (promotions.isEmpty()) {
+            printEmpty();
+            return;
+        }
         for (PromotionResponse promotion : promotions) {
             System.out.println(promotion.name() + ": " + String.format(MONEY_REGEX, promotion.cost()) + CURRENCY);
         }
