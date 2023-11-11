@@ -55,6 +55,8 @@ public class EventController {
                 .mapToInt(PromotionResponse::cost)
                 .sum();
         outputView.printTotalPromotionCost(promotionCost - bonusCost);
+
+        outputView.printCostAfterDiscount(orders.getTotalCost() + promotionCost);
     }
 
     private Day initDay() {
