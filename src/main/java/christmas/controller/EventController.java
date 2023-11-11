@@ -45,6 +45,11 @@ public class EventController {
                 .map(policy -> convertToPromotionResponse(policy, orders, requestDay))
                 .toList();
         outputView.printPromotions(promotions);
+
+        int bonusCost = bonusOrders.stream()
+                .mapToInt(Order::calculateCost)
+                .sum();
+        outputView.printBonusEventCost(bonusCost);
     }
 
     private Day initDay() {

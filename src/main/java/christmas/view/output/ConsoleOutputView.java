@@ -9,6 +9,9 @@ public class ConsoleOutputView implements OutputView {
     private static final String SIZE_MARK = "개";
     private static final String MONEY_REGEX = "%,d";
     private static final String CURRENCY = "원";
+    private static final int EMPTY_MONEY = 0;
+    private static final int PROMOTION_SIGN = -1;
+
     @Override
     public void printWelcome() {
         System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
@@ -75,5 +78,13 @@ public class ConsoleOutputView implements OutputView {
         for (PromotionResponse promotion : promotions) {
             System.out.println(promotion.name() + ": " + String.format(MONEY_REGEX, promotion.cost()) + CURRENCY);
         }
+    }
+
+    @Override
+    public void printBonusEventCost(final int cost) {
+        if (cost == EMPTY_MONEY) {
+            return;
+        }
+        System.out.println("증정 이벤트: " + (String.format(MONEY_REGEX, PROMOTION_SIGN * cost)) + CURRENCY);
     }
 }
