@@ -35,27 +35,20 @@ public class EventController {
         printDayHistory(requestDay);
         printOrdersHistory(orders);
         outputView.printCostBeforeDiscount(orders.getTotalCost());
-
         List<Order> bonusOrders = BonusManager.giveBonusOrders(orders.getTotalCost());
         printBonusOrdersHistory(bonusOrders);
-
         List<PromotionResponse> promotions = collectAvailablePromotions(orders, requestDay);
         outputView.printPromotions(promotions);
-
         int bonusCost = bonusOrders.stream()
                 .mapToInt(Order::calculateCost)
                 .sum();
         outputView.printBonusEventCost(bonusCost);
-
         int promotionCost = promotions.stream()
                 .mapToInt(PromotionResponse::cost)
                 .sum();
         outputView.printTotalPromotionCost(promotionCost + bonusCost);
-
         outputView.printCostAfterDiscount(orders.getTotalCost() - promotionCost);
-
-        Badge badge = BadgeManager.giveBadgeByCost(promotionCost + bonusCost);
-        outputView.printBadge(badge);
+        collectBadgeAndPrintByCost(promotionCost + bonusCost);
     }
 
     private Day initDay() {
@@ -129,5 +122,10 @@ public class EventController {
         String policyName = Promotion.findNameByPolicy(discountPolicy);
         int discount = discountPolicy.discount(orders, requestDay);
         return PromotionResponse.of(policyName, discount);
+    }
+
+    private void collectBadgeAndPrintByCost(final int cost) {
+        Badge badge = BadgeManager.giveBadgeByCost(cost);
+        outputView.printBadge(badge);
     }
 }
