@@ -33,7 +33,10 @@ public enum Promotion {
         throw new IllegalArgumentException();
     }
 
-    public static List<DiscountPolicy> collectPoliciesByRequest(final Day requestDay, final Orders orders) {
+    public static List<DiscountPolicy> collectPoliciesByRequest(final Customer customer) {
+        Day requestDay = customer.getDay();
+        Orders orders = customer.getOrders();
+
         List<Promotion> promotions = Arrays.asList(values());
         return promotions.stream()
                 .map(promotion -> promotion.discountPolicy)

@@ -33,6 +33,8 @@ public class PromotionTest {
         // given
         Day requestDay = Day.from("3");
         Orders orders = Orders.from("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
+        Customer customer = Customer.of(requestDay, orders);
+
         List<DiscountPolicy> expectedDiscountPolicies = List.of(
                 ChristmasPolicy.getInstance(),
                 WeekDayPolicy.getInstance(),
@@ -40,7 +42,7 @@ public class PromotionTest {
         );
 
         // when
-        List<DiscountPolicy> policies = Promotion.collectPoliciesByRequest(requestDay, orders);
+        List<DiscountPolicy> policies = Promotion.collectPoliciesByRequest(customer);
 
         // then
         assertThat(policies.size()).isEqualTo(3);

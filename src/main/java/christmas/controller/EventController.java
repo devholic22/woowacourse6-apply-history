@@ -31,7 +31,7 @@ public class EventController {
         printCustomerRequest(customer);
 
         Orders bonusOrders = collectBonusByCustomer(customer);
-        List<PromotionResponse> promotions = collectPromotionsByRequest(customer.getDay(), customer.getOrders());
+        List<PromotionResponse> promotions = collectPromotionsByRequest(customer);
 
         printPromotionAndBonusHistory(promotions, bonusOrders);
         printTotalCostAfterPromotion(promotions, customer.getOrders());
@@ -107,16 +107,18 @@ public class EventController {
         return Orders.withOrders(bonusOrderMenus);
     }
 
-    private List<PromotionResponse> collectPromotionsByRequest(final Day requestDay, final Orders orders) {
-        List<DiscountPolicy> availablePolicies = Promotion.collectPoliciesByRequest(requestDay, orders);
+    private List<PromotionResponse> collectPromotionsByRequest(final Customer customer) {
+        List<DiscountPolicy> availablePolicies = Promotion.collectPoliciesByRequest(customer);
 
         return availablePolicies.stream()
-                .map(policy -> convertToPromotionResponse(policy, requestDay, orders))
+                .map(policy -> convertToPromotionResponse(policy, customer))
                 .toList();
     }
 
-    private PromotionResponse convertToPromotionResponse(final DiscountPolicy discountPolicy,
-                                                         final Day requestDay, final Orders orders) {
+    private PromotionResponse convertToPromotionResponse(final DiscountPolicy discountPolicy, final Customer customer) {
+        Day requestDay = customer.getDay();
+        Orders orders = customer.getOrders();
+
         String policyName = Promotion.findNameByPolicy(discountPolicy);
         int discount = discountPolicy.discount(requestDay, orders);
         return PromotionResponse.of(policyName, discount);
