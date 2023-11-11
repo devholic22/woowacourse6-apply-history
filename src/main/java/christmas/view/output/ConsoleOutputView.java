@@ -1,6 +1,7 @@
 package christmas.view.output;
 
 import christmas.model.dto.OrderResponse;
+import christmas.model.dto.PromotionResponse;
 import java.util.List;
 
 public class ConsoleOutputView implements OutputView {
@@ -65,5 +66,14 @@ public class ConsoleOutputView implements OutputView {
 
     private void printEmpty() {
         System.out.println("없음");
+    }
+
+    @Override
+    public void printPromotions(final List<PromotionResponse> promotions) {
+        System.out.println();
+        System.out.println("<혜택 내역>");
+        for (PromotionResponse promotion : promotions) {
+            System.out.println(promotion.name() + ": " + String.format(MONEY_REGEX, promotion.cost()) + CURRENCY);
+        }
     }
 }

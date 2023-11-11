@@ -2,7 +2,9 @@ package christmas.controller;
 
 import christmas.model.BonusManager;
 import christmas.model.Day;
+import christmas.model.Promotion;
 import christmas.model.dto.DayResponse;
+import christmas.model.dto.PromotionResponse;
 import christmas.model.dto.OrderResponse;
 import christmas.model.order.Order;
 import christmas.model.order.Orders;
@@ -38,6 +40,11 @@ public class EventController {
         List<DiscountPolicy> availablePolicies = policies.stream()
                 .filter(policy -> policy.isOrdersAndDayAvailable(orders, requestDay))
                 .toList();
+
+        List<PromotionResponse> promotions = availablePolicies.stream()
+                .map(policy -> convertToPromotionResponse(policy, orders, requestDay))
+                .toList();
+        outputView.printPromotions(promotions);
     }
 
     private Day initDay() {
@@ -100,5 +107,12 @@ public class EventController {
                 .toList();
 
         outputView.printBonusMenus(responses);
+    }
+
+    private PromotionResponse convertToPromotionResponse(final DiscountPolicy discountPolicy,
+                                                         final Orders orders, final Day requestDay) {
+        String policyName = Promotion.findNameByPolicy(discountPolicy);
+        int discount = discountPolicy.discount(orders, requestDay);
+        return PromotionResponse.of(policyName, discount);
     }
 }

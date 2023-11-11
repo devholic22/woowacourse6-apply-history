@@ -1,6 +1,7 @@
 package christmas.view.output;
 
 import christmas.model.dto.OrderResponse;
+import christmas.model.dto.PromotionResponse;
 import java.util.List;
 
 public interface OutputView {
@@ -13,4 +14,5 @@ public interface OutputView {
     void printOrderedMenus(final List<OrderResponse> orders);
     void printCostBeforeDiscount(final int cost);
     void printBonusMenus(final List<OrderResponse> bonusMenus);
+    void printPromotions(final List<PromotionResponse> promotions);
 }
