@@ -31,7 +31,7 @@ public class EventController {
         Orders orders = initOrders();
         printCustomerRequest(requestDay, orders);
 
-        Orders bonusOrders = collectBonusMenusByOrderCost(orders.getTotalCost());
+        Orders bonusOrders = collectBonusByOrders(orders);
         List<PromotionResponse> promotions = collectPromotionsByRequest(requestDay, orders);
 
         printPromotionAndBonusHistory(promotions, bonusOrders);
@@ -88,8 +88,8 @@ public class EventController {
                 .toList();
     }
 
-    private Orders collectBonusMenusByOrderCost(final int cost) {
-        List<Order> bonusOrderMenus = BonusManager.giveBonusOrders(cost);
+    private Orders collectBonusByOrders(final Orders orders) {
+        List<Order> bonusOrderMenus = BonusManager.giveBonusOrdersForCost(orders.getTotalCost());
         return Orders.withOrders(bonusOrderMenus);
     }
 

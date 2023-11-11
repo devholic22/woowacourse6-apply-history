@@ -16,7 +16,7 @@ public class BonusManagerTest {
         int cost = 100_000;
 
         // when
-        List<Order> bonusOrders = BonusManager.giveBonusOrders(cost);
+        List<Order> bonusOrders = BonusManager.giveBonusOrdersForCost(cost);
 
         // then
         assertThat(bonusOrders).isEmpty();
@@ -29,7 +29,7 @@ public class BonusManagerTest {
         int cost = 150_000;
 
         // when
-        List<Order> bonusOrders = BonusManager.giveBonusOrders(cost);
+        List<Order> bonusOrders = BonusManager.giveBonusOrdersForCost(cost);
 
         // then
         assertThat(bonusOrders).isNotEmpty();

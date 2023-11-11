@@ -14,7 +14,7 @@ public class BonusManager {
 
     }
 
-    public static List<Order> giveBonusOrders(final int cost) {
+    public static List<Order> giveBonusOrdersForCost(final int cost) {
         if (cost < MINIMUM_COST) {
             return Collections.emptyList();
         }
