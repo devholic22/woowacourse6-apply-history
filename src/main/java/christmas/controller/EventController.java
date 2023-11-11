@@ -5,9 +5,8 @@ import christmas.model.BadgeManager;
 import christmas.model.BonusManager;
 import christmas.model.Day;
 import christmas.model.Promotion;
-import christmas.model.dto.DayResponse;
-import christmas.model.dto.PromotionResponse;
 import christmas.model.dto.OrderResponse;
+import christmas.model.dto.PromotionResponse;
 import christmas.model.order.Order;
 import christmas.model.order.Orders;
 import christmas.model.policy.DiscountPolicy;
@@ -79,14 +78,9 @@ public class EventController {
     }
 
     private void printCustomerRequest(final Day requestDay, final Orders orders) {
-        printDayHistory(requestDay);
+        outputView.printOrderDay(requestDay.getDay());
         printOrdersHistory(orders);
         outputView.printCostBeforeDiscount(orders.getTotalCost());
-    }
-
-    private void printDayHistory(final Day day) {
-        DayResponse dayResponse = DayResponse.from(day.getDay());
-        outputView.printPreviewOrderAnswer(dayResponse.day());
     }
 
     private void printOrdersHistory(final Orders menuOrders) {

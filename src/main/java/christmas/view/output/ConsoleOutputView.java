@@ -34,7 +34,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printPreviewOrderAnswer(final String day) {
+    public void printOrderDay(final int day) {
         System.out.println("12월 " + day + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 

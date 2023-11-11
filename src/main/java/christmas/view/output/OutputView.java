@@ -11,7 +11,7 @@ public interface OutputView {
     void askRequestDay();
     void printExceptionMessage(final String message);
     void askOrderMenus();
-    void printPreviewOrderAnswer(final String day);
+    void printOrderDay(final int day);
     void printOrderedMenus(final List<OrderResponse> orders);
     void printCostBeforeDiscount(final int cost);
     void printBonusMenus(final List<OrderResponse> bonusMenus);
