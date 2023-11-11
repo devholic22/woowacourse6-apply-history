@@ -1,8 +1,10 @@
 package christmas.model.policy;
 
 import christmas.model.Day;
+import christmas.model.order.Orders;
 
 public interface DiscountPolicy {
 
-    boolean isCostAndDayAvailable(final int cost, final Day day);
+    int discount(final Orders orders, final Day day);
+    boolean isOrdersAndDayAvailable(final Orders orders, final Day day);
 }

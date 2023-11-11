@@ -60,10 +60,11 @@ public class Orders {
         }
     }
 
-    public List<Order> findByType(final MenuType type) {
+    public int calculateTypeOrdersCount(final MenuType type) {
         return orders.stream()
                 .filter(order -> order.isOrderType(type))
-                .toList();
+                .mapToInt(Order::getSize)
+                .sum();
     }
     
     public int getTotalCost() {

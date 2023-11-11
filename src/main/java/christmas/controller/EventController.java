@@ -36,7 +36,7 @@ public class EventController {
         printBonusOrdersHistory(bonusOrders);
 
         List<DiscountPolicy> availablePolicies = policies.stream()
-                .filter(policy -> policy.isCostAndDayAvailable(orders.getTotalCost(), requestDay))
+                .filter(policy -> policy.isOrdersAndDayAvailable(orders, requestDay))
                 .toList();
     }
 

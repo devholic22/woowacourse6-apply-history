@@ -46,6 +46,10 @@ public class Day {
         return calendarTypes.contains(calendarType);
     }
 
+    public int calculateDuration(final int day) {
+        return Math.abs(day - this.day);
+    }
+
     public int getDay() {
         return day;
     }
