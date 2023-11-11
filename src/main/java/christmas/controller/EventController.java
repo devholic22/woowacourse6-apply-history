@@ -32,9 +32,7 @@ public class EventController {
         outputView.printWelcome();
         Day requestDay = initDay();
         Orders orders = initOrders();
-        printDayHistory(requestDay);
-        printOrdersHistory(orders);
-        outputView.printCostBeforeDiscount(orders.getTotalCost());
+        printCustomerRequest(requestDay, orders);
         List<Order> bonusOrders = BonusManager.giveBonusOrders(orders.getTotalCost());
         printBonusOrdersHistory(bonusOrders);
         List<PromotionResponse> promotions = collectAvailablePromotions(orders, requestDay);
@@ -74,6 +72,12 @@ public class EventController {
             outputView.askOrderMenus();
             return Orders.from(inputView.readLine());
         });
+    }
+
+    private void printCustomerRequest(final Day requestDay, final Orders orders) {
+        printDayHistory(requestDay);
+        printOrdersHistory(orders);
+        outputView.printCostBeforeDiscount(orders.getTotalCost());
     }
 
     private void printDayHistory(final Day day) {
