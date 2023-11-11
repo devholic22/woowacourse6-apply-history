@@ -95,12 +95,15 @@ public class EventController {
     }
 
     private void printOrdersHistory(final Orders menuOrders) {
-        List<OrderResponse> responses = menuOrders.orders()
+        List<OrderResponse> responses = convertToOrderResponse(menuOrders);
+        outputView.printOrderedMenus(responses);
+    }
+
+    private List<OrderResponse> convertToOrderResponse(final Orders orders) {
+        return orders.orders()
                 .stream()
                 .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
                 .toList();
-
-        outputView.printOrderedMenus(responses);
     }
 
     private void printTotalCostBeforeDiscount(final Orders menuOrders) {
