@@ -30,6 +30,10 @@ public class Orders {
         return new Orders(orders);
     }
 
+    public static Orders withOrders(final List<Order> orders) {
+        return new Orders(orders);
+    }
+
     private static void validateMenusNotDuplicate(final List<Order> orders) {
         List<Order> uniqueOrders = orders.stream()
                 .distinct()
