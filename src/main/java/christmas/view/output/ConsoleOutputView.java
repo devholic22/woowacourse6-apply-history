@@ -1,5 +1,6 @@
 package christmas.view.output;
 
+import christmas.model.Badge;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;
 import java.util.List;
@@ -104,5 +105,12 @@ public class ConsoleOutputView implements OutputView {
         System.out.println();
         System.out.println("<할인 후 예상 결제 금액>");
         System.out.println(String.format(MONEY_REGEX, cost) + CURRENCY);
+    }
+
+    @Override
+    public void printBadge(final Badge badge) {
+        System.out.println();
+        System.out.println("<12월 이벤트 배지>");
+        System.out.println(badge.getName());
     }
 }

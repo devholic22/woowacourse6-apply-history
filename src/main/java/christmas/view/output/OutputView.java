@@ -1,5 +1,6 @@
 package christmas.view.output;
 
+import christmas.model.Badge;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;
 import java.util.List;
@@ -18,4 +19,5 @@ public interface OutputView {
     void printBonusEventCost(final int cost);
     void printTotalPromotionCost(final int cost);
     void printCostAfterDiscount(final int cost);
+    void printBadge(final Badge badge);
 }

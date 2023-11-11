@@ -1,5 +1,7 @@
 package christmas.controller;
 
+import christmas.model.Badge;
+import christmas.model.BadgeManager;
 import christmas.model.BonusManager;
 import christmas.model.Day;
 import christmas.model.Promotion;
@@ -57,6 +59,9 @@ public class EventController {
         outputView.printTotalPromotionCost(promotionCost - bonusCost);
 
         outputView.printCostAfterDiscount(orders.getTotalCost() + promotionCost);
+
+        Badge badge = BadgeManager.giveBadge(-1 * (promotionCost - bonusCost));
+        outputView.printBadge(badge);
     }
 
     private Day initDay() {
