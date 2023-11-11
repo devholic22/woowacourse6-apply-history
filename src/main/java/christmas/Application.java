@@ -18,10 +18,10 @@ public class Application {
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
         List<DiscountPolicy> policies = List.of(
-                new ChristmasPolicy(),
-                new SpecialDayPolicy(),
-                new WeekDayPolicy(),
-                new WeekEndPolicy()
+                ChristmasPolicy.getInstance(),
+                SpecialDayPolicy.getInstance(),
+                WeekDayPolicy.getInstance(),
+                WeekEndPolicy.getInstance()
         );
 
         EventController controller = new EventController(inputView, outputView, policies);

@@ -13,6 +13,18 @@ public class WeekDayPolicy implements DiscountPolicy {
     private static final int NOT_DISCOUNT = 0;
     private static final int NOT_ORDERED = 0;
 
+    private static WeekDayPolicy singleton;
+
+    private WeekDayPolicy() {
+    }
+
+    public static WeekDayPolicy getInstance() {
+        if (singleton == null) {
+            singleton = new WeekDayPolicy();
+        }
+        return singleton;
+    }
+
     @Override
     public int discount(final Orders orders, final Day day) {
         if (isOrdersAndDayAvailable(orders, day)) {

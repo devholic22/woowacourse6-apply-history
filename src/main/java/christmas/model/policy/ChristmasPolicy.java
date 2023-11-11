@@ -12,6 +12,18 @@ public class ChristmasPolicy implements DiscountPolicy {
     private static final int EACH_DAY_DISCOUNT = -100;
     private static final int NOT_DISCOUNT = 0;
 
+    private static ChristmasPolicy singleton;
+
+    private ChristmasPolicy() {
+    }
+
+    public static ChristmasPolicy getInstance() {
+        if (singleton == null) {
+            singleton = new ChristmasPolicy();
+        }
+        return singleton;
+    }
+
     @Override
     public int discount(final Orders orders, final Day day) {
         if (isOrdersAndDayAvailable(orders, day)) {
