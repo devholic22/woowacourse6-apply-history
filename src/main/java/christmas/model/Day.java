@@ -42,7 +42,7 @@ public class Day {
     }
 
     public boolean isDayInCalendarType(final Calendar calendarType) {
-        List<Calendar> calendarTypes = Calendar.findAllByDay(day);
+        List<Calendar> calendarTypes = Calendar.findAllByDay(this);
         return calendarTypes.contains(calendarType);
     }
 

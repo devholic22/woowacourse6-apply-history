@@ -1,5 +1,6 @@
 package christmas.model.calender;
 
+import christmas.model.Day;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,10 +34,11 @@ public enum Calendar {
 
     private final List<Integer> days;
 
-    public static List<Calendar> findAllByDay(final int day) {
+    public static List<Calendar> findAllByDay(final Day day) {
+        int dayValue = day.getDay();
         List<Calendar> calendars = new ArrayList<>();
         for (Calendar calendar : values()) {
-            if (calendar.days.contains(day)) {
+            if (calendar.days.contains(dayValue)) {
                 calendars.add(calendar);
             }
         }
