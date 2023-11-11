@@ -28,14 +28,14 @@ public class EventController {
     public void start() {
         outputView.printWelcome();
         Day requestDay = initDay();
-        Orders orders = initOrders();
-        printCustomerRequest(requestDay, orders);
+        Orders requestOrders = initOrders();
+        printCustomerRequest(requestDay, requestOrders);
 
-        Orders bonusOrders = collectBonusByOrders(orders);
-        List<PromotionResponse> promotions = collectPromotionsByRequest(requestDay, orders);
+        Orders bonusOrders = collectBonusByOrders(requestOrders);
+        List<PromotionResponse> promotions = collectPromotionsByRequest(requestDay, requestOrders);
 
         printPromotionAndBonusHistory(promotions, bonusOrders);
-        printTotalCostAfterPromotion(promotions, orders);
+        printTotalCostAfterPromotion(promotions, requestOrders);
         printBadgeWithCost(promotions, bonusOrders);
     }
 
