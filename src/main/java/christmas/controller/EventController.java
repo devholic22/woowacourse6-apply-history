@@ -30,7 +30,7 @@ public class EventController {
         Customer customer = inviteCustomer();
         printCustomerRequest(customer);
 
-        Orders bonusOrders = collectBonusByCustomer(customer);
+        Orders bonusOrders = collectBonusByRequest(customer);
         List<PromotionResponse> promotions = collectPromotionsByRequest(customer);
 
         printPromotionAndBonusHistory(promotions, bonusOrders);
@@ -102,7 +102,7 @@ public class EventController {
                 .toList();
     }
 
-    private Orders collectBonusByCustomer(final Customer customer) {
+    private Orders collectBonusByRequest(final Customer customer) {
         List<Order> bonusOrderMenus = BonusManager.giveBonusOrdersForCost(customer.calculateTotalCost());
         return Orders.withOrders(bonusOrderMenus);
     }
