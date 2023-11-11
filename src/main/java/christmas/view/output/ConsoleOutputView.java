@@ -81,8 +81,12 @@ public class ConsoleOutputView implements OutputView {
             return;
         }
         for (PromotionResponse promotion : promotions) {
-            System.out.println(promotion.name() + ": " + String.format(MONEY_REGEX, promotion.cost()) + CURRENCY);
+            System.out.println(convertPromotionAnswer(promotion));
         }
+    }
+
+    private String convertPromotionAnswer(final PromotionResponse promotion) {
+        return promotion.name() + ": " + String.format(MONEY_REGEX, PROMOTION_SIGN * promotion.cost()) + CURRENCY;
     }
 
     @Override
@@ -97,7 +101,7 @@ public class ConsoleOutputView implements OutputView {
     public void printTotalPromotionCost(final int cost) {
         System.out.println();
         System.out.println("<총혜택 금액>");
-        System.out.println(String.format(MONEY_REGEX, cost) + CURRENCY);
+        System.out.println(String.format(MONEY_REGEX, PROMOTION_SIGN * cost) + CURRENCY);
     }
 
     @Override

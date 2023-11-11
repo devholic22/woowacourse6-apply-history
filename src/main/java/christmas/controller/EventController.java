@@ -56,11 +56,11 @@ public class EventController {
         int promotionCost = promotions.stream()
                 .mapToInt(PromotionResponse::cost)
                 .sum();
-        outputView.printTotalPromotionCost(promotionCost - bonusCost);
+        outputView.printTotalPromotionCost(promotionCost + bonusCost);
 
-        outputView.printCostAfterDiscount(orders.getTotalCost() + promotionCost);
+        outputView.printCostAfterDiscount(orders.getTotalCost() - promotionCost);
 
-        Badge badge = BadgeManager.giveBadge(-1 * (promotionCost - bonusCost));
+        Badge badge = BadgeManager.giveBadge(promotionCost + bonusCost);
         outputView.printBadge(badge);
     }
 

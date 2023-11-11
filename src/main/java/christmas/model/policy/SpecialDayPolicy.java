@@ -8,7 +8,7 @@ import christmas.model.order.Orders;
 public class SpecialDayPolicy implements DiscountPolicy {
 
     private static final int MINIMUM_COST = 10_000;
-    private static final int DISCOUNT = -1_000;
+    private static final int DISCOUNT = 1_000;
     private static final int NOT_DISCOUNT = 0;
 
     private static SpecialDayPolicy singleton;

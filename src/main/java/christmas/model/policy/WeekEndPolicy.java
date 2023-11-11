@@ -8,7 +8,7 @@ import christmas.model.order.Orders;
 
 public class WeekEndPolicy implements DiscountPolicy {
 
-    private static final int EACH_MENU_DISCOUNT = -2_023;
+    private static final int EACH_MENU_DISCOUNT = 2_023;
     private static final int MINIMUM_COST = 10_000;
     private static final int NOT_DISCOUNT = 0;
     private static final int NOT_ORDERED = 0;

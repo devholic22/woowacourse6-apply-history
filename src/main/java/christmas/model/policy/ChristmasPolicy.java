@@ -8,8 +8,8 @@ public class ChristmasPolicy implements DiscountPolicy {
     private static final int START_DAY = 1;
     private static final int CHRISTMAS_DAY = 25;
     private static final int MINIMUM_COST = 10_000;
-    private static final int DEFAULT_DISCOUNT = -1_000;
-    private static final int EACH_DAY_DISCOUNT = -100;
+    private static final int DEFAULT_DISCOUNT = 1_000;
+    private static final int EACH_DAY_DISCOUNT = 100;
     private static final int NOT_DISCOUNT = 0;
 
     private static ChristmasPolicy singleton;
