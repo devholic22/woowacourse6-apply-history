@@ -11,7 +11,6 @@ public class Application {
         // TODO: 프로그램 구현
         InputView inputView = new ConsoleInputView();
         OutputView outputView = new ConsoleOutputView();
-
         EventController controller = new EventController(inputView, outputView);
 
         controller.start();
