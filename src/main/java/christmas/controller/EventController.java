@@ -27,8 +27,8 @@ public class EventController {
 
     public void start() {
         outputView.printWelcome();
-        Day requestDay = initDay();
-        Orders requestOrders = initOrders();
+        Day requestDay = receiveDay();
+        Orders requestOrders = receiveOrders();
         printCustomerRequest(requestDay, requestOrders);
 
         Orders bonusOrders = collectBonusByOrders(requestOrders);
@@ -39,7 +39,7 @@ public class EventController {
         printBadgeWithCost(promotions, bonusOrders);
     }
 
-    private Day initDay() {
+    private Day receiveDay() {
         return createInstance(Day.class, () -> {
             outputView.askRequestDay();
             return Day.from(inputView.readLine());
@@ -63,7 +63,7 @@ public class EventController {
         return created;
     }
 
-    private Orders initOrders() {
+    private Orders receiveOrders() {
         return createInstance(Orders.class, () -> {
             outputView.askOrderMenus();
             return Orders.from(inputView.readLine());
