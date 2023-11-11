@@ -60,7 +60,7 @@ public class EventController {
 
         outputView.printCostAfterDiscount(orders.getTotalCost() - promotionCost);
 
-        Badge badge = BadgeManager.giveBadge(promotionCost + bonusCost);
+        Badge badge = BadgeManager.giveBadgeByCost(promotionCost + bonusCost);
         outputView.printBadge(badge);
     }
 
