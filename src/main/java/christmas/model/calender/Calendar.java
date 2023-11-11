@@ -33,7 +33,7 @@ public enum Calendar {
 
     private final List<Integer> days;
 
-    public static List<Calendar> findByDay(final int day) {
+    public static List<Calendar> findAllByDay(final int day) {
         List<Calendar> calendars = new ArrayList<>();
         for (Calendar calendar : values()) {
             if (calendar.days.contains(day)) {
