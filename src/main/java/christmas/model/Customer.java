@@ -16,7 +16,7 @@ public class Customer {
         return new Customer(day, orders);
     }
 
-    private int calculateTotalCost() {
+    public int calculateTotalCost() {
         return orders.calculateTotalCost();
     }
 

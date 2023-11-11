@@ -28,7 +28,7 @@ public class EventController {
 
     public void start() {
         Customer customer = inviteCustomer();
-        printCustomerRequest(customer.getDay(), customer.getOrders());
+        printCustomerRequest(customer);
 
         Orders bonusOrders = collectBonusByOrders(customer.getOrders());
         List<PromotionResponse> promotions = collectPromotionsByRequest(customer.getDay(), customer.getOrders());
@@ -79,10 +79,15 @@ public class EventController {
         });
     }
 
-    private void printCustomerRequest(final Day requestDay, final Orders orders) {
-        outputView.printOrderDay(requestDay.getDay());
-        printOrdersHistory(orders);
-        outputView.printCostBeforeDiscount(orders.calculateTotalCost());
+    private void printCustomerRequest(final Customer customer) {
+        printOrderDay(customer.getDay());
+        printOrdersHistory(customer.getOrders());
+
+        outputView.printCostBeforeDiscount(customer.calculateTotalCost());
+    }
+
+    private void printOrderDay(final Day day) {
+        outputView.printOrderDay(day.getDay());
     }
 
     private void printOrdersHistory(final Orders orders) {
