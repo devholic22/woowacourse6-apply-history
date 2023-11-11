@@ -2,6 +2,9 @@ package christmas.model;
 
 import static christmas.view.exception.InputException.BAD_DAY_EXCEPTION;
 
+import christmas.model.calender.Calendar;
+import java.util.List;
+
 public class Day {
 
     private static final int START_DAY = 1;
@@ -32,6 +35,15 @@ public class Day {
         if (day < START_DAY || day > END_DAY) {
             throw new IllegalArgumentException(BAD_DAY_EXCEPTION.getMessage());
         }
+    }
+
+    public boolean isDayPassed(final int day) {
+        return this.day > day;
+    }
+
+    public boolean isDayInCalendarType(final Calendar calendarType) {
+        List<Calendar> calendarTypes = Calendar.findByDay(day);
+        return calendarTypes.contains(calendarType);
     }
 
     public int getDay() {

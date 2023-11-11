@@ -6,6 +6,7 @@ import christmas.model.dto.DayResponse;
 import christmas.model.dto.OrderResponse;
 import christmas.model.order.Order;
 import christmas.model.order.Orders;
+import christmas.model.policy.DiscountPolicy;
 import christmas.view.input.InputView;
 import christmas.view.output.OutputView;
 import java.util.List;
@@ -15,10 +16,12 @@ public class EventController {
 
     private final InputView inputView;
     private final OutputView outputView;
+    private final List<DiscountPolicy> policies;
 
-    public EventController(final InputView inputView, final OutputView outputView) {
+    public EventController(final InputView inputView, final OutputView outputView, final List<DiscountPolicy> policies) {
         this.inputView = inputView;
         this.outputView = outputView;
+        this.policies = policies;
     }
 
     public void start() {
@@ -31,6 +34,10 @@ public class EventController {
 
         List<Order> bonusOrders = BonusManager.giveBonusOrders(orders.getTotalCost());
         printBonusOrdersHistory(bonusOrders);
+
+        List<DiscountPolicy> availablePolicies = policies.stream()
+                .filter(policy -> policy.isCostAndDayAvailable(orders.getTotalCost(), requestDay))
+                .toList();
     }
 
     private Day initDay() {
