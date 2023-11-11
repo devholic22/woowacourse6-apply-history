@@ -1,6 +1,6 @@
 package christmas.model.policy;
 
-import static christmas.model.calender.Calendar.WEEK_DAY;
+import static christmas.model.calender.Calendar.WEEK_END;
 import static christmas.model.menu.MenuType.MAIN_DISH;
 
 import christmas.model.Day;
@@ -27,6 +27,6 @@ public class WeekEndPolicy implements DiscountPolicy {
         int totalCost = orders.getTotalCost();
         int mainOrders = orders.calculateTypeOrdersCount(MAIN_DISH);
 
-        return totalCost >= MINIMUM_COST && day.isDayInCalendarType(WEEK_DAY) && mainOrders != NOT_ORDERED;
+        return totalCost >= MINIMUM_COST && day.isDayInCalendarType(WEEK_END) && mainOrders != NOT_ORDERED;
     }
 }

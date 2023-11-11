@@ -5,6 +5,7 @@ import christmas.model.order.Orders;
 
 public class ChristmasPolicy implements DiscountPolicy {
 
+    private static final int START_DAY = 1;
     private static final int CHRISTMAS_DAY = 25;
     private static final int MINIMUM_COST = 10_000;
     private static final int DEFAULT_DISCOUNT = -1_000;
@@ -14,7 +15,7 @@ public class ChristmasPolicy implements DiscountPolicy {
     @Override
     public int discount(final Orders orders, final Day day) {
         if (isOrdersAndDayAvailable(orders, day)) {
-            return DEFAULT_DISCOUNT + (day.calculateDuration(CHRISTMAS_DAY) * EACH_DAY_DISCOUNT);
+            return DEFAULT_DISCOUNT + (day.calculateDuration(START_DAY) * EACH_DAY_DISCOUNT);
         }
         return NOT_DISCOUNT;
     }
