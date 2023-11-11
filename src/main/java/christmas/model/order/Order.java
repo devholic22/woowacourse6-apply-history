@@ -22,8 +22,18 @@ public class Order {
         this.size = size;
     }
 
+    public static Order createByName(final String nameInput) {
+        Menu menu = Menu.findByName(nameInput);
+        return new Order(menu, MINIMUM_SIZE);
+    }
+
     public static Order from(final String orderInput) {
+        validateIsInputNotNull(orderInput);
+        validateIsInputHasValueSplitter(orderInput);
+
         String[] orderInputValues = orderInput.split(VALUE_SPLITTER);
+        validateIsInputSplittedCorrect(orderInputValues);
+
         String menuNameInput = orderInputValues[NAME_INDEX];
         String sizeInput = orderInputValues[SIZE_INDEX];
 
@@ -34,9 +44,22 @@ public class Order {
         return new Order(menu, size);
     }
 
-    public static Order createByName(final String nameInput) {
-        Menu menu = Menu.findByName(nameInput);
-        return new Order(menu, MINIMUM_SIZE);
+    private static void validateIsInputNotNull(final String orderInput) {
+        if (orderInput == null) {
+            throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateIsInputHasValueSplitter(final String orderInput) {
+        if (!orderInput.contains(VALUE_SPLITTER)) {
+            throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
+        }
+    }
+
+    private static void validateIsInputSplittedCorrect(final String[] splittedInput) {
+        if (splittedInput.length <= SIZE_INDEX) {
+            throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
+        }
     }
 
     private static int convertToNumber(final String sizeInput) {
