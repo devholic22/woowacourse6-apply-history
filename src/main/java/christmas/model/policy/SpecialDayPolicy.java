@@ -24,7 +24,7 @@ public class SpecialDayPolicy implements DiscountPolicy {
     }
 
     @Override
-    public int discount(final Orders orders, final Day day) {
+    public int discount(final Day day, final Orders orders) {
         if (isOrdersAndDayAvailable(day, orders)) {
             return DISCOUNT;
         }

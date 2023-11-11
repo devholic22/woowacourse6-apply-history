@@ -5,6 +5,6 @@ import christmas.model.order.Orders;
 
 public interface DiscountPolicy {
 
-    int discount(final Orders orders, final Day day);
+    int discount(final Day day, final Orders orders);
     boolean isOrdersAndDayAvailable(final Day day, final Orders orders);
 }

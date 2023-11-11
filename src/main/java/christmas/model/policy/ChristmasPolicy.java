@@ -25,7 +25,7 @@ public class ChristmasPolicy implements DiscountPolicy {
     }
 
     @Override
-    public int discount(final Orders orders, final Day day) {
+    public int discount(final Day day, final Orders orders) {
         if (isOrdersAndDayAvailable(day, orders)) {
             return DEFAULT_DISCOUNT + (day.calculateDuration(START_DAY) * EACH_DAY_DISCOUNT);
         }
