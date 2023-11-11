@@ -53,7 +53,7 @@ public class OrdersTest {
             Orders orders = Orders.from(ordersInput);
 
             // when
-            int cost = orders.getTotalCost();
+            int cost = orders.calculateTotalCost();
 
             // then
             assertThat(cost).isEqualTo(expectedCost);

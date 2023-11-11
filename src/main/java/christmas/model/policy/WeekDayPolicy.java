@@ -36,7 +36,7 @@ public class WeekDayPolicy implements DiscountPolicy {
 
     @Override
     public boolean isOrdersAndDayAvailable(final Day day, final Orders orders) {
-        int totalCost = orders.getTotalCost();
+        int totalCost = orders.calculateTotalCost();
         int dessertOrders = orders.calculateTypeOrdersCount(DESSERT);
 
         return totalCost >= MINIMUM_COST && day.isDayInCalendarType(WEEK_DAY) && dessertOrders != NOT_ORDERED;

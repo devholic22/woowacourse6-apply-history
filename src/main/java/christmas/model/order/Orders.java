@@ -71,7 +71,7 @@ public class Orders {
                 .sum();
     }
     
-    public int getTotalCost() {
+    public int calculateTotalCost() {
         return orders.stream()
                 .mapToInt(Order::calculateCost)
                 .sum();

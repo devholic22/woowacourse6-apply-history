@@ -34,7 +34,7 @@ public class ChristmasPolicy implements DiscountPolicy {
 
     @Override
     public boolean isOrdersAndDayAvailable(final Day day, final Orders orders) {
-        int totalCost = orders.getTotalCost();
+        int totalCost = orders.calculateTotalCost();
         return totalCost >= MINIMUM_COST && !day.isDayPassed(CHRISTMAS_DAY);
     }
 }

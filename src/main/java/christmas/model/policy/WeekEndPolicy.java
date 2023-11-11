@@ -36,7 +36,7 @@ public class WeekEndPolicy implements DiscountPolicy {
 
     @Override
     public boolean isOrdersAndDayAvailable(final Day day, final Orders orders) {
-        int totalCost = orders.getTotalCost();
+        int totalCost = orders.calculateTotalCost();
         int mainOrders = orders.calculateTypeOrdersCount(MAIN_DISH);
 
         return totalCost >= MINIMUM_COST && day.isDayInCalendarType(WEEK_END) && mainOrders != NOT_ORDERED;

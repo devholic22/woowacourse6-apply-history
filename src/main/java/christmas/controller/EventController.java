@@ -73,7 +73,7 @@ public class EventController {
     private void printCustomerRequest(final Day requestDay, final Orders orders) {
         outputView.printOrderDay(requestDay.getDay());
         printOrdersHistory(orders);
-        outputView.printCostBeforeDiscount(orders.getTotalCost());
+        outputView.printCostBeforeDiscount(orders.calculateTotalCost());
     }
 
     private void printOrdersHistory(final Orders orders) {
@@ -89,7 +89,7 @@ public class EventController {
     }
 
     private Orders collectBonusByOrders(final Orders orders) {
-        List<Order> bonusOrderMenus = BonusManager.giveBonusOrdersForCost(orders.getTotalCost());
+        List<Order> bonusOrderMenus = BonusManager.giveBonusOrdersForCost(orders.calculateTotalCost());
         return Orders.withOrders(bonusOrderMenus);
     }
 
@@ -111,7 +111,7 @@ public class EventController {
     private void printPromotionAndBonusHistory(final List<PromotionResponse> promotions, final Orders bonusOrders) {
         printBonusHistory(bonusOrders);
         outputView.printPromotions(promotions);
-        outputView.printBonusEventCost(bonusOrders.getTotalCost());
+        outputView.printBonusEventCost(bonusOrders.calculateTotalCost());
         printTotalPromotionCost(promotions, bonusOrders);
     }
 
@@ -124,21 +124,21 @@ public class EventController {
         int promotionCost = promotions.stream()
                 .mapToInt(PromotionResponse::cost)
                 .sum();
-        outputView.printTotalPromotionCost(promotionCost + bonusOrders.getTotalCost());
+        outputView.printTotalPromotionCost(promotionCost + bonusOrders.calculateTotalCost());
     }
 
     private void printTotalCostAfterPromotion(final List<PromotionResponse> promotions, final Orders orders) {
         int promotionCost = promotions.stream()
                 .mapToInt(PromotionResponse::cost)
                 .sum();
-        outputView.printCostAfterDiscount(orders.getTotalCost() - promotionCost);
+        outputView.printCostAfterDiscount(orders.calculateTotalCost() - promotionCost);
     }
 
     private void printBadgeWithCost(final List<PromotionResponse> promotions, final Orders bonusOrders) {
         int promotionCost = promotions.stream()
                 .mapToInt(PromotionResponse::cost)
                 .sum();
-        Badge badge = BadgeManager.giveBadgeByCost(promotionCost + bonusOrders.getTotalCost());
+        Badge badge = BadgeManager.giveBadgeByCost(promotionCost + bonusOrders.calculateTotalCost());
 
         outputView.printBadge(badge);
     }
