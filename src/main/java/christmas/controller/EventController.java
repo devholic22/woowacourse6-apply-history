@@ -33,10 +33,12 @@ public class EventController {
         Day requestDay = initDay();
         Orders orders = initOrders();
         printCustomerRequest(requestDay, orders);
+
         List<Order> bonusOrders = BonusManager.giveBonusOrders(orders.getTotalCost());
+        List<PromotionResponse> promotions = collectAvailablePromotions(requestDay, orders);
+
         printBonusOrdersHistory(bonusOrders);
         printPromotionsByRequest(requestDay, orders);
-        List<PromotionResponse> promotions = collectAvailablePromotions(requestDay, orders);
         printBonusCost(bonusOrders);
         printPromotionWithBonus(promotions, bonusOrders);
         printCostAfterDiscount(orders, promotions);
