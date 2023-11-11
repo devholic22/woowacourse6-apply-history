@@ -35,8 +35,8 @@ public class EventController {
         printCustomerRequest(requestDay, orders);
         List<Order> bonusOrders = BonusManager.giveBonusOrders(orders.getTotalCost());
         printBonusOrdersHistory(bonusOrders);
-        List<PromotionResponse> promotions = collectAvailablePromotions(orders, requestDay);
-        outputView.printPromotions(promotions);
+        printPromotionsByRequest(requestDay, orders);
+        List<PromotionResponse> promotions = collectAvailablePromotions(requestDay, orders);
         printBonusCost(bonusOrders);
         printPromotionWithBonus(promotions, bonusOrders);
         printCostAfterDiscount(orders, promotions);
@@ -105,9 +105,14 @@ public class EventController {
         outputView.printBonusMenus(responses);
     }
 
-    private List<PromotionResponse> collectAvailablePromotions(final Orders orders, final Day requestDay) {
+    private void printPromotionsByRequest(final Day requestDay, final Orders orders) {
+        List<PromotionResponse> promotions = collectAvailablePromotions(requestDay, orders);
+        outputView.printPromotions(promotions);
+    }
+
+    private List<PromotionResponse> collectAvailablePromotions(final Day requestDay, final Orders orders) {
         List<DiscountPolicy> availablePolicies = policies.stream()
-                .filter(policy -> policy.isOrdersAndDayAvailable(orders, requestDay))
+                .filter(policy -> policy.isOrdersAndDayAvailable(requestDay, orders))
                 .toList();
 
         return availablePolicies.stream()

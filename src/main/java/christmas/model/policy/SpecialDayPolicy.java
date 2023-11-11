@@ -25,14 +25,14 @@ public class SpecialDayPolicy implements DiscountPolicy {
 
     @Override
     public int discount(final Orders orders, final Day day) {
-        if (isOrdersAndDayAvailable(orders, day)) {
+        if (isOrdersAndDayAvailable(day, orders)) {
             return DISCOUNT;
         }
         return NOT_DISCOUNT;
     }
 
     @Override
-    public boolean isOrdersAndDayAvailable(final Orders orders, final Day day) {
+    public boolean isOrdersAndDayAvailable(final Day day, final Orders orders) {
         int totalCost = orders.getTotalCost();
         return totalCost >= MINIMUM_COST && day.isDayInCalendarType(SPECIAL_DAY);
     }
