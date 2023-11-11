@@ -19,12 +19,10 @@ public class EventController {
 
     private final InputView inputView;
     private final OutputView outputView;
-    private final List<DiscountPolicy> policies;
 
-    public EventController(final InputView inputView, final OutputView outputView, final List<DiscountPolicy> policies) {
+    public EventController(final InputView inputView, final OutputView outputView) {
         this.inputView = inputView;
         this.outputView = outputView;
-        this.policies = policies;
     }
 
     public void start() {
