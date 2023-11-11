@@ -16,4 +16,5 @@ public interface OutputView {
     void printBonusMenus(final List<OrderResponse> bonusMenus);
     void printPromotions(final List<PromotionResponse> promotions);
     void printBonusEventCost(final int cost);
+    void printTotalPromotionCost(final int cost);
 }

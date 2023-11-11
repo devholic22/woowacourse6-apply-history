@@ -91,4 +91,11 @@ public class ConsoleOutputView implements OutputView {
         }
         System.out.println("증정 이벤트: " + (String.format(MONEY_REGEX, PROMOTION_SIGN * cost)) + CURRENCY);
     }
+
+    @Override
+    public void printTotalPromotionCost(final int cost) {
+        System.out.println();
+        System.out.println("<총혜택 금액>");
+        System.out.println(String.format(MONEY_REGEX, cost) + CURRENCY);
+    }
 }
