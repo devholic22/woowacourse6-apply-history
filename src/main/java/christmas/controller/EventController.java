@@ -1,10 +1,10 @@
 package christmas.controller;
 
 import christmas.model.Badge;
-import christmas.model.BadgeManager;
-import christmas.model.CostManager;
+import christmas.model.manager.BadgeManager;
+import christmas.model.manager.CostManager;
 import christmas.model.Day;
-import christmas.model.GiftManager;
+import christmas.model.manager.GiftManager;
 import christmas.model.Promotion;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;

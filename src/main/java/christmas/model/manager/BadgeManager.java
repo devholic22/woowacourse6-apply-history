@@ -1,4 +1,6 @@
-package christmas.model;
+package christmas.model.manager;
+
+import christmas.model.Badge;
 
 public class BadgeManager {
 

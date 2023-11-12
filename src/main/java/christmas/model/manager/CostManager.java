@@ -1,4 +1,4 @@
-package christmas.model;
+package christmas.model.manager;
 
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;

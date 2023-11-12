@@ -5,6 +5,7 @@ import static christmas.model.Badge.SANTA;
 import static christmas.model.Badge.TREE;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.model.manager.BadgeManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

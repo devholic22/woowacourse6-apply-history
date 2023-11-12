@@ -1,11 +1,8 @@
-package christmas.model;
+package christmas.model.manager;
 
 import static christmas.model.menu.Menu.CHAMPAGNE;
 
-import christmas.model.order.Order;
 import christmas.model.order.Orders;
-import java.util.Collections;
-import java.util.List;
 
 public class GiftManager {
 
