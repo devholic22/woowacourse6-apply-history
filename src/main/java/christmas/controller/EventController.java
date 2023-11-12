@@ -139,6 +139,6 @@ public class EventController {
                 .sum();
         Badge badge = BadgeManager.giveBadgeByCost(promotionCost + giftCost);
 
-        outputView.printBadge(badge);
+        outputView.printBadge(badge.getName());
     }
 }

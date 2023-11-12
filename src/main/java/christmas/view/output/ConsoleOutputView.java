@@ -1,6 +1,5 @@
 package christmas.view.output;
 
-import christmas.model.Badge;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;
 import java.util.List;
@@ -115,9 +114,9 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printBadge(final Badge badge) {
+    public void printBadge(final String badgeName) {
         System.out.println();
         System.out.println("<12월 이벤트 배지>");
-        System.out.println(badge.getName());
+        System.out.println(badgeName);
     }
 }
