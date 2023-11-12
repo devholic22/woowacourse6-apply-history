@@ -74,7 +74,7 @@ public class EventController {
     private void printRequestHistory(final Day visitDay, final Orders requestOrders) {
         List<OrderResponse> orderResponses = requestOrders.orders()
                 .stream()
-                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
+                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize(), order.calculateCost()))
                 .toList();
 
         outputView.printOrderDay(visitDay.getDay());
@@ -116,7 +116,7 @@ public class EventController {
     private List<OrderResponse> convertToOrderResponse(final Orders orders) {
         return orders.orders()
                 .stream()
-                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
+                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize(), order.calculateCost()))
                 .toList();
     }
 
