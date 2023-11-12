@@ -5,6 +5,7 @@ import christmas.model.Badge;
 public class BadgeManager {
 
     private BadgeManager() {
+
     }
 
     public static Badge giveBadgeByCost(final int cost) {
