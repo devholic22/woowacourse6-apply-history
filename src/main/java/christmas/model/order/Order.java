@@ -84,14 +84,6 @@ public class Order {
         }
     }
 
-    public String getName() {
-        return menu.getName();
-    }
-
-    public int getSize() {
-        return size;
-    }
-
     public int calculateCost() {
         return size * menu.getCost();
     }
@@ -101,6 +93,14 @@ public class Order {
         String otherType = type.getType();
 
         return orderType.equals(otherType);
+    }
+
+    public String getName() {
+        return menu.getName();
+    }
+
+    public int getSize() {
+        return size;
     }
 
     @Override
