@@ -27,20 +27,24 @@ public class Orders {
         return new Orders(orders);
     }
 
+    public static Orders withOrders(final List<Order> orders) {
+        return new Orders(orders);
+    }
+
     public static Orders from(final String ordersInput) {
         String[] splitOrders = ordersInput.split(ORDER_SPLITTER);
         List<Order> orders = Stream.of(splitOrders)
                 .map(Order::from)
                 .toList();
-        validateMenusNotDuplicate(orders);
-        validateMenusNotOnlyDrink(orders);
-        validateMenusTotalSizeIsNotOver(orders);
+        validateIsOrdersInputValid(orders);
 
         return new Orders(orders);
     }
 
-    public static Orders withOrders(final List<Order> orders) {
-        return new Orders(orders);
+    private static void validateIsOrdersInputValid(final List<Order> orders) {
+        validateMenusNotDuplicate(orders);
+        validateMenusNotOnlyDrink(orders);
+        validateMenusTotalSizeIsNotOver(orders);
     }
 
     private static void validateMenusNotDuplicate(final List<Order> orders) {
@@ -86,7 +90,7 @@ public class Orders {
                 .sum();
     }
 
-    public List<Order> orders() {
+    public List<Order> getOrders() {
         return orders;
     }
 }

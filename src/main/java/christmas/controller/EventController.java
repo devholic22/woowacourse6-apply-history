@@ -72,7 +72,7 @@ public class EventController {
     }
 
     private void printRequestHistory(final Day visitDay, final Orders requestOrders) {
-        List<OrderResponse> orderResponses = requestOrders.orders()
+        List<OrderResponse> orderResponses = requestOrders.getOrders()
                 .stream()
                 .map(order -> OrderResponse.of(order.getName(), order.getSize(), order.calculateCost()))
                 .toList();
@@ -86,7 +86,7 @@ public class EventController {
         int totalCost = requestOrders.calculateTotalCost();
         Orders giftOrders = GiftManager.giveGiftsForCost(totalCost);
 
-        return giftOrders.orders()
+        return giftOrders.getOrders()
                 .stream()
                 .map(giftOrder -> OrderResponse.of(giftOrder.getName(), giftOrder.getSize(), giftOrder.calculateCost()))
                 .toList();

@@ -19,7 +19,7 @@ public class GiftManagerTest {
         Orders giftOrders = GiftManager.giveGiftsForCost(cost);
 
         // then
-        assertThat(giftOrders.orders()).isEmpty();
+        assertThat(giftOrders.getOrders()).isEmpty();
     }
 
     @Test
@@ -32,6 +32,6 @@ public class GiftManagerTest {
         Orders giftOrders = GiftManager.giveGiftsForCost(cost);
 
         // then
-        assertThat(giftOrders.orders()).isNotEmpty();
+        assertThat(giftOrders.getOrders()).isNotEmpty();
     }
 }
