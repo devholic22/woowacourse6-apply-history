@@ -95,13 +95,14 @@ public class EventController {
         List<DiscountPolicy> availablePolicies = Promotion.collectPoliciesByRequest(visitDay, requestOrders);
 
         return availablePolicies.stream()
-                .map(policy -> convertToPromotionResponse(policy, visitDay, requestOrders))
+                .map(policy -> convertPromotionAnswer(policy, visitDay, requestOrders))
                 .toList();
     }
 
-    private PromotionResponse convertToPromotionResponse(final DiscountPolicy discountPolicy, final Day day, final Orders orders) {
-        String policyName = Promotion.findNameByPolicy(discountPolicy);
-        int discount = discountPolicy.discount(day, orders);
+    private PromotionResponse convertPromotionAnswer(final DiscountPolicy policy, final Day day, final Orders orders) {
+        String policyName = Promotion.findNameByPolicy(policy);
+        int discount = policy.discount(day, orders);
+
         return PromotionResponse.of(policyName, discount);
     }
 
