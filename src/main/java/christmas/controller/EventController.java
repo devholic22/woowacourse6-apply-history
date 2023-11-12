@@ -33,7 +33,7 @@ public class EventController {
         List<OrderResponse> giftResponses = collectGiftsByOrders(requestOrders);
         List<PromotionResponse> promotions = collectPromotionsByRequest(visitDay, requestOrders);
 
-        printPromotionAndBonusHistory(promotions, giftResponses);
+        printBenefitHistory(promotions, giftResponses);
         printTotalCostAfterPromotion(promotions, requestOrders);
         printBadgeWithCost(promotions, giftResponses);
     }
@@ -107,17 +107,24 @@ public class EventController {
         return PromotionResponse.of(policyName, discount);
     }
 
-    private void printPromotionAndBonusHistory(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
-        outputView.printBonusMenus(giftOrders);
+    private void printBenefitHistory(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
+        outputView.printGiftOrders(giftOrders);
         outputView.printPromotions(promotions);
-        outputView.printBonusEventCost(giftOrders);
-        printTotalPromotionCost(promotions, giftOrders);
+
+        printGiftOrdersCost(giftOrders);
+        printTotalBenefitCost(promotions, giftOrders);
     }
 
-    private void printTotalPromotionCost(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
+    private void printGiftOrdersCost(final List<OrderResponse> giftOrders) {
+        int giftCost = CostManager.calculateGiftOrdersCost(giftOrders);
+        outputView.printGiftOrdersCost(giftCost);
+    }
+
+    private void printTotalBenefitCost(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
         int promotionCost = CostManager.calculatePromotionCost(promotions);
         int giftCost = CostManager.calculateGiftOrdersCost(giftOrders);
-        outputView.printTotalPromotionCost(promotionCost + giftCost);
+
+        outputView.printTotalBenefitCost(promotionCost + giftCost);
     }
 
     private void printTotalCostAfterPromotion(final List<PromotionResponse> promotions, final Orders orders) {

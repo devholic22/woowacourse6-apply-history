@@ -13,10 +13,10 @@ public interface OutputView {
     void printOrderDay(final int day);
     void printOrderedMenus(final List<OrderResponse> orders);
     void printCostBeforeDiscount(final int cost);
-    void printBonusMenus(final List<OrderResponse> bonusMenus);
+    void printGiftOrders(final List<OrderResponse> bonusMenus);
     void printPromotions(final List<PromotionResponse> promotions);
-    void printBonusEventCost(final List<OrderResponse> orderResponses);
-    void printTotalPromotionCost(final int cost);
+    void printGiftOrdersCost(final int cost);
+    void printTotalBenefitCost(final int cost);
     void printCostAfterDiscount(final int cost);
     void printBadge(final String badgeName);
 }

@@ -54,7 +54,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printBonusMenus(final List<OrderResponse> bonusMenus) {
+    public void printGiftOrders(final List<OrderResponse> bonusMenus) {
         System.out.println();
         System.out.println("<증정 메뉴>");
 
@@ -89,18 +89,15 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printBonusEventCost(final List<OrderResponse> orderResponses) {
-        if (orderResponses.isEmpty()) {
+    public void printGiftOrdersCost(final int cost) {
+        if (cost == EMPTY_MONEY) {
             return;
         }
-        int cost = orderResponses.stream()
-                .mapToInt(OrderResponse::cost)
-                .sum();
         System.out.println("증정 이벤트: " + String.format(MONEY_REGEX, (PROMOTION_SIGN * cost)) + CURRENCY);
     }
 
     @Override
-    public void printTotalPromotionCost(final int cost) {
+    public void printTotalBenefitCost(final int cost) {
         System.out.println();
         System.out.println("<총혜택 금액>");
         System.out.println(String.format(MONEY_REGEX, PROMOTION_SIGN * cost) + CURRENCY);
