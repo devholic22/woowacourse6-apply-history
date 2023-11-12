@@ -29,7 +29,7 @@ public class EventController {
         Orders requestOrders = receiveOrders();
         printRequestHistory(visitDay, requestOrders);
 
-        List<OrderResponse> giftResponses = collectBonusByRequest(requestOrders);
+        List<OrderResponse> giftResponses = collectGiftsByRequest(requestOrders);
         List<PromotionResponse> promotions = collectPromotionsByRequest(visitDay, requestOrders);
 
         printPromotionAndBonusHistory(promotions, giftResponses);
@@ -81,9 +81,10 @@ public class EventController {
         outputView.printCostBeforeDiscount(requestOrders.calculateTotalCost());
     }
 
-    private List<OrderResponse> collectBonusByRequest(final Orders requestOrders) {
+    private List<OrderResponse> collectGiftsByRequest(final Orders requestOrders) {
         int totalCost = requestOrders.calculateTotalCost();
         Orders giftOrders = GiftManager.giveGiftsForCost(totalCost);
+
         return giftOrders.orders()
                 .stream()
                 .map(giftOrder -> OrderResponse.of(giftOrder.getMenuName(), giftOrder.getSize(), giftOrder.calculateCost()))
