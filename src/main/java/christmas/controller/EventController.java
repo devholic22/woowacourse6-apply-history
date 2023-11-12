@@ -79,7 +79,7 @@ public class EventController {
 
         outputView.printOrderDay(visitDay.getDay());
         outputView.printOrderedMenus(orderResponses);
-        outputView.printCostBeforeDiscount(requestOrders.calculateTotalCost());
+        outputView.printCostBeforePromotion(requestOrders.calculateTotalCost());
     }
 
     private List<OrderResponse> collectGiftsByOrders(final Orders requestOrders) {

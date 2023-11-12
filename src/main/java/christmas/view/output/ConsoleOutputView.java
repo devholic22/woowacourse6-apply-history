@@ -47,7 +47,7 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printCostBeforeDiscount(final int cost) {
+    public void printCostBeforePromotion(final int cost) {
         System.out.println();
         System.out.println("<할인 전 총주문 금액>");
         System.out.println(String.format(MONEY_REGEX, cost) + CURRENCY);
