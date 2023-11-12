@@ -6,6 +6,7 @@ import christmas.model.BonusManager;
 import christmas.model.Customer;
 import christmas.model.Day;
 import christmas.model.Promotion;
+import christmas.model.dto.CustomerResponse;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;
 import christmas.model.order.Order;
@@ -80,26 +81,11 @@ public class EventController {
     }
 
     private void printCustomerRequest(final Customer customer) {
-        printOrderDay(customer.getDay());
-        printOrdersHistory(customer.getOrders());
+        CustomerResponse customerResponse = CustomerResponse.of(customer.getDay(), customer.getOrders());
 
+        outputView.printOrderDay(customerResponse.day());
+        outputView.printOrderedMenus(customerResponse.orderResponses());
         outputView.printCostBeforeDiscount(customer.calculateTotalCost());
-    }
-
-    private void printOrderDay(final Day day) {
-        outputView.printOrderDay(day.getDay());
-    }
-
-    private void printOrdersHistory(final Orders orders) {
-        List<OrderResponse> responses = convertToOrderResponse(orders);
-        outputView.printOrderedMenus(responses);
-    }
-
-    private List<OrderResponse> convertToOrderResponse(final Orders orders) {
-        return orders.orders()
-                .stream()
-                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
-                .toList();
     }
 
     private Orders collectBonusByRequest(final Customer customer) {
@@ -134,6 +120,13 @@ public class EventController {
     private void printBonusHistory(final Orders bonusOrders) {
         List<OrderResponse> bonusAnswers = convertToOrderResponse(bonusOrders);
         outputView.printBonusMenus(bonusAnswers);
+    }
+
+    private List<OrderResponse> convertToOrderResponse(final Orders orders) {
+        return orders.orders()
+                .stream()
+                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
+                .toList();
     }
 
     private void printTotalPromotionCost(final List<PromotionResponse> promotions, final Orders bonusOrders) {
