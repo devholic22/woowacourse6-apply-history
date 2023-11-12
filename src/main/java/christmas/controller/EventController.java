@@ -2,6 +2,7 @@ package christmas.controller;
 
 import christmas.model.Badge;
 import christmas.model.BadgeManager;
+import christmas.model.CostManager;
 import christmas.model.Day;
 import christmas.model.GiftManager;
 import christmas.model.Promotion;
@@ -114,29 +115,19 @@ public class EventController {
     }
 
     private void printTotalPromotionCost(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
-        int promotionCost = promotions.stream()
-                .mapToInt(PromotionResponse::cost)
-                .sum();
-        int giftCost = giftOrders.stream()
-                .mapToInt(OrderResponse::cost)
-                .sum();
+        int promotionCost = CostManager.calculatePromotionCost(promotions);
+        int giftCost = CostManager.calculateGiftOrdersCost(giftOrders);
         outputView.printTotalPromotionCost(promotionCost + giftCost);
     }
 
     private void printTotalCostAfterPromotion(final List<PromotionResponse> promotions, final Orders orders) {
-        int promotionCost = promotions.stream()
-                .mapToInt(PromotionResponse::cost)
-                .sum();
+        int promotionCost = CostManager.calculatePromotionCost(promotions);
         outputView.printCostAfterDiscount(orders.calculateTotalCost() - promotionCost);
     }
 
     private void printBadgeWithCost(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
-        int promotionCost = promotions.stream()
-                .mapToInt(PromotionResponse::cost)
-                .sum();
-        int giftCost = giftOrders.stream()
-                .mapToInt(OrderResponse::cost)
-                .sum();
+        int promotionCost = CostManager.calculatePromotionCost(promotions);
+        int giftCost = CostManager.calculateGiftOrdersCost(giftOrders);
         Badge badge = BadgeManager.giveBadgeByCost(promotionCost + giftCost);
 
         outputView.printBadge(badge.getName());
