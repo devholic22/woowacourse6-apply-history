@@ -33,7 +33,7 @@ public class WeekEndPolicyTest {
 
         // then
         assertThat(discountCost).isEqualTo(expectedCost);
-        assertThat(discountPolicy.isOrdersAndDayAvailable(requestDay, orders)).isTrue();
+        assertThat(discountPolicy.isCanDiscount(requestDay, orders)).isTrue();
     }
 
     @Test
@@ -48,7 +48,7 @@ public class WeekEndPolicyTest {
 
         // then
         assertThat(discountCost).isEqualTo(0);
-        assertThat(discountPolicy.isOrdersAndDayAvailable(requestDay, orders)).isFalse();
+        assertThat(discountPolicy.isCanDiscount(requestDay, orders)).isFalse();
     }
 
     @Test
@@ -63,6 +63,6 @@ public class WeekEndPolicyTest {
 
         // then
         assertThat(discountCost).isEqualTo(0);
-        assertThat(discountPolicy.isOrdersAndDayAvailable(requestDay, orders)).isFalse();
+        assertThat(discountPolicy.isCanDiscount(requestDay, orders)).isFalse();
     }
 }

@@ -27,7 +27,7 @@ public class WeekDayPolicy implements DiscountPolicy {
 
     @Override
     public int discount(final Day day, final Orders orders) {
-        if (isOrdersAndDayAvailable(day, orders)) {
+        if (isCanDiscount(day, orders)) {
             int dessertOrders = orders.calculateTypeOrdersCount(DESSERT);
             return EACH_MENU_DISCOUNT * dessertOrders;
         }
@@ -35,7 +35,7 @@ public class WeekDayPolicy implements DiscountPolicy {
     }
 
     @Override
-    public boolean isOrdersAndDayAvailable(final Day day, final Orders orders) {
+    public boolean isCanDiscount(final Day day, final Orders orders) {
         int totalCost = orders.calculateTotalCost();
         int dessertOrders = orders.calculateTypeOrdersCount(DESSERT);
 

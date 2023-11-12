@@ -26,14 +26,14 @@ public class ChristmasPolicy implements DiscountPolicy {
 
     @Override
     public int discount(final Day day, final Orders orders) {
-        if (isOrdersAndDayAvailable(day, orders)) {
+        if (isCanDiscount(day, orders)) {
             return DEFAULT_DISCOUNT + (day.calculateDuration(START_DAY) * EACH_DAY_DISCOUNT);
         }
         return NOT_DISCOUNT;
     }
 
     @Override
-    public boolean isOrdersAndDayAvailable(final Day day, final Orders orders) {
+    public boolean isCanDiscount(final Day day, final Orders orders) {
         int totalCost = orders.calculateTotalCost();
         return totalCost >= MINIMUM_COST && !day.isDayPassed(CHRISTMAS_DAY);
     }
