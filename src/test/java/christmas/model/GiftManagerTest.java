@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-public class BonusManagerTest {
+public class GiftManagerTest {
 
     @Test
     @DisplayName("증정 이벤트 기능 테스트 - 없음")
@@ -16,7 +16,7 @@ public class BonusManagerTest {
         int cost = 100_000;
 
         // when
-        List<Order> bonusOrders = BonusManager.giveBonusOrdersForCost(cost);
+        List<Order> bonusOrders = GiftManager.giveBonusOrdersForCost(cost);
 
         // then
         assertThat(bonusOrders).isEmpty();
@@ -29,7 +29,7 @@ public class BonusManagerTest {
         int cost = 150_000;
 
         // when
-        List<Order> bonusOrders = BonusManager.giveBonusOrdersForCost(cost);
+        List<Order> bonusOrders = GiftManager.giveBonusOrdersForCost(cost);
 
         // then
         assertThat(bonusOrders).isNotEmpty();

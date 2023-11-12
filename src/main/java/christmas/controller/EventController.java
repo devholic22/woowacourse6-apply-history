@@ -2,7 +2,7 @@ package christmas.controller;
 
 import christmas.model.Badge;
 import christmas.model.BadgeManager;
-import christmas.model.BonusManager;
+import christmas.model.GiftManager;
 import christmas.model.Day;
 import christmas.model.Promotion;
 import christmas.model.dto.OrderResponse;
@@ -83,7 +83,7 @@ public class EventController {
     }
 
     private Orders collectBonusByRequest(final Orders requestOrders) {
-        List<Order> bonusOrderMenus = BonusManager.giveBonusOrdersForCost(requestOrders.calculateTotalCost());
+        List<Order> bonusOrderMenus = GiftManager.giveBonusOrdersForCost(requestOrders.calculateTotalCost());
         return Orders.withOrders(bonusOrderMenus);
     }
 

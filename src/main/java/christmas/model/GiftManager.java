@@ -6,11 +6,11 @@ import christmas.model.order.Order;
 import java.util.Collections;
 import java.util.List;
 
-public class BonusManager {
+public class GiftManager {
 
     private static final int MINIMUM_COST = 120_000;
 
-    private BonusManager() {
+    private GiftManager() {
 
     }
 
