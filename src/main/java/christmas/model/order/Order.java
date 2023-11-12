@@ -22,6 +22,10 @@ public class Order {
         this.size = size;
     }
 
+    public static Order withMenu(final Menu menu) {
+        return new Order(menu, MINIMUM_SIZE);
+    }
+
     public static Order createByName(final String nameInput) {
         Menu menu = Menu.findByName(nameInput);
         return new Order(menu, MINIMUM_SIZE);

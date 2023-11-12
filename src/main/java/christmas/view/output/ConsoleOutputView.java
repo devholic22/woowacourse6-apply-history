@@ -90,11 +90,14 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printBonusEventCost(final int cost) {
-        if (cost == EMPTY_MONEY) {
+    public void printBonusEventCost(final List<OrderResponse> orderResponses) {
+        if (orderResponses.isEmpty()) {
             return;
         }
-        System.out.println("증정 이벤트: " + (String.format(MONEY_REGEX, PROMOTION_SIGN * cost)) + CURRENCY);
+        int cost = orderResponses.stream()
+                .mapToInt(OrderResponse::cost)
+                .sum();
+        System.out.println("증정 이벤트: " + String.format(MONEY_REGEX, (PROMOTION_SIGN * cost)) + CURRENCY);
     }
 
     @Override

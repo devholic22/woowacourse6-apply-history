@@ -3,8 +3,10 @@ package christmas.model.order;
 import static christmas.model.menu.MenuType.DRINK;
 import static christmas.view.exception.InputException.BAD_MENU_EXCEPTION;
 
+import christmas.model.menu.Menu;
 import christmas.model.menu.MenuType;
 import java.util.List;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Orders {
@@ -16,6 +18,13 @@ public class Orders {
 
     private Orders(final List<Order> orders) {
         this.orders = orders;
+    }
+
+    public static Orders withMenuAndSize(final Menu menu, final int size) {
+        List<Order> orders = IntStream.range(0, size)
+                .mapToObj(index -> Order.withMenu(menu))
+                .toList();
+        return new Orders(orders);
     }
 
     public static Orders from(final String ordersInput) {

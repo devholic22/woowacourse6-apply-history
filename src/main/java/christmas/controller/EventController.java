@@ -2,12 +2,11 @@ package christmas.controller;
 
 import christmas.model.Badge;
 import christmas.model.BadgeManager;
-import christmas.model.GiftManager;
 import christmas.model.Day;
+import christmas.model.GiftManager;
 import christmas.model.Promotion;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;
-import christmas.model.order.Order;
 import christmas.model.order.Orders;
 import christmas.model.policy.DiscountPolicy;
 import christmas.view.input.InputView;
@@ -30,12 +29,12 @@ public class EventController {
         Orders requestOrders = receiveOrders();
         printRequestHistory(visitDay, requestOrders);
 
-        Orders bonusOrders = collectBonusByRequest(requestOrders);
+        List<OrderResponse> giftResponses = collectBonusByRequest(requestOrders);
         List<PromotionResponse> promotions = collectPromotionsByRequest(visitDay, requestOrders);
 
-        printPromotionAndBonusHistory(promotions, bonusOrders);
+        printPromotionAndBonusHistory(promotions, giftResponses);
         printTotalCostAfterPromotion(promotions, requestOrders);
-        printBadgeWithCost(promotions, bonusOrders);
+        printBadgeWithCost(promotions, giftResponses);
     }
 
     private Day receiveDay() {
@@ -82,9 +81,13 @@ public class EventController {
         outputView.printCostBeforeDiscount(requestOrders.calculateTotalCost());
     }
 
-    private Orders collectBonusByRequest(final Orders requestOrders) {
-        List<Order> bonusOrderMenus = GiftManager.giveBonusOrdersForCost(requestOrders.calculateTotalCost());
-        return Orders.withOrders(bonusOrderMenus);
+    private List<OrderResponse> collectBonusByRequest(final Orders requestOrders) {
+        int totalCost = requestOrders.calculateTotalCost();
+        Orders giftOrders = GiftManager.giveGiftsForCost(totalCost);
+        return giftOrders.orders()
+                .stream()
+                .map(giftOrder -> OrderResponse.of(giftOrder.getMenuName(), giftOrder.getSize(), giftOrder.calculateCost()))
+                .toList();
     }
 
     private List<PromotionResponse> collectPromotionsByRequest(final Day visitDay, final Orders requestOrders) {
@@ -101,30 +104,21 @@ public class EventController {
         return PromotionResponse.of(policyName, discount);
     }
 
-    private void printPromotionAndBonusHistory(final List<PromotionResponse> promotions, final Orders bonusOrders) {
-        printBonusHistory(bonusOrders);
+    private void printPromotionAndBonusHistory(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
+        outputView.printBonusMenus(giftOrders);
         outputView.printPromotions(promotions);
-        outputView.printBonusEventCost(bonusOrders.calculateTotalCost());
-        printTotalPromotionCost(promotions, bonusOrders);
+        outputView.printBonusEventCost(giftOrders);
+        printTotalPromotionCost(promotions, giftOrders);
     }
 
-    private void printBonusHistory(final Orders bonusOrders) {
-        List<OrderResponse> bonusAnswers = convertToOrderResponse(bonusOrders);
-        outputView.printBonusMenus(bonusAnswers);
-    }
-
-    private List<OrderResponse> convertToOrderResponse(final Orders orders) {
-        return orders.orders()
-                .stream()
-                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize(), order.calculateCost()))
-                .toList();
-    }
-
-    private void printTotalPromotionCost(final List<PromotionResponse> promotions, final Orders bonusOrders) {
+    private void printTotalPromotionCost(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
         int promotionCost = promotions.stream()
                 .mapToInt(PromotionResponse::cost)
                 .sum();
-        outputView.printTotalPromotionCost(promotionCost + bonusOrders.calculateTotalCost());
+        int giftCost = giftOrders.stream()
+                .mapToInt(OrderResponse::cost)
+                .sum();
+        outputView.printTotalPromotionCost(promotionCost + giftCost);
     }
 
     private void printTotalCostAfterPromotion(final List<PromotionResponse> promotions, final Orders orders) {
@@ -134,11 +128,14 @@ public class EventController {
         outputView.printCostAfterDiscount(orders.calculateTotalCost() - promotionCost);
     }
 
-    private void printBadgeWithCost(final List<PromotionResponse> promotions, final Orders bonusOrders) {
+    private void printBadgeWithCost(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
         int promotionCost = promotions.stream()
                 .mapToInt(PromotionResponse::cost)
                 .sum();
-        Badge badge = BadgeManager.giveBadgeByCost(promotionCost + bonusOrders.calculateTotalCost());
+        int giftCost = giftOrders.stream()
+                .mapToInt(OrderResponse::cost)
+                .sum();
+        Badge badge = BadgeManager.giveBadgeByCost(promotionCost + giftCost);
 
         outputView.printBadge(badge);
     }

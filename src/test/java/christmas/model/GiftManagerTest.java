@@ -2,10 +2,9 @@ package christmas.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.model.order.Order;
+import christmas.model.order.Orders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 public class GiftManagerTest {
 
@@ -16,10 +15,10 @@ public class GiftManagerTest {
         int cost = 100_000;
 
         // when
-        List<Order> bonusOrders = GiftManager.giveBonusOrdersForCost(cost);
+        Orders giftOrders = GiftManager.giveGiftsForCost(cost);
 
         // then
-        assertThat(bonusOrders).isEmpty();
+        assertThat(giftOrders.orders()).isEmpty();
     }
 
     @Test
@@ -29,9 +28,9 @@ public class GiftManagerTest {
         int cost = 150_000;
 
         // when
-        List<Order> bonusOrders = GiftManager.giveBonusOrdersForCost(cost);
+        Orders giftOrders = GiftManager.giveGiftsForCost(cost);
 
         // then
-        assertThat(bonusOrders).isNotEmpty();
+        assertThat(giftOrders.orders()).isNotEmpty();
     }
 }
