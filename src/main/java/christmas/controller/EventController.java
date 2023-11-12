@@ -3,10 +3,8 @@ package christmas.controller;
 import christmas.model.Badge;
 import christmas.model.BadgeManager;
 import christmas.model.BonusManager;
-import christmas.model.Customer;
 import christmas.model.Day;
 import christmas.model.Promotion;
-import christmas.model.dto.CustomerResponse;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;
 import christmas.model.order.Order;
@@ -28,28 +26,21 @@ public class EventController {
     }
 
     public void start() {
-        Customer customer = inviteCustomer();
-        printCustomerRequest(customer);
+        Day visitDay = receiveDay();
+        Orders requestOrders = receiveOrders();
+        printCustomerRequest(visitDay, requestOrders);
 
-        Orders bonusOrders = collectBonusByRequest(customer);
-        List<PromotionResponse> promotions = collectPromotionsByRequest(customer);
+        Orders bonusOrders = collectBonusByRequest(requestOrders);
+        List<PromotionResponse> promotions = collectPromotionsByRequest(visitDay, requestOrders);
 
         printPromotionAndBonusHistory(promotions, bonusOrders);
-        printTotalCostAfterPromotion(promotions, customer.getOrders());
+        printTotalCostAfterPromotion(promotions, requestOrders);
         printBadgeWithCost(promotions, bonusOrders);
     }
 
-    private Customer inviteCustomer() {
+    private Day receiveDay() {
         outputView.printWelcome();
 
-        Day requestDay = receiveDay();
-        return createInstance(Customer.class, () -> {
-            Orders requestOrders = receiveOrders();
-            return Customer.of(requestDay, requestOrders);
-        });
-    }
-
-    private Day receiveDay() {
         return createInstance(Day.class, () -> {
             outputView.askRequestDay();
             return Day.from(inputView.readLine());
@@ -80,33 +71,33 @@ public class EventController {
         });
     }
 
-    private void printCustomerRequest(final Customer customer) {
-        CustomerResponse customerResponse = CustomerResponse.of(customer.getDay(), customer.getOrders());
+    private void printCustomerRequest(final Day visitDay, final Orders requestOrders) {
+        List<OrderResponse> orderResponses = requestOrders.orders()
+                .stream()
+                .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
+                .toList();
 
-        outputView.printOrderDay(customerResponse.day());
-        outputView.printOrderedMenus(customerResponse.orderResponses());
-        outputView.printCostBeforeDiscount(customer.calculateTotalCost());
+        outputView.printOrderDay(visitDay.getDay());
+        outputView.printOrderedMenus(orderResponses);
+        outputView.printCostBeforeDiscount(requestOrders.calculateTotalCost());
     }
 
-    private Orders collectBonusByRequest(final Customer customer) {
-        List<Order> bonusOrderMenus = BonusManager.giveBonusOrdersForCost(customer.calculateTotalCost());
+    private Orders collectBonusByRequest(final Orders requestOrders) {
+        List<Order> bonusOrderMenus = BonusManager.giveBonusOrdersForCost(requestOrders.calculateTotalCost());
         return Orders.withOrders(bonusOrderMenus);
     }
 
-    private List<PromotionResponse> collectPromotionsByRequest(final Customer customer) {
-        List<DiscountPolicy> availablePolicies = Promotion.collectPoliciesByRequest(customer);
+    private List<PromotionResponse> collectPromotionsByRequest(final Day visitDay, final Orders requestOrders) {
+        List<DiscountPolicy> availablePolicies = Promotion.collectPoliciesByRequest(visitDay, requestOrders);
 
         return availablePolicies.stream()
-                .map(policy -> convertToPromotionResponse(policy, customer))
+                .map(policy -> convertToPromotionResponse(policy, visitDay, requestOrders))
                 .toList();
     }
 
-    private PromotionResponse convertToPromotionResponse(final DiscountPolicy discountPolicy, final Customer customer) {
-        Day requestDay = customer.getDay();
-        Orders orders = customer.getOrders();
-
+    private PromotionResponse convertToPromotionResponse(final DiscountPolicy discountPolicy, final Day day, final Orders orders) {
         String policyName = Promotion.findNameByPolicy(discountPolicy);
-        int discount = discountPolicy.discount(requestDay, orders);
+        int discount = discountPolicy.discount(day, orders);
         return PromotionResponse.of(policyName, discount);
     }
 
