@@ -85,7 +85,7 @@ public class OrderTest {
             Order order = Order.from(orderInput);
 
             // when
-            String menuName = order.getMenuName();
+            String menuName = order.getName();
 
             // then
             assertThat(menuName).isEqualTo("양송이수프");
@@ -100,7 +100,7 @@ public class OrderTest {
             int expectedSize = 1;
 
             // when
-            String menuName = order.getMenuName();
+            String menuName = order.getName();
             int orderSize = order.getSize();
 
             // then

@@ -80,7 +80,7 @@ public class Order {
         }
     }
 
-    public String getMenuName() {
+    public String getName() {
         return menu.getName();
     }
 
