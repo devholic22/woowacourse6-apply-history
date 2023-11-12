@@ -34,14 +34,14 @@ public enum Calendar {
 
     private final List<Integer> days;
 
-    public static List<Calendar> findAllByDay(final Day day) {
+    public static List<String> findAllTypesByDay(final Day day) {
         int dayValue = day.getDay();
-        List<Calendar> calendars = new ArrayList<>();
+        List<String> types = new ArrayList<>();
         for (Calendar calendar : values()) {
             if (calendar.days.contains(dayValue)) {
-                calendars.add(calendar);
+                types.add(calendar.name());
             }
         }
-        return calendars;
+        return types;
     }
 }

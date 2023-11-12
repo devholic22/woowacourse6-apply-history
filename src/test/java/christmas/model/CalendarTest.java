@@ -16,7 +16,7 @@ public class CalendarTest {
         Day day = Day.from("3");
 
         // when
-        List<Calendar> calendarTypes = Calendar.findAllByDay(day);
+        List<String> calendarTypes = Calendar.findAllTypesByDay(day);
 
         // then
         assertThat(calendarTypes.size()).isEqualTo(2);
@@ -29,7 +29,7 @@ public class CalendarTest {
         Day day = Day.from("30");
 
         // when
-        List<Calendar> calendarTypes = Calendar.findAllByDay(day);
+        List<String> calendarTypes = Calendar.findAllTypesByDay(day);
 
         // then
         assertThat(calendarTypes.size()).isEqualTo(1);

@@ -1,10 +1,12 @@
 package christmas.model.policy;
 
 import static christmas.model.calender.Calendar.WEEK_END;
+import static christmas.model.calender.Calendar.findAllTypesByDay;
 import static christmas.model.menu.MenuType.MAIN_DISH;
 
 import christmas.model.Day;
 import christmas.model.order.Orders;
+import java.util.List;
 
 public class WeekEndPolicy implements DiscountPolicy {
 
@@ -38,7 +40,8 @@ public class WeekEndPolicy implements DiscountPolicy {
     public boolean isCanDiscount(final Day day, final Orders orders) {
         int totalCost = orders.calculateTotalCost();
         int mainOrders = orders.calculateTypeOrdersCount(MAIN_DISH);
+        List<String> calendarTypes = findAllTypesByDay(day);
 
-        return totalCost >= MINIMUM_COST && day.isDayInCalendarType(WEEK_END) && mainOrders != NOT_ORDERED;
+        return totalCost >= MINIMUM_COST && calendarTypes.contains(WEEK_END.name()) && mainOrders != NOT_ORDERED;
     }
 }
