@@ -28,7 +28,7 @@ public class EventController {
     public void start() {
         Day visitDay = receiveDay();
         Orders requestOrders = receiveOrders();
-        printCustomerRequest(visitDay, requestOrders);
+        printRequestHistory(visitDay, requestOrders);
 
         Orders bonusOrders = collectBonusByRequest(requestOrders);
         List<PromotionResponse> promotions = collectPromotionsByRequest(visitDay, requestOrders);
@@ -71,7 +71,7 @@ public class EventController {
         });
     }
 
-    private void printCustomerRequest(final Day visitDay, final Orders requestOrders) {
+    private void printRequestHistory(final Day visitDay, final Orders requestOrders) {
         List<OrderResponse> orderResponses = requestOrders.orders()
                 .stream()
                 .map(order -> OrderResponse.of(order.getMenuName(), order.getSize()))
