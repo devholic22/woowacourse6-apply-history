@@ -32,8 +32,7 @@ public class Order {
     }
 
     public static Order from(final String orderInput) {
-        validateIsInputNotNull(orderInput);
-        validateIsInputHasValueSplitter(orderInput);
+        validateIsInputCanSplit(orderInput);
 
         String[] orderInputValues = orderInput.split(VALUE_SPLITTER);
         validateIsInputSplittedCorrect(orderInputValues);
@@ -46,6 +45,11 @@ public class Order {
         validateSizeRangeValid(size);
 
         return new Order(menu, size);
+    }
+
+    private static void validateIsInputCanSplit(final String orderInput) {
+        validateIsInputNotNull(orderInput);
+        validateIsInputHasValueSplitter(orderInput);
     }
 
     private static void validateIsInputNotNull(final String orderInput) {
