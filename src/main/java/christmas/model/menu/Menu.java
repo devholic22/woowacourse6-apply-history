@@ -6,6 +6,8 @@ import static christmas.model.menu.MenuType.DRINK;
 import static christmas.model.menu.MenuType.MAIN_DISH;
 import static christmas.view.exception.InputException.BAD_MENU_EXCEPTION;
 
+import java.util.Arrays;
+
 public enum Menu {
 
     SOUP(APPETIZER, "양송이수프", 6_000),
@@ -32,12 +34,14 @@ public enum Menu {
     }
 
     public static Menu findByName(final String name) {
-        for (Menu menu : values()) {
-            if (name.equals(menu.name)) {
-                return menu;
-            }
-        }
-        throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
+        return Arrays.stream(values())
+                .filter(menu -> menu.isNameSame(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage()));
+    }
+
+    public boolean isNameSame(final String name) {
+        return this.name.equals(name);
     }
 
     public String getType() {
