@@ -25,12 +25,11 @@ public enum Promotion {
     }
 
     public static String findNameByPolicy(final DiscountPolicy discountPolicy) {
-        for (Promotion promotion : values()) {
-            if (discountPolicy.equals(promotion.discountPolicy)) {
-                return promotion.name;
-            }
-        }
-        throw new IllegalArgumentException();
+        return Arrays.stream(values())
+                .filter(promotion -> discountPolicy.equals(promotion.discountPolicy))
+                .findFirst()
+                .map(promotion -> promotion.name)
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     public static List<DiscountPolicy> collectPoliciesByRequest(final Day visitDay, final Orders requestOrders) {
