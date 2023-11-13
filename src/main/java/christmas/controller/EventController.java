@@ -39,14 +39,13 @@ public class EventController {
 
     private Day receiveDay() {
         outputView.printWelcome();
-
-        return createInstance(Day.class, () -> {
+        return createInstance(() -> {
             outputView.askRequestDay();
             return Day.from(inputView.readLine());
         });
     }
 
-    private <T> T createInstance(final Class<T> classType, final Supplier<T> creator) {
+    private <T> T createInstance(final Supplier<T> creator) {
         T created = null;
         while (created == null) {
             created = tryGetInstance(creator, created);
@@ -64,7 +63,7 @@ public class EventController {
     }
 
     private Orders receiveOrders() {
-        return createInstance(Orders.class, () -> {
+        return createInstance(() -> {
             outputView.askOrderMenus();
             return Orders.from(inputView.readLine());
         });
