@@ -36,7 +36,7 @@ public enum Promotion {
         List<Promotion> promotions = Arrays.asList(values());
         return promotions.stream()
                 .map(promotion -> promotion.discountPolicy)
-                .filter(policy -> policy.isCanDiscount(visitDay, requestOrders))
+                .filter(policy -> policy.canDiscount(visitDay, requestOrders))
                 .toList();
     }
 

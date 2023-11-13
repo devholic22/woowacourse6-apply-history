@@ -30,7 +30,7 @@ class SpecialDayPolicyTest {
 
         // then
         assertThat(discountCost).isEqualTo(expectedCost);
-        assertThat(discountPolicy.isCanDiscount(requestDay, orders)).isTrue();
+        assertThat(discountPolicy.canDiscount(requestDay, orders)).isTrue();
     }
 
     @Test
@@ -45,6 +45,6 @@ class SpecialDayPolicyTest {
 
         // then
         assertThat(discountCost).isEqualTo(0);
-        assertThat(discountPolicy.isCanDiscount(requestDay, orders)).isFalse();
+        assertThat(discountPolicy.canDiscount(requestDay, orders)).isFalse();
     }
 }

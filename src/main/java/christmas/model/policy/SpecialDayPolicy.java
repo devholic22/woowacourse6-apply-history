@@ -15,14 +15,14 @@ public class SpecialDayPolicy implements DiscountPolicy {
 
     @Override
     public int discount(final Day day, final Orders orders) {
-        if (isCanDiscount(day, orders)) {
+        if (canDiscount(day, orders)) {
             return DISCOUNT;
         }
         return NOT_DISCOUNT;
     }
 
     @Override
-    public boolean isCanDiscount(final Day day, final Orders orders) {
+    public boolean canDiscount(final Day day, final Orders orders) {
         int totalCost = orders.calculateTotalCost();
         List<String> calendarTypes = findAllTypesByDay(day);
 

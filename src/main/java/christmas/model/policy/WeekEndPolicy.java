@@ -17,7 +17,7 @@ public class WeekEndPolicy implements DiscountPolicy {
 
     @Override
     public int discount(final Day day, final Orders orders) {
-        if (isCanDiscount(day, orders)) {
+        if (canDiscount(day, orders)) {
             int mainOrders = orders.calculateTypeOrdersCount(MAIN_DISH);
             return EACH_MENU_DISCOUNT * mainOrders;
         }
@@ -25,7 +25,7 @@ public class WeekEndPolicy implements DiscountPolicy {
     }
 
     @Override
-    public boolean isCanDiscount(final Day day, final Orders orders) {
+    public boolean canDiscount(final Day day, final Orders orders) {
         int totalCost = orders.calculateTotalCost();
         int mainOrders = orders.calculateTypeOrdersCount(MAIN_DISH);
         List<String> calendarTypes = findAllTypesByDay(day);
