@@ -1,13 +1,12 @@
 package christmas.controller;
 
 import christmas.model.Badge;
-import christmas.model.manager.BadgeManager;
-import christmas.model.manager.CostManager;
 import christmas.model.Day;
-import christmas.model.manager.GiftManager;
 import christmas.model.Promotion;
 import christmas.model.dto.OrderResponse;
 import christmas.model.dto.PromotionResponse;
+import christmas.model.manager.CostManager;
+import christmas.model.manager.GiftManager;
 import christmas.model.order.Orders;
 import christmas.model.policy.DiscountPolicy;
 import christmas.view.input.InputView;
@@ -135,7 +134,7 @@ public class EventController {
     private void printBadgeWithCost(final List<PromotionResponse> promotions, final List<OrderResponse> giftOrders) {
         int promotionCost = CostManager.calculatePromotionCost(promotions);
         int giftCost = CostManager.calculateGiftOrdersCost(giftOrders);
-        Badge badge = BadgeManager.giveBadgeByCost(promotionCost + giftCost);
+        Badge badge = Badge.findByCost(promotionCost + giftCost);
 
         outputView.printBadge(badge.getName());
     }
