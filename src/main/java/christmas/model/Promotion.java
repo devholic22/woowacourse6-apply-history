@@ -11,10 +11,10 @@ import java.util.List;
 
 public enum Promotion {
 
-    CHRISTMAS("크리스마스 디데이 할인", ChristmasPolicy.getInstance()),
-    WEEK_DAY("평일 할인", WeekDayPolicy.getInstance()),
-    WEEK_END("주말 할인", WeekEndPolicy.getInstance()),
-    SPECIAL("특별 할인", SpecialDayPolicy.getInstance());
+    CHRISTMAS("크리스마스 디데이 할인", new ChristmasPolicy()),
+    WEEK_DAY("평일 할인", new WeekDayPolicy()),
+    WEEK_END("주말 할인", new WeekEndPolicy()),
+    SPECIAL("특별 할인", new SpecialDayPolicy());
 
     private final String name;
     private final DiscountPolicy discountPolicy;

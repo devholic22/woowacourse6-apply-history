@@ -17,7 +17,7 @@ class WeekEndPolicyTest {
 
     @BeforeEach
     void beforeEach() {
-        discountPolicy = WeekEndPolicy.getInstance();
+        discountPolicy = new WeekEndPolicy();
     }
 
     @Test

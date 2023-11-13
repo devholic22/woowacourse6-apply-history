@@ -15,18 +15,6 @@ public class WeekEndPolicy implements DiscountPolicy {
     private static final int NOT_DISCOUNT = 0;
     private static final int NOT_ORDERED = 0;
 
-    private static WeekEndPolicy singleton;
-
-    private WeekEndPolicy() {
-    }
-
-    public static WeekEndPolicy getInstance() {
-        if (singleton == null) {
-            singleton = new WeekEndPolicy();
-        }
-        return singleton;
-    }
-
     @Override
     public int discount(final Day day, final Orders orders) {
         if (isCanDiscount(day, orders)) {

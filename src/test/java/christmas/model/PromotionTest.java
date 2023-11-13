@@ -1,12 +1,12 @@
 package christmas.model;
 
+import static christmas.model.Promotion.CHRISTMAS;
+import static christmas.model.Promotion.SPECIAL;
+import static christmas.model.Promotion.WEEK_DAY;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.model.order.Orders;
-import christmas.model.policy.ChristmasPolicy;
 import christmas.model.policy.DiscountPolicy;
-import christmas.model.policy.SpecialDayPolicy;
-import christmas.model.policy.WeekDayPolicy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -45,9 +45,9 @@ class PromotionTest {
         Orders orders = Orders.from("티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1");
 
         List<DiscountPolicy> expectedDiscountPolicies = List.of(
-                ChristmasPolicy.getInstance(),
-                WeekDayPolicy.getInstance(),
-                SpecialDayPolicy.getInstance()
+                CHRISTMAS.getPolicy(),
+                WEEK_DAY.getPolicy(),
+                SPECIAL.getPolicy()
         );
 
         // when

@@ -14,7 +14,7 @@ class ChristmasPolicyTest {
 
     @BeforeEach
     void beforeEach() {
-        discountPolicy = ChristmasPolicy.getInstance();
+        discountPolicy = new ChristmasPolicy();
     }
 
     @Test
