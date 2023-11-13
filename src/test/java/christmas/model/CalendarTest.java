@@ -7,7 +7,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import java.util.List;
 
-public class CalendarTest {
+class CalendarTest {
 
     @Test
     @DisplayName("Calendar 정상 조회 - 3일은 평일이자 특별한 날이다.")

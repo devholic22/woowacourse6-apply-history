@@ -16,7 +16,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class OrdersTest {
+class OrdersTest {
 
     @Nested
     @DisplayName("Orders 정상 테스트")

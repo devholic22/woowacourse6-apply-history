@@ -7,7 +7,7 @@ import christmas.model.order.Orders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class GiftManagerTest {
+class GiftManagerTest {
 
     @Test
     @DisplayName("증정 이벤트 기능 - 없음")

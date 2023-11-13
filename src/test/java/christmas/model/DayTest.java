@@ -12,7 +12,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class DayTest {
+class DayTest {
 
     @Test
     @DisplayName("올바른 범위의 Day 생성")

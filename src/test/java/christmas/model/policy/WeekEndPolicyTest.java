@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class WeekEndPolicyTest {
+class WeekEndPolicyTest {
 
     private static final String WEEK_END = "1";
     private static final String WEEK_DAY = "3";

@@ -9,7 +9,7 @@ import christmas.model.manager.BadgeManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class BadgeManagerTest {
+class BadgeManagerTest {
 
     @Test
     @DisplayName("BadgeManager를 통한 Badge 조회 - 없음")

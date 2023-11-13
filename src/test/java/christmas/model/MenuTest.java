@@ -8,7 +8,7 @@ import christmas.model.menu.Menu;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class MenuTest {
+class MenuTest {
 
     @Test
     @DisplayName("Menu 정상 조회")

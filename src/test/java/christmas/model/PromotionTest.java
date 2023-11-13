@@ -13,7 +13,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 
-public class PromotionTest {
+class PromotionTest {
 
     private static final String PROMOTIONS =
     """
