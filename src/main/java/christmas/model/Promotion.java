@@ -40,4 +40,8 @@ public enum Promotion {
                 .filter(policy -> policy.isCanDiscount(visitDay, requestOrders))
                 .toList();
     }
+
+    public DiscountPolicy getPolicy() {
+        return discountPolicy;
+    }
 }

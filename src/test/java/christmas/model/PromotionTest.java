@@ -9,22 +9,32 @@ import christmas.model.policy.SpecialDayPolicy;
 import christmas.model.policy.WeekDayPolicy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import java.util.List;
 
 public class PromotionTest {
 
-    @Test
+    private static final String PROMOTIONS =
+    """
+    크리스마스 디데이 할인, CHRISTMAS
+    평일 할인, WEEK_DAY
+    주말 할인, WEEK_END
+    특별 할인, SPECIAL
+    """;
+
+    @ParameterizedTest(name = "{0} 정책에 따른 프로모션 이름 조회 테스트")
+    @CsvSource(textBlock = PROMOTIONS)
     @DisplayName("정책을 통한 프로모션 이름 조회 테스트")
-    void findPromotionNameByPolicy() {
+    void findPromotionNameByPolicy(final String name, final Promotion promotion) {
         // given
-        DiscountPolicy discountPolicy = ChristmasPolicy.getInstance();
-        String expectedName = "크리스마스 디데이 할인";
+        DiscountPolicy discountPolicy = promotion.getPolicy();
 
         // when
         String findPolicyName = Promotion.findNameByPolicy(discountPolicy);
 
         // then
-        assertThat(findPolicyName).isEqualTo(expectedName);
+        assertThat(findPolicyName).isEqualTo(name);
     }
 
     @Test
