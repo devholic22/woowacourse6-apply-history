@@ -100,7 +100,7 @@ public class OrdersTest {
                     .hasMessage(BAD_MENU_EXCEPTION.getMessage());
         }
 
-        @ParameterizedTest
+        @ParameterizedTest(name = "Orders 주문이 [" + "{0}" + "]일 시 예외가 발생하는가?")
         @DisplayName("null, 빈 문자, 공백 포함 문자, 잘못된 입력 시 예외가 발생한다.")
         @NullAndEmptySource
         @ValueSource(strings = {"  초코케이크 - 5 ", "abcde"})
