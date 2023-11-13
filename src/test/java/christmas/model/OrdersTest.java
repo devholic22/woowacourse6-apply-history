@@ -8,12 +8,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import christmas.model.order.Order;
 import christmas.model.order.Orders;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import java.util.List;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class OrdersTest {
 
@@ -29,19 +30,6 @@ public class OrdersTest {
 
             // when & then
             assertDoesNotThrow(() -> Orders.from(ordersInput));
-        }
-
-        @Test
-        @DisplayName("Order 리스트를 통한 생성 테스트")
-        void validOrdersInputAnotherTest() {
-            // given
-            List<Order> orders = List.of(
-                    Order.from("초코케이크-5"),
-                    Order.from("제로콜라-3")
-            );
-
-            // when & then
-            assertDoesNotThrow(() -> Orders.withOrders(orders));
         }
 
         @Test
@@ -109,6 +97,16 @@ public class OrdersTest {
 
             // when & then
             assertThatThrownBy(() -> Orders.from(ordersInput)).isInstanceOf(IllegalArgumentException.class)
+                    .hasMessage(BAD_MENU_EXCEPTION.getMessage());
+        }
+
+        @ParameterizedTest
+        @DisplayName("null, 빈 문자, 공백 포함 문자, 잘못된 입력 시 예외가 발생한다.")
+        @NullAndEmptySource
+        @ValueSource(strings = {"  초코케이크 - 5 ", "abcde"})
+        void cannotSplitInputExceptionTest(final String value) {
+            // when & then
+            assertThatThrownBy(() -> Orders.from(value)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(BAD_MENU_EXCEPTION.getMessage());
         }
     }

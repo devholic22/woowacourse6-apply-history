@@ -27,11 +27,8 @@ public class Orders {
         return new Orders(orders);
     }
 
-    public static Orders withOrders(final List<Order> orders) {
-        return new Orders(orders);
-    }
-
     public static Orders from(final String ordersInput) {
+        validateIsOrdersInputCanSplit(ordersInput);
         String[] splitOrders = ordersInput.split(ORDER_SPLITTER);
         List<Order> orders = Stream.of(splitOrders)
                 .map(Order::from)
@@ -39,6 +36,12 @@ public class Orders {
         validateIsOrdersInputValid(orders);
 
         return new Orders(orders);
+    }
+
+    private static void validateIsOrdersInputCanSplit(final String input) {
+        if (input == null) {
+            throw new IllegalArgumentException(BAD_MENU_EXCEPTION.getMessage());
+        }
     }
 
     private static void validateIsOrdersInputValid(final List<Order> orders) {
