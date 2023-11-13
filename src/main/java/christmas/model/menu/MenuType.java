@@ -13,6 +13,15 @@ public enum MenuType {
         this.type = type;
     }
 
+    public static MenuType findByTypeName(final String typeName) {
+        for (MenuType menuType : values()) {
+            if (menuType.type.equals(typeName)) {
+                return menuType;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+
     public String getType() {
         return type;
     }
