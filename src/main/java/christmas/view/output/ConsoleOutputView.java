@@ -54,16 +54,16 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void printGiftOrders(final List<OrderResponse> bonusMenus) {
+    public void printGiftOrders(final List<OrderResponse> giftOrders) {
         System.out.println();
         System.out.println("<증정 메뉴>");
 
-        if (bonusMenus.isEmpty()) {
+        if (giftOrders.isEmpty()) {
             printEmpty();
             return;
         }
-        for (OrderResponse bonusMenu : bonusMenus) {
-            System.out.println(bonusMenu.name() + " " + bonusMenu.size() + SIZE_MARK);
+        for (OrderResponse giftOrder : giftOrders) {
+            System.out.println(giftOrder.name() + " " + giftOrder.size() + SIZE_MARK);
         }
     }
 

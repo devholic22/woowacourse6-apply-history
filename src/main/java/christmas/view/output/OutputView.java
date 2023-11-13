@@ -13,7 +13,7 @@ public interface OutputView {
     void printOrderDay(final int day);
     void printOrderedMenus(final List<OrderResponse> orders);
     void printCostBeforePromotion(final int cost);
-    void printGiftOrders(final List<OrderResponse> bonusMenus);
+    void printGiftOrders(final List<OrderResponse> giftOrders);
     void printPromotions(final List<PromotionResponse> promotions);
     void printGiftOrdersCost(final int cost);
     void printTotalBenefitCost(final int cost);
