@@ -21,7 +21,7 @@ public class WeekEndPolicyTest {
     }
 
     @Test
-    @DisplayName("주말 할인 테스트")
+    @DisplayName("주말 할인 정상")
     void weekEndDiscountTest() {
         // given
         Day requestDay = Day.from(WEEK_END);
@@ -37,7 +37,7 @@ public class WeekEndPolicyTest {
     }
 
     @Test
-    @DisplayName("주말 할인 테스트 - 주말이 아닐 시 지원 안 됨")
+    @DisplayName("주말 할인 - 주말이 아닐 시 지원 안 됨")
     void notWeekEndTest() {
         // given
         Day requestDay = Day.from(WEEK_DAY);
@@ -52,7 +52,7 @@ public class WeekEndPolicyTest {
     }
 
     @Test
-    @DisplayName("주말 할인 테스트 - 메인 메뉴가 없을 시 지원 안 됨")
+    @DisplayName("주말 할인 - 메인 메뉴가 없을 시 지원 안 됨")
     void notInMainDishTest() {
         // given
         Day requestDay = Day.from(WEEK_END);

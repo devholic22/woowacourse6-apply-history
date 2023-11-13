@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 public class GiftManagerTest {
 
     @Test
-    @DisplayName("증정 이벤트 기능 테스트 - 없음")
+    @DisplayName("증정 이벤트 기능 - 없음")
     void emptyBonusTest() {
         // given
         int cost = 100_000;
@@ -23,7 +23,7 @@ public class GiftManagerTest {
     }
 
     @Test
-    @DisplayName("증정 이벤트 기능 테스트 - 지급 완료")
+    @DisplayName("증정 이벤트 기능 - 지급 완료")
     void receiveBonusTest() {
         // given
         int cost = 150_000;

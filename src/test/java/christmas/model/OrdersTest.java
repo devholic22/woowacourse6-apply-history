@@ -23,7 +23,7 @@ public class OrdersTest {
     class OrdersValidTest {
 
         @Test
-        @DisplayName("정상 Orders 생성 테스트")
+        @DisplayName("정상 Orders 생성")
         void validOrdersInputTest() {
             // given
             String ordersInput = "초코케이크-5,제로콜라-3";
@@ -33,7 +33,7 @@ public class OrdersTest {
         }
 
         @Test
-        @DisplayName("Orders의 총합 가격 계산 테스트")
+        @DisplayName("Orders의 총합 가격 계산")
         void calculateTotalCostTest() {
             // given
             String ordersInput = "초코케이크-5,제로콜라-3";
@@ -48,7 +48,7 @@ public class OrdersTest {
         }
 
         @Test
-        @DisplayName("특정 타입의 주문 개수 파악 테스트")
+        @DisplayName("특정 타입의 주문 개수 파악")
         void calculateTypeOrderCountTest() {
             // given
             String ordersInput = "초코케이크-5,제로콜라-3";
@@ -64,7 +64,7 @@ public class OrdersTest {
     }
 
     @Nested
-    @DisplayName("Orders 예외 테스트")
+    @DisplayName("Orders 예외")
     class OrdersExceptionTest {
 
         @Test

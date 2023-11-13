@@ -15,14 +15,14 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class DayTest {
 
     @Test
-    @DisplayName("올바른 범위의 Day 생성 테스트")
+    @DisplayName("올바른 범위의 Day 생성")
     void validRangeDayTest() {
         // when & then
         assertDoesNotThrow(() -> Day.from("10"));
     }
 
     @Test
-    @DisplayName("기간 계산 테스트")
+    @DisplayName("기간 계산")
     void calculateDurationTest() {
         // given
         Day requestDay = Day.from("10");
@@ -37,7 +37,7 @@ public class DayTest {
     }
 
     @Test
-    @DisplayName("특정 날짜가 지났는지 계산 테스트")
+    @DisplayName("특정 날짜가 지났는지 계산")
     void calculatePassedDayTest() {
         // given
         Day requestDay = Day.from("10");
@@ -51,7 +51,7 @@ public class DayTest {
     }
 
     @Nested
-    @DisplayName("Day 예외 테스트")
+    @DisplayName("Day 예외")
     class DayExceptionTest {
 
         @ParameterizedTest(name = "값이 [" + "{0}" + "]일 시 예외가 발생하는가?")

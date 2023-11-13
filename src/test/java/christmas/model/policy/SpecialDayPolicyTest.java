@@ -18,7 +18,7 @@ public class SpecialDayPolicyTest {
     }
 
     @Test
-    @DisplayName("특별 할인 테스트")
+    @DisplayName("특별 할인 정상")
     void specialDiscountTest() {
         // given
         Day requestDay = Day.from("3");
@@ -34,7 +34,7 @@ public class SpecialDayPolicyTest {
     }
 
     @Test
-    @DisplayName("특별 할인 테스트 - 지원 안 됨")
+    @DisplayName("특별 할인 - 지원 안 됨")
     void notSupportDiscountTest() {
         // given
         Day requestDay = Day.from("1");

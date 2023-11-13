@@ -23,9 +23,9 @@ public class PromotionTest {
     특별 할인, SPECIAL
     """;
 
-    @ParameterizedTest(name = "{0} 정책에 따른 프로모션 이름 조회 테스트")
+    @ParameterizedTest(name = "{0} 정책에 따른 프로모션 이름 조회")
     @CsvSource(textBlock = PROMOTIONS)
-    @DisplayName("정책을 통한 프로모션 이름 조회 테스트")
+    @DisplayName("정책을 통한 프로모션 이름 조회")
     void findPromotionNameByPolicy(final String name, final Promotion promotion) {
         // given
         DiscountPolicy discountPolicy = promotion.getPolicy();
@@ -38,7 +38,7 @@ public class PromotionTest {
     }
 
     @Test
-    @DisplayName("할인 정책 가능 조회 테스트")
+    @DisplayName("할인 정책 가능 조회")
     void countAvailableDiscountPolicyTest() {
         // given
         Day requestDay = Day.from("3");

@@ -18,7 +18,7 @@ public class ChristmasPolicyTest {
     }
 
     @Test
-    @DisplayName("크리스마스 디데이 할인 테스트")
+    @DisplayName("크리스마스 디데이 할인 정상")
     void christmasDiscountTest() {
         // given
         Day requestDay = Day.from("20");
@@ -34,7 +34,7 @@ public class ChristmasPolicyTest {
     }
 
     @Test
-    @DisplayName("크리스마스 디데이 할인 테스트 - 지원 안 됨")
+    @DisplayName("크리스마스 디데이 할인 - 지원 안 됨")
     void notSupportDiscountTest() {
         // given
         Day requestDay = Day.from("26");

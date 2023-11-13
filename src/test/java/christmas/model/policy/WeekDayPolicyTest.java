@@ -18,7 +18,7 @@ public class WeekDayPolicyTest {
     }
 
     @Test
-    @DisplayName("평일 할인 테스트")
+    @DisplayName("평일 할인 정상")
     void weekDayDiscountTest() {
         // given
         Day requestDay = Day.from("3");
@@ -34,7 +34,7 @@ public class WeekDayPolicyTest {
     }
 
     @Test
-    @DisplayName("평일 할인 테스트 - 평일이 아닐 시 지원 안 됨")
+    @DisplayName("평일 할인 - 평일이 아닐 시 지원 안 됨")
     void notWeekDayTest() {
         // given
         Day requestDay = Day.from("1");
@@ -49,7 +49,7 @@ public class WeekDayPolicyTest {
     }
 
     @Test
-    @DisplayName("평일 할인 테스트 - 디저트가 없을 시 지원 안 됨")
+    @DisplayName("평일 할인 - 디저트가 없을 시 지원 안 됨")
     void notInDessertTest() {
         // given
         Day requestDay = Day.from("3");

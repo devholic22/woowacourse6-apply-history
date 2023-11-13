@@ -10,7 +10,7 @@ import java.util.List;
 public class CalendarTest {
 
     @Test
-    @DisplayName("Calendar 정상 조회 테스트 - 3일은 평일이자 특별한 날이다.")
+    @DisplayName("Calendar 정상 조회 - 3일은 평일이자 특별한 날이다.")
     void validCalendarFindTest() {
         // given
         Day day = Day.from("3");
@@ -23,7 +23,7 @@ public class CalendarTest {
     }
 
     @Test
-    @DisplayName("Calendar 정상 조회 테스트 - 30일은 주말이다.")
+    @DisplayName("Calendar 정상 조회 - 30일은 주말이다.")
     void validCalendarFindTestAnother() {
         // given
         Day day = Day.from("30");

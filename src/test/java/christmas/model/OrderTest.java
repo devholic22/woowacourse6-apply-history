@@ -36,12 +36,12 @@ public class OrderTest {
     """;
 
     @Nested
-    @DisplayName("Order 정상 테스트")
+    @DisplayName("Order 정상")
     class ValidOrderTest {
 
         @ParameterizedTest(name = "{0} {1}개 주문 생성이 문제 없는가?")
         @CsvSource(textBlock = MENU_ORDERS)
-        @DisplayName("정상 Order 생성 테스트")
+        @DisplayName("정상 Order 생성")
         void validOrderTest(final String name, final String size) {
             // given
             String orderInput = name + "-" + size;
@@ -52,7 +52,7 @@ public class OrderTest {
 
         @ParameterizedTest(name = "{0} 메뉴 주문 시 저장된 메뉴 타입이 메뉴와 같은가?")
         @CsvSource(textBlock = MENU_ORDERS)
-        @DisplayName("Order 메뉴 타입 조회 정상 테스트")
+        @DisplayName("Order 메뉴 타입 조회 정상")
         void orderTypeMatchTest(final String name, final String size, final Menu menu) {
             // given
             Order order = Order.from(name + "-" + size);
@@ -67,7 +67,7 @@ public class OrderTest {
 
         @ParameterizedTest(name = "{0} {1}개 주문 시 저장된 개수가 입력 개수와 같은가?")
         @CsvSource(textBlock = MENU_ORDERS)
-        @DisplayName("Order 메뉴 개수 계산 정상 테스트")
+        @DisplayName("Order 메뉴 개수 계산 정상")
         void orderSizeCalculateTest(final String name, final String size) {
             // given
             String orderInput = name + "-" + size;
@@ -83,7 +83,7 @@ public class OrderTest {
 
         @ParameterizedTest(name = "{0} {1}개 주문 시 저장된 총 가격이 예상과 같은가?")
         @CsvSource(textBlock = MENU_ORDERS)
-        @DisplayName("Order 메뉴 가격 계산 정상 테스트")
+        @DisplayName("Order 메뉴 가격 계산 정상")
         void orderCostCalculateTest(final String name, final String size, final Menu menu) {
             // given
             String orderInput = name + "-" + size;
@@ -97,9 +97,9 @@ public class OrderTest {
             assertThat(orderCost).isEqualTo(expectedSize * menu.getCost());
         }
 
-        @ParameterizedTest(name = "{0} 메뉴를 주문했을 때의 저장된 메뉴 이름 테스트")
+        @ParameterizedTest(name = "{0} 메뉴를 주문했을 때의 저장된 메뉴 이름")
         @CsvSource(textBlock = MENU_ORDERS)
-        @DisplayName("Order 메뉴 이름 조회 정상 테스트")
+        @DisplayName("Order 메뉴 이름 조회 정상")
         void orderMenuNameTest(final String name, final String size) {
             // given
             String orderInput = name + "-" + size;
@@ -114,7 +114,7 @@ public class OrderTest {
 
         @ParameterizedTest(name = "{0} 메뉴 기본 생성 시 1개씩 저장되는가?")
         @EnumSource(value = Menu.class)
-        @DisplayName("메뉴 이름만으로 Order 생성 테스트")
+        @DisplayName("메뉴 이름만으로 Order 생성")
         void createOrderWithNameTest(final Menu menu) {
             // given
             String nameInput = menu.getName();
@@ -132,7 +132,7 @@ public class OrderTest {
     }
 
     @Nested
-    @DisplayName("Order 예외 테스트")
+    @DisplayName("Order 예외")
     class OrderExceptionTest {
 
         @ParameterizedTest(name = "주문 입력이 [" + "{0}" + "]일 시 예외가 발생하는가?")

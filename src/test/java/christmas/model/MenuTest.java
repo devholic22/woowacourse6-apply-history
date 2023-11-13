@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class MenuTest {
 
     @Test
-    @DisplayName("Menu 정상 조회 테스트")
+    @DisplayName("Menu 정상 조회")
     void validMenuFindTest() {
         // given
         String menuNameInput = "제로콜라";

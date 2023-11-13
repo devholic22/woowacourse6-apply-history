@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 public class BadgeTest {
 
     @Test
-    @DisplayName("Badge 조회 테스트 - 없음")
+    @DisplayName("Badge 조회 - 없음")
     void notFoundBadgeFindTest() {
         // given
         int cost = 3_000;
@@ -24,7 +24,7 @@ public class BadgeTest {
     }
 
     @Test
-    @DisplayName("Badge 조회 테스트 - 트리")
+    @DisplayName("Badge 조회 - 트리")
     void treeBadgeFindTest() {
         // given
         int cost = 12_000;
@@ -37,7 +37,7 @@ public class BadgeTest {
     }
 
     @Test
-    @DisplayName("Badge 조회 테스트 - 산타")
+    @DisplayName("Badge 조회 - 산타")
     void santaBadgeFindTest() {
         // given
         int cost = 150_000;
