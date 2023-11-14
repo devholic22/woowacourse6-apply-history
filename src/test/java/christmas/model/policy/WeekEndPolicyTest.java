@@ -35,7 +35,7 @@ class WeekEndPolicyTest {
         assertThat(discountPolicy.canDiscount(requestDay, orders)).isTrue();
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "날짜가 {0}일이고 메뉴 주문이 [{1}]인 경우")
     @CsvSource(value = {
             "3, 제로콜라-2,초코케이크-1,바비큐립-1",
             "1, 제로콜라-2,초코케이크-3"
