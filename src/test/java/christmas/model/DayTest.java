@@ -54,7 +54,7 @@ class DayTest {
     @DisplayName("Day 예외")
     class DayExceptionTest {
 
-        @ParameterizedTest(name = "값이 [" + "{0}" + "]일 시 예외가 발생하는가?")
+        @ParameterizedTest(name = "값이 [{0}]일 시 예외가 발생하는가?")
         @NullAndEmptySource
         @ValueSource(strings = {"abc", " 1 0 "})
         @DisplayName("일반 문자, 빈 문자, 공백 포함 문자, null인 경우 예외가 발생한다.")
@@ -64,7 +64,7 @@ class DayTest {
                     .hasMessage(BAD_DAY_EXCEPTION.getMessage());
         }
 
-        @ParameterizedTest(name = "값이 [" + "{0}" + "]일 시 예외가 발생하는가?")
+        @ParameterizedTest(name = "값이 [{0}]일 시 예외가 발생하는가?")
         @ValueSource(strings = {"50", "-20"})
         @DisplayName("범위가 올바르지 않을 경우 예외가 발생한다.")
         void unValidRangeExceptionTest(final String value) {
