@@ -2,6 +2,7 @@ package christmas.model.calender;
 
 import christmas.model.Day;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public enum Calendar {
@@ -37,11 +38,15 @@ public enum Calendar {
     public static List<String> findAllTypesByDay(final Day day) {
         int dayValue = day.getDay();
         List<String> types = new ArrayList<>();
-        for (Calendar calendar : values()) {
-            if (calendar.days.contains(dayValue)) {
-                types.add(calendar.name());
-            }
-        }
+
+        Arrays.stream(values())
+                .filter(calendar -> calendar.isHaveDay(dayValue))
+                .forEach(calendar -> types.add(calendar.name()));
+
         return types;
+    }
+
+    public boolean isHaveDay(final int day) {
+        return days.contains(day);
     }
 }
