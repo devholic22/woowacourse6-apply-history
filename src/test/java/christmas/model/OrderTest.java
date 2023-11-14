@@ -135,17 +135,17 @@ class OrderTest {
     @DisplayName("Order 예외")
     class OrderExceptionTest {
 
-        @ParameterizedTest(name = "주문 입력이 [" + "{0}" + "]일 시 예외가 발생하는가?")
+        @ParameterizedTest(name = "주문 입력이 [{0}]일 시 예외가 발생하는가?")
         @ValueSource(strings = {"abc", "   ab  "})
         @NullAndEmptySource
         @DisplayName("잘못된 형식의 일반 문자, null, 빈 문자, 공백 포함 문자 등을 입력받으면 예외가 발생한다.")
-        void unValidInputExceptionTest(final String value) {
+        void unValidInputExceptionTest(final String orderInput) {
             // when & then
-            assertThatThrownBy(() -> Order.from(value)).isInstanceOf(IllegalArgumentException.class)
+            assertThatThrownBy(() -> Order.from(orderInput)).isInstanceOf(IllegalArgumentException.class)
                     .hasMessage(BAD_MENU_EXCEPTION.getMessage());
         }
 
-        @ParameterizedTest(name = "메뉴 이름이 [" + "{0}" + "]일 시 예외가 발생하는가?")
+        @ParameterizedTest(name = "메뉴 이름이 [{0}]일 시 예외가 발생하는가?")
         @ValueSource(strings={"abc", "   제로콜라  ", "팝콘"})
         @NullAndEmptySource
         @DisplayName("이름의 값에 잘못된 값이 전달되면 예외가 발생한다. (없는 메뉴, null, 빈 문자, 공백 포함 문자")
@@ -158,7 +158,7 @@ class OrderTest {
                     .hasMessage(BAD_MENU_EXCEPTION.getMessage());
         }
 
-        @ParameterizedTest(name = "수량 값이 [" + "{0}" + "]일 시 예외가 발생하는가?")
+        @ParameterizedTest(name = "수량 값이 [{0}]일 시 예외가 발생하는가?")
         @ValueSource(strings={"abc", "   1  ", "0", "-1", "50"})
         @NullAndEmptySource
         @DisplayName("수량의 값에 잘못된 값이 전달되면 예외가 발생한다. (일반 문자, null, 빈 문자, 공백 포함 문자, 1 미만, 20 초과)")
