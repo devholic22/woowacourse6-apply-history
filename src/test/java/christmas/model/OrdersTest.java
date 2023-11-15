@@ -63,27 +63,15 @@ class OrdersTest {
         }
     }
 
-    @Nested
-    @DisplayName("Orders 예외")
-    class OrdersExceptionTest {
-
-        @ParameterizedTest(name = "주문이 [{0}]인 경우")
-        @ValueSource(strings = {"초코케이크-2,초코케이크-3", "초코케이크-5,제로콜라-20", "제로콜라-10,레드와인-2"})
-        @DisplayName("메뉴 중복, 개수 20개 초과, 음료로만 구성될 시 예외가 발생한다.")
-        void menuNameAndSizeExceptionTest(final String ordersInput) {
-            // when & then
-            assertThatThrownBy(() -> Orders.from(ordersInput)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(BAD_MENU_EXCEPTION.getMessage());
-        }
-
-        @ParameterizedTest(name = "Orders 주문이 [{0}]일 시 예외가 발생하는가?")
-        @DisplayName("null, 빈 문자, 공백 포함 문자, 잘못된 입력 시 예외가 발생한다.")
-        @NullAndEmptySource
-        @ValueSource(strings = {"  초코케이크 - 5 ", "abcde"})
-        void cannotSplitInputExceptionTest(final String value) {
-            // when & then
-            assertThatThrownBy(() -> Orders.from(value)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(BAD_MENU_EXCEPTION.getMessage());
-        }
+    @ParameterizedTest(name = "주문이 [{0}]인 경우")
+    @ValueSource(strings = {
+            "초코케이크-2,초코케이크-3", "초코케이크-5,제로콜라-20", "제로콜라-10,레드와인-2", "  초코케이크 - 5 ", "abcde"
+    })
+    @NullAndEmptySource
+    @DisplayName("null 문자, 빈 문자, 공백 포함 문자, 잘못된 입력, 메뉴 중복, 개수 20개 초과, 음료로만 구성될 시 예외가 발생한다.")
+    void menuNameAndSizeExceptionTest(final String ordersInput) {
+        // when & then
+        assertThatThrownBy(() -> Orders.from(ordersInput)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BAD_MENU_EXCEPTION.getMessage());
     }
 }
