@@ -16,16 +16,13 @@ import java.util.List;
 
 class PromotionTest {
 
-    private static final String PROMOTIONS =
-    """
-    크리스마스 디데이 할인, CHRISTMAS
-    평일 할인, WEEK_DAY
-    주말 할인, WEEK_END
-    특별 할인, SPECIAL
-    """;
-
     @ParameterizedTest(name = "{0} 정책에 따른 프로모션 이름 조회")
-    @CsvSource(textBlock = PROMOTIONS)
+    @CsvSource(value = {
+            "크리스마스 디데이 할인, CHRISTMAS",
+            "평일 할인, WEEK_DAY",
+            "주말 할인, WEEK_END",
+            "특별 할인, SPECIAL"
+    }, delimiterString = ", ")
     @DisplayName("정책을 통한 프로모션 이름 조회")
     void findPromotionNameByPolicy(final String name, final Promotion promotion) {
         // given
