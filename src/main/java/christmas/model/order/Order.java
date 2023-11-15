@@ -26,11 +26,6 @@ public class Order {
         return new Order(menu, MINIMUM_SIZE);
     }
 
-    public static Order createByName(final String nameInput) {
-        Menu menu = Menu.findByName(nameInput);
-        return new Order(menu, MINIMUM_SIZE);
-    }
-
     public static Order from(final String orderInput) {
         validateIsInputCanSplit(orderInput);
 

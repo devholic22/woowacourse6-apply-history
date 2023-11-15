@@ -118,8 +118,7 @@ class OrderTest {
         @DisplayName("메뉴 이름만으로 Order 생성")
         void createOrderWithNameTest(final Menu menu) {
             // given
-            String nameInput = menu.getName();
-            Order order = Order.createByName(nameInput);
+            Order order = Order.withMenu(menu);
             int expectedSize = 1;
 
             // when
@@ -128,7 +127,7 @@ class OrderTest {
 
             // then
             assertAll(
-                    () -> assertThat(menuName).isEqualTo(nameInput),
+                    () -> assertThat(menu.isNameSame(menuName)).isTrue(),
                     () -> assertThat(orderSize).isEqualTo(expectedSize)
             );
         }
