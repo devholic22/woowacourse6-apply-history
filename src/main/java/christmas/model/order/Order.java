@@ -17,7 +17,7 @@ public class Order {
     private final Menu menu;
     private final int size;
 
-    public Order(final Menu menu, final int size) {
+    private Order(final Menu menu, final int size) {
         this.menu = menu;
         this.size = size;
     }
