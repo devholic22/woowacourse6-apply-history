@@ -4,6 +4,7 @@ import static christmas.model.menu.Menu.TAPAS;
 import static christmas.view.exception.InputException.BAD_MENU_EXCEPTION;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import christmas.model.menu.Menu;
@@ -126,8 +127,10 @@ class OrderTest {
             int orderSize = order.getSize();
 
             // then
-            assertThat(menuName).isEqualTo(nameInput);
-            assertThat(orderSize).isEqualTo(expectedSize);
+            assertAll(
+                    () -> assertThat(menuName).isEqualTo(nameInput),
+                    () -> assertThat(orderSize).isEqualTo(expectedSize)
+            );
         }
     }
 
