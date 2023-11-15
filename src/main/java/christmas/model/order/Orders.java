@@ -17,7 +17,7 @@ public class Orders {
     private final List<Order> orders;
 
     private Orders(final List<Order> orders) {
-        this.orders = orders;
+        this.orders = List.copyOf(orders);
     }
 
     public static Orders withMenuAndSize(final Menu menu, final int size) {
@@ -94,6 +94,6 @@ public class Orders {
     }
 
     public List<Order> getOrders() {
-        return orders;
+        return List.copyOf(orders);
     }
 }
