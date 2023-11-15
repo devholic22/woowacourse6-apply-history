@@ -27,7 +27,7 @@ class SpecialDayPolicyTest {
         // given
         Day requestDay = Day.from(dayInput);
         Orders orders = Orders.from("바비큐립-1,티본스테이크-2");
-        int expectedCost = 1_000;
+        int expectedCost = 1000;
 
         // when
         int discountCost = discountPolicy.discount(requestDay, orders);

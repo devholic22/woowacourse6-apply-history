@@ -26,7 +26,7 @@ class WeekEndPolicyTest {
         // given
         Day requestDay = Day.from("1");
         Orders orders = Orders.from("제로콜라-2,초코케이크-1,바비큐립-1");
-        int expectedCost = 2_023;
+        int expectedCost = 2023;
 
         // when
         int discountCost = discountPolicy.discount(requestDay, orders);

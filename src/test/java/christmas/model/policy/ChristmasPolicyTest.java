@@ -26,7 +26,7 @@ class ChristmasPolicyTest {
         // given
         Day requestDay = Day.from("20");
         Orders orders = Orders.from("제로콜라-2,초코케이크-1");
-        int expectedCost = 1_000 + (20 - 1) * 100;
+        int expectedCost = 1000 + (20 - 1) * 100;
 
         // when
         int discountCost = discountPolicy.discount(requestDay, orders);
