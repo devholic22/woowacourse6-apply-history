@@ -1,6 +1,7 @@
 package christmas.model.policy;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import christmas.model.Day;
 import christmas.model.order.Orders;
@@ -31,8 +32,10 @@ class ChristmasPolicyTest {
         int discountCost = discountPolicy.discount(requestDay, orders);
 
         // then
-        assertThat(discountCost).isEqualTo(expectedCost);
-        assertThat(discountPolicy.canDiscount(requestDay, orders)).isTrue();
+        assertAll(
+                () -> assertThat(discountCost).isEqualTo(expectedCost),
+                () -> assertThat(discountPolicy.canDiscount(requestDay, orders)).isTrue()
+        );
     }
 
     @ParameterizedTest(name = "날짜가 {0}일이고 메뉴 주문이 [{1}]인 경우")
@@ -50,7 +53,9 @@ class ChristmasPolicyTest {
         int discountCost = discountPolicy.discount(requestDay, orders);
 
         // then
-        assertThat(discountCost).isEqualTo(0);
-        assertThat(discountPolicy.canDiscount(requestDay, orders)).isFalse();
+        assertAll(
+                () -> assertThat(discountCost).isEqualTo(0),
+                () ->  assertThat(discountPolicy.canDiscount(requestDay, orders)).isFalse()
+        );
     }
 }

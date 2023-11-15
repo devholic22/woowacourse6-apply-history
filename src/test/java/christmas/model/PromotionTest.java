@@ -4,6 +4,7 @@ import static christmas.model.Promotion.CHRISTMAS;
 import static christmas.model.Promotion.SPECIAL;
 import static christmas.model.Promotion.WEEK_DAY;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import christmas.model.order.Orders;
 import christmas.model.policy.DiscountPolicy;
@@ -54,7 +55,9 @@ class PromotionTest {
         List<DiscountPolicy> policies = Promotion.collectPoliciesByRequest(requestDay, orders);
 
         // then
-        assertThat(policies.size()).isEqualTo(3);
-        assertThat(policies.containsAll(expectedDiscountPolicies)).isTrue();
+        assertAll(
+                () -> assertThat(policies.size()).isEqualTo(3),
+                () -> assertThat(policies.containsAll(expectedDiscountPolicies)).isTrue()
+        );
     }
 }
