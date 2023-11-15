@@ -17,7 +17,7 @@ public enum MenuType {
 
     public static MenuType findByTypeName(final String typeName) {
         return Arrays.stream(values())
-                .filter(menuType -> menuType.istypeSame(typeName))
+                .filter(menuType -> menuType.isNameSame(typeName))
                 .findFirst()
                 .orElseThrow(IllegalAccessError::new);
     }
@@ -26,7 +26,7 @@ public enum MenuType {
         return type;
     }
 
-    public boolean istypeSame(final String typeName) {
+    public boolean isNameSame(final String typeName) {
         return type.equals(typeName);
     }
 }
