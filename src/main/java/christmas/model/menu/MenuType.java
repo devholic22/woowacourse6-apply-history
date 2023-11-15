@@ -1,7 +1,5 @@
 package christmas.model.menu;
 
-import java.util.Arrays;
-
 public enum MenuType {
 
     APPETIZER("애피타이저"),
@@ -15,18 +13,7 @@ public enum MenuType {
         this.type = type;
     }
 
-    public static MenuType findByTypeName(final String typeName) {
-        return Arrays.stream(values())
-                .filter(menuType -> menuType.isNameSame(typeName))
-                .findFirst()
-                .orElseThrow(IllegalAccessError::new);
-    }
-
     public String getType() {
         return type;
-    }
-
-    public boolean isNameSame(final String typeName) {
-        return type.equals(typeName);
     }
 }

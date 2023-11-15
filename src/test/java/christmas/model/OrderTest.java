@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import christmas.model.menu.Menu;
-import christmas.model.menu.MenuType;
 import christmas.model.order.Order;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -49,21 +48,6 @@ class OrderTest {
 
             // when & then
             assertDoesNotThrow(() -> Order.from(orderInput));
-        }
-
-        @ParameterizedTest(name = "{0} 메뉴 주문 시 저장된 메뉴 타입이 메뉴와 같은가?")
-        @CsvSource(textBlock = MENU_ORDERS)
-        @DisplayName("Order 메뉴 타입 조회 정상")
-        void orderTypeMatchTest(final String nameInput, final String sizeInput, final Menu menu) {
-            // given
-            Order order = Order.from(nameInput + "-" + sizeInput);
-            String type = menu.getType();
-
-            // when
-            boolean matchType = order.isOrderType(MenuType.findByTypeName(type));
-
-            // then
-            assertThat(matchType).isTrue();
         }
 
         @ParameterizedTest(name = "{0} {1}개 주문 시 저장된 개수가 입력 개수와 같은가?")
