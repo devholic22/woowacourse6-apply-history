@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
@@ -50,27 +49,13 @@ class DayTest {
         assertThat(passedAnswer).isFalse();
     }
 
-    @Nested
-    @DisplayName("Day 예외")
-    class DayExceptionTest {
-
-        @ParameterizedTest(name = "값이 [{0}]일 시 예외가 발생하는가?")
-        @NullAndEmptySource
-        @ValueSource(strings = {"abc", " 1 0 "})
-        @DisplayName("일반 문자, 빈 문자, 공백 포함 문자, null인 경우 예외가 발생한다.")
-        void notNumberExceptionTest(final String value) {
-            // when & then
-            assertThatThrownBy(() -> Day.from(value)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(BAD_DAY_EXCEPTION.getMessage());
-        }
-
-        @ParameterizedTest(name = "값이 [{0}]일 시 예외가 발생하는가?")
-        @ValueSource(strings = {"50", "-20"})
-        @DisplayName("범위가 올바르지 않을 경우 예외가 발생한다.")
-        void unValidRangeExceptionTest(final String value) {
-            // when & then
-            assertThatThrownBy(() -> Day.from(value)).isInstanceOf(IllegalArgumentException.class)
-                    .hasMessage(BAD_DAY_EXCEPTION.getMessage());
-        }
+    @ParameterizedTest(name = "값이 [{0}]일 시 예외가 발생하는가?")
+    @NullAndEmptySource
+    @ValueSource(strings = {"abc", " 1 0 ", "50", "-20"})
+    @DisplayName("일반 문자, 빈 문자, 공백 포함 문자, null인 경우 또는 범위가 올바르지 않을 때 예외가 발생한다.")
+    void notNumberExceptionTest(final String value) {
+        // when & then
+        assertThatThrownBy(() -> Day.from(value)).isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(BAD_DAY_EXCEPTION.getMessage());
     }
 }
