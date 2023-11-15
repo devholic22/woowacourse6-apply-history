@@ -42,9 +42,9 @@ class OrderTest {
         @ParameterizedTest(name = "{0} {1}개 주문 생성이 문제 없는가?")
         @CsvSource(textBlock = MENU_ORDERS)
         @DisplayName("정상 Order 생성")
-        void validOrderTest(final String name, final String size) {
+        void validOrderTest(final String nameInput, final String sizeInput) {
             // given
-            String orderInput = name + "-" + size;
+            String orderInput = nameInput + "-" + sizeInput;
 
             // when & then
             assertDoesNotThrow(() -> Order.from(orderInput));
@@ -53,9 +53,9 @@ class OrderTest {
         @ParameterizedTest(name = "{0} 메뉴 주문 시 저장된 메뉴 타입이 메뉴와 같은가?")
         @CsvSource(textBlock = MENU_ORDERS)
         @DisplayName("Order 메뉴 타입 조회 정상")
-        void orderTypeMatchTest(final String name, final String size, final Menu menu) {
+        void orderTypeMatchTest(final String nameInput, final String sizeInput, final Menu menu) {
             // given
-            Order order = Order.from(name + "-" + size);
+            Order order = Order.from(nameInput + "-" + sizeInput);
             String type = menu.getType();
 
             // when
@@ -68,10 +68,10 @@ class OrderTest {
         @ParameterizedTest(name = "{0} {1}개 주문 시 저장된 개수가 입력 개수와 같은가?")
         @CsvSource(textBlock = MENU_ORDERS)
         @DisplayName("Order 메뉴 개수 계산 정상")
-        void orderSizeCalculateTest(final String name, final String size) {
+        void orderSizeCalculateTest(final String nameInput, final String sizeInput) {
             // given
-            String orderInput = name + "-" + size;
-            int expectedSize = Integer.parseInt(size);
+            String orderInput = nameInput + "-" + sizeInput;
+            int expectedSize = Integer.parseInt(sizeInput);
             Order order = Order.from(orderInput);
 
             // when
@@ -84,10 +84,10 @@ class OrderTest {
         @ParameterizedTest(name = "{0} {1}개 주문 시 저장된 총 가격이 예상과 같은가?")
         @CsvSource(textBlock = MENU_ORDERS)
         @DisplayName("Order 메뉴 가격 계산 정상")
-        void orderCostCalculateTest(final String name, final String size, final Menu menu) {
+        void orderCostCalculateTest(final String nameInput, final String sizeInput, final Menu menu) {
             // given
-            String orderInput = name + "-" + size;
-            int expectedSize = Integer.parseInt(size);
+            String orderInput = nameInput + "-" + sizeInput;
+            int expectedSize = Integer.parseInt(sizeInput);
             Order order = Order.from(orderInput);
 
             // when
@@ -100,16 +100,16 @@ class OrderTest {
         @ParameterizedTest(name = "{0} 메뉴를 주문했을 때의 저장된 메뉴 이름")
         @CsvSource(textBlock = MENU_ORDERS)
         @DisplayName("Order 메뉴 이름 조회 정상")
-        void orderMenuNameTest(final String name, final String size) {
+        void orderMenuNameTest(final String nameInput, final String sizeInput) {
             // given
-            String orderInput = name + "-" + size;
+            String orderInput = nameInput + "-" + sizeInput;
             Order order = Order.from(orderInput);
 
             // when
             String menuName = order.getName();
 
             // then
-            assertThat(menuName).isEqualTo(name);
+            assertThat(menuName).isEqualTo(nameInput);
         }
 
         @ParameterizedTest(name = "{0} 메뉴 기본 생성 시 1개씩 저장되는가?")
@@ -149,9 +149,9 @@ class OrderTest {
         @ValueSource(strings={"abc", "   제로콜라  ", "팝콘"})
         @NullAndEmptySource
         @DisplayName("이름의 값에 잘못된 값이 전달되면 예외가 발생한다. (없는 메뉴, null, 빈 문자, 공백 포함 문자")
-        void notExistMenuExceptionTest(final String name) {
+        void notExistMenuExceptionTest(final String nameInput) {
             // given
-            String orderInput = name + "-" + "5";
+            String orderInput = nameInput + "-" + "5";
 
             // when & then
             assertThatThrownBy(() -> Order.from(orderInput)).isInstanceOf(IllegalArgumentException.class)
@@ -162,9 +162,9 @@ class OrderTest {
         @ValueSource(strings={"abc", "   1  ", "0", "-1", "50"})
         @NullAndEmptySource
         @DisplayName("수량의 값에 잘못된 값이 전달되면 예외가 발생한다. (일반 문자, null, 빈 문자, 공백 포함 문자, 1 미만, 20 초과)")
-        void unValidSizeInputException(final String value) {
+        void unValidSizeInputException(final String sizeInput) {
             // given
-            String orderInput = TAPAS.getName() + "-" + value;
+            String orderInput = TAPAS.getName() + "-" + sizeInput;
 
             // when & then
             assertThatThrownBy(() -> Order.from(orderInput)).isInstanceOf(IllegalArgumentException.class)
