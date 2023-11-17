@@ -15,6 +15,10 @@ public class Size {
         return new Size(size);
     }
 
+    public boolean isEmpty() {
+        return !size.canMinus(EACH_POP);
+    }
+
     public void pop() {
         size.minus(EACH_POP);
     }

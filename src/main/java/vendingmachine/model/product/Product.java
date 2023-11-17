@@ -52,6 +52,14 @@ public class Product {
         }
     }
 
+    public boolean isCanBuy(final int money) {
+        return cost.isMoneyCanBuy(money) && !size.isEmpty();
+    }
+
+    public void pop() {
+        size.pop();
+    }
+
     public boolean isYourName(final String name) {
         return this.name.equals(name);
     }

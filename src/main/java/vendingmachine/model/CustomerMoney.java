@@ -13,6 +13,10 @@ public class CustomerMoney {
         return new CustomerMoney(money);
     }
 
+    public void buy(final Cost money) {
+        customerMoney.minus(money.getCost());
+    }
+
     public int getMoney() {
         return customerMoney.getNumber();
     }

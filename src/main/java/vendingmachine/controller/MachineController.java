@@ -33,7 +33,11 @@ public class MachineController {
         while (products.isMoneyCanBuy(customerMoney.getMoney())) {
             outputView.printCustomerMoney(customerMoney.getMoney());
             Product targetProduct = findProduct(products);
-            break;
+            if (!targetProduct.isCanBuy(customerMoney.getMoney())) {
+                break;
+            }
+            customerMoney.buy(targetProduct.getCost());
+            targetProduct.pop();
         }
     }
 
