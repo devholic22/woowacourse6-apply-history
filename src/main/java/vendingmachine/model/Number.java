@@ -1,5 +1,8 @@
 package vendingmachine.model;
 
+import static vendingmachine.exception.ExceptionMessage.NOT_POSITIVE_NUMBER;
+import static vendingmachine.exception.ExceptionMessage.NUMBER_FORMAT_EXCEPTION;
+
 public class Number {
 
     private int number;
@@ -19,13 +22,21 @@ public class Number {
         try {
             return Integer.parseInt(numberInput);
         } catch (NumberFormatException exception) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NUMBER_FORMAT_EXCEPTION.getMessage());
         }
     }
 
     private static void validateIsPositive(final int number) {
         if (number <= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(NOT_POSITIVE_NUMBER.getMessage());
         }
+    }
+
+    public boolean canMinus(final int number) {
+        return this.number >= number;
+    }
+
+    public boolean isDivideRemainZero(final int number) {
+        return this.number % number == 0;
     }
 }
