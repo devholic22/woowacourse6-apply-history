@@ -33,7 +33,7 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void askCustomerMoney() {
         System.out.println();
-        System.out.println("투입 금액을 입력 주세요.");
+        System.out.println("투입 금액을 입력해 주세요.");
     }
 
     @Override
