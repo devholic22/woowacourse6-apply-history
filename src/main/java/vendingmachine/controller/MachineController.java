@@ -2,8 +2,12 @@ package vendingmachine.controller;
 
 import vendingmachine.model.MachineMoney;
 import vendingmachine.model.Number;
+import vendingmachine.model.coin.CoinManager;
+import vendingmachine.model.coin.Coins;
+import vendingmachine.model.dto.CoinResponse;
 import vendingmachine.view.input.InputView;
 import vendingmachine.view.output.OutputView;
+import java.util.List;
 import java.util.function.Supplier;
 
 public class MachineController {
@@ -18,6 +22,8 @@ public class MachineController {
 
     public void run() {
         MachineMoney machineMoney = initMachineMoney();
+        Coins machineCoins = Coins.from(machineMoney.getMoney());
+        printMachineCoins(machineCoins);
     }
 
     public MachineMoney initMachineMoney() {
@@ -49,5 +55,10 @@ public class MachineController {
             outputView.printExceptionMessage(exception.getMessage());
         }
         return created;
+    }
+
+    private void printMachineCoins(final Coins machineCoins) {
+        List<CoinResponse> coinResponses = CoinManager.convertCoinResponses(machineCoins);
+        outputView.printMachineCoins(coinResponses);
     }
 }

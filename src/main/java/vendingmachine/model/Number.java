@@ -32,6 +32,12 @@ public class Number {
         }
     }
 
+    public void minus(final int number) {
+        if (canMinus(number)) {
+            this.number -= number;
+        }
+    }
+
     public boolean canMinus(final int number) {
         return this.number >= number;
     }

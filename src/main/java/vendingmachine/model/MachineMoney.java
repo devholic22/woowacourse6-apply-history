@@ -32,4 +32,8 @@ public class MachineMoney {
             throw new IllegalArgumentException(DIVIDE_EXCEPTION.getMessage());
         }
     }
+
+    public Number getMoney() {
+        return machineMoney;
+    }
 }

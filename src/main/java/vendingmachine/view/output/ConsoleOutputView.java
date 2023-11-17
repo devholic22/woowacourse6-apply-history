@@ -1,5 +1,8 @@
 package vendingmachine.view.output;
 
+import vendingmachine.model.dto.CoinResponse;
+import java.util.List;
+
 public class ConsoleOutputView implements OutputView {
 
     @Override
@@ -10,5 +13,14 @@ public class ConsoleOutputView implements OutputView {
     @Override
     public void printExceptionMessage(final String message) {
         System.out.println(message);
+    }
+
+    @Override
+    public void printMachineCoins(final List<CoinResponse> responses) {
+        System.out.println();
+        System.out.println("자판기가 보유한 동전");
+        for (CoinResponse response : responses) {
+            System.out.println(response.value() + "원 - " + response.size() + "개");
+        }
     }
 }
