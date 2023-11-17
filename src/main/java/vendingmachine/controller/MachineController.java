@@ -5,6 +5,7 @@ import vendingmachine.model.Number;
 import vendingmachine.model.coin.CoinManager;
 import vendingmachine.model.coin.Coins;
 import vendingmachine.model.dto.CoinResponse;
+import vendingmachine.model.product.Products;
 import vendingmachine.view.input.InputView;
 import vendingmachine.view.output.OutputView;
 import java.util.List;
@@ -25,7 +26,7 @@ public class MachineController {
         Coins machineCoins = Coins.from(machineMoney.getMoney());
         printMachineCoins(machineCoins);
 
-        outputView.askProducts();
+        Products products = initProducts();
     }
 
     public MachineMoney initMachineMoney() {
@@ -62,5 +63,12 @@ public class MachineController {
     private void printMachineCoins(final Coins machineCoins) {
         List<CoinResponse> coinResponses = CoinManager.convertCoinResponses(machineCoins);
         outputView.printMachineCoins(coinResponses);
+    }
+
+    private Products initProducts() {
+        return createInstance(() -> {
+            outputView.askProducts();
+            return Products.from(inputView.readLine());
+        });
     }
 }
