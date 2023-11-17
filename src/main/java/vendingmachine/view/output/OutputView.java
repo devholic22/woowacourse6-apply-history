@@ -10,4 +10,5 @@ public interface OutputView {
     void printMachineCoins(final List<CoinResponse> responses);
     void askProducts();
     void askCustomerMoney();
+    void printCustomerMoney(final int money);
 }

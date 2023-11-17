@@ -1,5 +1,6 @@
 package vendingmachine.model.product;
 
+import vendingmachine.model.Cost;
 import java.util.Arrays;
 import java.util.List;
 
@@ -19,5 +20,25 @@ public class Products {
                 .toList();
 
         return new Products(products);
+    }
+
+    public boolean isMoneyCanBuy(final int money) {
+        int minimumCost = getMinimumCost();
+        return money >= minimumCost;
+    }
+
+    private int getMinimumCost() {
+        int minimumCost = Integer.MAX_VALUE;
+        List<Cost> costs = products.stream()
+                .map(Product::getCost)
+                .toList();
+
+        for (Cost cost : costs) {
+            if (cost.isMoneyCanBuy(minimumCost)) {
+                minimumCost = Math.min(cost.getCost(), minimumCost);
+            }
+        }
+
+        return minimumCost;
     }
 }

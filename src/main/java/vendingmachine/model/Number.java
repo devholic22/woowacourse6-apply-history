@@ -45,4 +45,8 @@ public class Number {
     public boolean isDivideRemainZero(final int number) {
         return this.number % number == 0;
     }
+
+    public int getNumber() {
+        return number;
+    }
 }

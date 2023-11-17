@@ -35,4 +35,10 @@ public class ConsoleOutputView implements OutputView {
         System.out.println();
         System.out.println("투입 금액을 입력 주세요.");
     }
+
+    @Override
+    public void printCustomerMoney(final int money) {
+        System.out.println();
+        System.out.println("투입 금액: " + money + "원");
+    }
 }

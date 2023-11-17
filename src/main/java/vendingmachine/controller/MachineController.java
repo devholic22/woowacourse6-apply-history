@@ -28,6 +28,11 @@ public class MachineController {
 
         Products products = initProducts();
         CustomerMoney customerMoney = initCustomerMoney();
+
+        while (products.isMoneyCanBuy(customerMoney.getMoney())) {
+            outputView.printCustomerMoney(customerMoney.getMoney());
+            break;
+        }
     }
 
     public MachineMoney initMachineMoney() {

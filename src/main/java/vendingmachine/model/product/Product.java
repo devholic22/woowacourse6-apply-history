@@ -51,4 +51,8 @@ public class Product {
             throw new IllegalArgumentException();
         }
     }
+
+    public Cost getCost() {
+        return cost;
+    }
 }

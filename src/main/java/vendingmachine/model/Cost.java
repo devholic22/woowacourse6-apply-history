@@ -33,4 +33,12 @@ public class Cost {
             throw new IllegalArgumentException(DIVIDE_EXCEPTION.getMessage());
         }
     }
+
+    public boolean isMoneyCanBuy(final int value) {
+        return cost.getNumber() <= value;
+    }
+
+    public int getCost() {
+        return cost.getNumber();
+    }
 }

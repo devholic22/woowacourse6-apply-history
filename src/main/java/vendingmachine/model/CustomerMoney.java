@@ -12,4 +12,8 @@ public class CustomerMoney {
         Number money = Number.from(moneyInput);
         return new CustomerMoney(money);
     }
+
+    public int getMoney() {
+        return customerMoney.getNumber();
+    }
 }
