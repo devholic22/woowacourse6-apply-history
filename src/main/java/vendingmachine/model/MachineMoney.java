@@ -14,7 +14,8 @@ public class MachineMoney {
         this.machineMoney = machineMoney;
     }
 
-    public static MachineMoney from(final Number machineMoney) {
+    public static MachineMoney from(final String moneyInput) {
+        Number machineMoney = Number.from(moneyInput);
         validateIsNumberEnough(machineMoney);
         validateIsDivideZero(machineMoney);
 
