@@ -39,6 +39,7 @@ public class MachineController {
             customerMoney.buy(targetProduct.getCost());
             targetProduct.pop();
         }
+        outputView.printCustomerMoney(customerMoney.getMoney());
     }
 
     public MachineMoney initMachineMoney() {
