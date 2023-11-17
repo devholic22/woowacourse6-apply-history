@@ -23,4 +23,10 @@ public class ConsoleOutputView implements OutputView {
             System.out.println(response.value() + "원 - " + response.size() + "개");
         }
     }
+
+    @Override
+    public void askProducts() {
+        System.out.println();
+        System.out.println("상품명과 가격, 수량을 입력해 주세요.");
+    }
 }

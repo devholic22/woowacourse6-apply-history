@@ -8,4 +8,5 @@ public interface OutputView {
     void askMachineMoney();
     void printExceptionMessage(final String message);
     void printMachineCoins(final List<CoinResponse> responses);
+    void askProducts();
 }

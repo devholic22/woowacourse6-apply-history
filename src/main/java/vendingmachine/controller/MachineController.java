@@ -24,6 +24,8 @@ public class MachineController {
         MachineMoney machineMoney = initMachineMoney();
         Coins machineCoins = Coins.from(machineMoney.getMoney());
         printMachineCoins(machineCoins);
+
+        outputView.askProducts();
     }
 
     public MachineMoney initMachineMoney() {
