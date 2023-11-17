@@ -5,6 +5,7 @@ import vendingmachine.model.MachineMoney;
 import vendingmachine.model.coin.CoinManager;
 import vendingmachine.model.coin.Coins;
 import vendingmachine.model.dto.CoinResponse;
+import vendingmachine.model.product.Product;
 import vendingmachine.model.product.Products;
 import vendingmachine.view.input.InputView;
 import vendingmachine.view.output.OutputView;
@@ -31,7 +32,7 @@ public class MachineController {
 
         while (products.isMoneyCanBuy(customerMoney.getMoney())) {
             outputView.printCustomerMoney(customerMoney.getMoney());
-            outputView.askBuyProduct();
+            Product targetProduct = findProduct(products);
             break;
         }
     }
@@ -76,6 +77,13 @@ public class MachineController {
         return createInstance(() -> {
             outputView.askCustomerMoney();
             return CustomerMoney.from(inputView.readLine());
+        });
+    }
+
+    private Product findProduct(final Products products) {
+        return createInstance(() -> {
+            outputView.askBuyProduct();
+            return products.findProductByName(inputView.readLine());
         });
     }
 }

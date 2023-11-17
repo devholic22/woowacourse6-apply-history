@@ -41,4 +41,11 @@ public class Products {
 
         return minimumCost;
     }
+
+    public Product findProductByName(final String name) {
+        return products.stream()
+                .filter(product -> product.isYourName(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }

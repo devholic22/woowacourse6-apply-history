@@ -52,6 +52,10 @@ public class Product {
         }
     }
 
+    public boolean isYourName(final String name) {
+        return this.name.equals(name);
+    }
+
     public Cost getCost() {
         return cost;
     }
