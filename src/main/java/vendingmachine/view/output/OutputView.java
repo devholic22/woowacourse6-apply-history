@@ -11,4 +11,5 @@ public interface OutputView {
     void askProducts();
     void askCustomerMoney();
     void printCustomerMoney(final int money);
+    void askBuyProduct();
 }

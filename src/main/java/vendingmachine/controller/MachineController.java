@@ -31,6 +31,7 @@ public class MachineController {
 
         while (products.isMoneyCanBuy(customerMoney.getMoney())) {
             outputView.printCustomerMoney(customerMoney.getMoney());
+            outputView.askBuyProduct();
             break;
         }
     }
