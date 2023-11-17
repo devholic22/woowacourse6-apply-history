@@ -1,5 +1,6 @@
 package vendingmachine.controller;
 
+import vendingmachine.model.CustomerMoney;
 import vendingmachine.model.MachineMoney;
 import vendingmachine.model.Number;
 import vendingmachine.model.coin.CoinManager;
@@ -27,6 +28,7 @@ public class MachineController {
         printMachineCoins(machineCoins);
 
         Products products = initProducts();
+        CustomerMoney customerMoney = initCustomerMoney();
     }
 
     public MachineMoney initMachineMoney() {
@@ -69,6 +71,13 @@ public class MachineController {
         return createInstance(() -> {
             outputView.askProducts();
             return Products.from(inputView.readLine());
+        });
+    }
+
+    private CustomerMoney initCustomerMoney() {
+        return createInstance(() -> {
+            outputView.askCustomerMoney();
+            return CustomerMoney.from(inputView.readLine());
         });
     }
 }

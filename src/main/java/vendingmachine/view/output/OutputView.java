@@ -9,4 +9,5 @@ public interface OutputView {
     void printExceptionMessage(final String message);
     void printMachineCoins(final List<CoinResponse> responses);
     void askProducts();
+    void askCustomerMoney();
 }
