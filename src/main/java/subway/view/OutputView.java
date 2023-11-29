@@ -1,6 +1,9 @@
 package subway.view;
 
+import subway.domain.dto.CommandResponse;
+import java.util.List;
+
 public interface OutputView {
 
-    void printMainScreen();
+    void printMainScreen(final List<CommandResponse> commands);
 }

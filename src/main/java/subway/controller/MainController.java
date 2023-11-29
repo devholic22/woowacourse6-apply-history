@@ -1,7 +1,12 @@
 package subway.controller;
 
+import subway.domain.command.InitCommand;
+import subway.domain.dto.CommandResponse;
 import subway.view.OutputView;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class MainController {
 
@@ -14,6 +19,12 @@ public class MainController {
     }
 
     public void run() {
-        outputView.printMainScreen();
+        outputView.printMainScreen(collectInitCommands());
+    }
+
+    private List<CommandResponse> collectInitCommands() {
+        return Arrays.stream(InitCommand.values())
+                .map(command -> CommandResponse.of(command.getCommand(), command.getName()))
+                .collect(Collectors.toList());
     }
 }
