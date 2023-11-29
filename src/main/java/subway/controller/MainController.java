@@ -30,7 +30,6 @@ public class MainController {
 
     public void run() {
         while (true) {
-            outputView.printMainScreen(collectInitCommands());
             InitCommand initCommand = receiveInitCommand();
             if (initCommand == END) {
                 return;
@@ -39,17 +38,14 @@ public class MainController {
             if (pathCommand == BACK) {
                 continue;
             }
-            Station startStation = receiveStartStation();
-            Station endStation = receiveEndStation(startStation);
-            PathManager pathManager = PathManager.createDefault();
-            List<String> pathStations = pathManager.findPath(startStation, endStation, pathCommand);
-            int distance = calculateTotalDistance(pathStations);
-            int time = calculateTotalTime(pathStations);
-            outputView.printResult(pathStations, distance, time);
+            List<String> pathStations = calculatePathWithCommand(pathCommand);
+            printResult(pathStations);
         }
     }
 
     private InitCommand receiveInitCommand() {
+        outputView.printMainScreen(collectInitCommands());
+
         return createInstance(() -> {
             outputView.askCommand();
             return InitCommand.findByCommandInput(scanner.next());
@@ -93,6 +89,13 @@ public class MainController {
                 .collect(Collectors.toList());
     }
 
+    private List<String> calculatePathWithCommand(final PathCommand pathCommand) {
+        PathManager pathManager = PathManager.createDefault();
+        Station startStation = receiveStartStation();
+        Station endStation = receiveEndStation(startStation);
+        return pathManager.findPath(startStation, endStation, pathCommand);
+    }
+
     private Station receiveStartStation() {
         return createInstance(() -> {
             outputView.askStartStation();
@@ -126,5 +129,11 @@ public class MainController {
             result += section.getDistance();
         }
         return result;
+    }
+
+    private void printResult(final List<String> stations) {
+        int distance = calculateTotalDistance(stations);
+        int time = calculateTotalTime(stations);
+        outputView.printResult(stations, distance, time);
     }
 }
