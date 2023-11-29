@@ -8,7 +8,9 @@ import static subway.domain.init.InitStation.TERMINAL;
 import static subway.domain.init.InitStation.YANGJAE;
 import static subway.domain.init.InitStation.YEOKSAM;
 
+import subway.domain.Station;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum InitLine {
 
@@ -28,7 +30,9 @@ public enum InitLine {
         return name;
     }
 
-    public List<String> getStations() {
-        return stations;
+    public List<Station> getStations() {
+        return stations.stream()
+                .map(Station::from)
+                .collect(Collectors.toList());
     }
 }
