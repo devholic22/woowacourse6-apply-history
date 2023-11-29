@@ -7,6 +7,7 @@ import static subway.domain.init.InitSection.GYODAE_TO_TERMINAL;
 import static subway.domain.init.InitSection.TERMINAL_TO_YANGJAE;
 import static subway.domain.init.InitSection.YANGJAE_TO_FOREST;
 import static subway.domain.init.InitSection.YANGJAE_TO_MAEBONG;
+import static subway.exception.ExceptionMessage.SECTION_NOT_FOUND;
 
 import subway.domain.Section;
 import java.util.List;
@@ -45,6 +46,6 @@ public class SectionRepository {
         return sections().stream()
                 .filter(section -> section.isSame(startStationName, endStationName))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(SECTION_NOT_FOUND.getMessage()));
     }
 }
