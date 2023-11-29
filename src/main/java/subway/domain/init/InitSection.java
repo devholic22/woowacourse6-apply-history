@@ -8,6 +8,9 @@ import static subway.domain.init.InitStation.TERMINAL;
 import static subway.domain.init.InitStation.YANGJAE;
 import static subway.domain.init.InitStation.YEOKSAM;
 
+import subway.domain.Distance;
+import subway.domain.Time;
+
 public enum InitSection {
 
     GYODAE_TO_GANGNAM(GYODAE.getName(), GANGNAM.getName(), 2, 3),
@@ -20,14 +23,14 @@ public enum InitSection {
 
     private final String start;
     private final String end;
-    private final int distance;
-    private final int time;
+    private final Distance distance;
+    private final Time time;
 
     InitSection(final String start, final String end, final int distance, final int time) {
         this.start = start;
         this.end = end;
-        this.distance = distance;
-        this.time = time;
+        this.distance = Distance.from(distance);
+        this.time = Time.from(time);
     }
 
     public String getStart() {
@@ -39,10 +42,10 @@ public enum InitSection {
     }
 
     public int getDistance() {
-        return distance;
+        return distance.getDistance();
     }
 
     public int getTime() {
-        return time;
+        return time.getTime();
     }
 }
