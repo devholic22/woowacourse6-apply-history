@@ -40,4 +40,11 @@ public class SectionRepository {
     public static List<Section> sections() {
         return sections;
     }
+
+    public static Section findByStartAndEnd(final String startStationName, final String endStationName) {
+        return sections().stream()
+                .filter(section -> section.isSame(startStationName, endStationName))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
 }

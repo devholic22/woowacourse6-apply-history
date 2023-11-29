@@ -23,6 +23,10 @@ public class Section {
         return new Section(start, end, duration, time);
     }
 
+    public boolean isSame(final String startName, final String endName) {
+        return startStation.isSame(startName) && endStation.isSame(endName);
+    }
+
     public String getStartStation() {
         return startStation.getName();
     }

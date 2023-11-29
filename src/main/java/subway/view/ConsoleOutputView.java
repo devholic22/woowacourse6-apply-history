@@ -7,6 +7,14 @@ public class ConsoleOutputView implements OutputView {
 
     private static final String TITLE_PREFIX = "## ";
     private static final String COMMAND_WORD_DIVIDER = ". ";
+    private static final String RESULT_HEADER_LINE = "---";
+    private static final String RESULT_PREFIX = "[INFO] ";
+    private static final String TOTAL_PREFIX = "총 ";
+    private static final String DISTANCE_TITLE = "거리";
+    private static final String RESULT_DIVIDER = ": ";
+    private static final String DISTANCE_UNIT = "km";
+    private static final String TIME_TITLE = "소요 시간";
+    private static final String TIME_UNIT = "분";
 
     @Override
     public void printMainScreen(final List<CommandResponse> commands) {
@@ -42,6 +50,20 @@ public class ConsoleOutputView implements OutputView {
     public void askEndStation() {
         System.out.println();
         System.out.println(TITLE_PREFIX + "도착역을 입력하세요.");
+    }
+
+    @Override
+    public void printResult(final List<String> stations, final int distance, final int time) {
+        System.out.println();
+        System.out.println(TITLE_PREFIX + "조회 결과");
+        System.out.println(RESULT_PREFIX + RESULT_HEADER_LINE);
+        System.out.println(RESULT_PREFIX + TOTAL_PREFIX + DISTANCE_TITLE + RESULT_DIVIDER + distance + DISTANCE_UNIT);
+        System.out.println(RESULT_PREFIX + TOTAL_PREFIX + TIME_TITLE + RESULT_DIVIDER + time + TIME_UNIT);
+        System.out.println(RESULT_PREFIX + RESULT_HEADER_LINE);
+        for (String station : stations) {
+            System.out.println(RESULT_PREFIX + station);
+        }
+        System.out.println();
     }
 
     @Override

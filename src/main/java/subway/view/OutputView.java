@@ -10,5 +10,6 @@ public interface OutputView {
     void printPathCommands(final List<CommandResponse> commands);
     void askStartStation();
     void askEndStation();
+    void printResult(final List<String> stations, final int distance, final int time);
     void printExceptionMessage(final String message);
 }

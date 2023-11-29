@@ -4,10 +4,12 @@ import static subway.domain.command.InitCommand.END;
 import static subway.domain.command.PathCommand.BACK;
 
 import subway.domain.PathManager;
+import subway.domain.Section;
 import subway.domain.Station;
 import subway.domain.command.InitCommand;
 import subway.domain.command.PathCommand;
 import subway.domain.dto.CommandResponse;
+import subway.domain.repository.SectionRepository;
 import subway.domain.repository.StationRepository;
 import subway.view.OutputView;
 import java.util.Arrays;
@@ -40,15 +42,10 @@ public class MainController {
             Station startStation = receiveStartStation();
             Station endStation = receiveEndStation(startStation);
             PathManager pathManager = PathManager.createDefault();
-            pathManager.findPath(startStation, endStation, pathCommand);
-            /*
-            if (pathCommand == MINIMUM_DISTANCE) {
-
-            }
-            if (pathCommand == MINIMUM_TIME) {
-
-            }
-             */
+            List<String> pathStations = pathManager.findPath(startStation, endStation, pathCommand);
+            int distance = calculateTotalDistance(pathStations);
+            int time = calculateTotalTime(pathStations);
+            outputView.printResult(pathStations, distance, time);
         }
     }
 
@@ -111,5 +108,23 @@ public class MainController {
 
             return endStation;
         });
+    }
+
+    private int calculateTotalTime(final List<String> stations) {
+        int result = 0;
+        for (int index = 0; index < stations.size() - 1; index++) {
+            Section section = SectionRepository.findByStartAndEnd(stations.get(index), stations.get(index + 1));
+            result += section.getTime();
+        }
+        return result;
+    }
+
+    private int calculateTotalDistance(final List<String> stations) {
+        int result = 0;
+        for (int index = 0; index < stations.size() - 1; index++) {
+            Section section = SectionRepository.findByStartAndEnd(stations.get(index), stations.get(index + 1));
+            result += section.getDistance();
+        }
+        return result;
     }
 }

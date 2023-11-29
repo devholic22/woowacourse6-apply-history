@@ -28,7 +28,7 @@ public class PathManager {
         return new PathManager(graph);
     }
 
-    public void findPath(final Station startStation, final Station endStation, final PathCommand condition) {
+    public List<String> findPath(final Station startStation, final Station endStation, final PathCommand condition) {
         if (condition == MINIMUM_DISTANCE) {
             initWeightWithDuration();
         }
@@ -36,8 +36,7 @@ public class PathManager {
             initWeightWithTime();
         }
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
-        List vertexList = dijkstraShortestPath.getPath(startStation.getName(), endStation.getName()).getVertexList();
-        // System.out.println("vertexList = " + vertexList);
+        return dijkstraShortestPath.getPath(startStation.getName(), endStation.getName()).getVertexList();
     }
 
     private void initWeightWithDuration() {
