@@ -1,9 +1,10 @@
-package subway.domain;
+package subway.domain.repository;
 
 import static subway.domain.init.InitLine.NEW_BUNDANG;
 import static subway.domain.init.InitLine.THREE_LINE;
 import static subway.domain.init.InitLine.TWO_LINE;
 
+import subway.domain.Line;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;

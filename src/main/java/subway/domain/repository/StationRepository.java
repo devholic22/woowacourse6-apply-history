@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.repository;
 
 import static subway.domain.init.InitStation.FOREST;
 import static subway.domain.init.InitStation.GANGNAM;
@@ -8,6 +8,7 @@ import static subway.domain.init.InitStation.TERMINAL;
 import static subway.domain.init.InitStation.YANGJAE;
 import static subway.domain.init.InitStation.YEOKSAM;
 
+import subway.domain.Station;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -38,5 +39,12 @@ public class StationRepository {
 
     public static void deleteAll() {
         stations.clear();
+    }
+
+    public static Station findByName(final String name) {
+        return stations().stream()
+                .filter(station -> station.isSame(name))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
