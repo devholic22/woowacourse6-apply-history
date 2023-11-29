@@ -1,6 +1,12 @@
 package subway.controller;
 
+import static subway.domain.command.InitCommand.END;
+import static subway.domain.command.PathCommand.BACK;
+import static subway.domain.command.PathCommand.MINIMUM_DISTANCE;
+import static subway.domain.command.PathCommand.MINIMUM_TIME;
+
 import subway.domain.command.InitCommand;
+import subway.domain.command.PathCommand;
 import subway.domain.dto.CommandResponse;
 import subway.view.OutputView;
 import java.util.Arrays;
@@ -20,13 +26,28 @@ public class MainController {
     }
 
     public void run() {
-        outputView.printMainScreen(collectInitCommands());
-        InitCommand initCommand = receiveInitCommand();
+        while (true) {
+            outputView.printMainScreen(collectInitCommands());
+            InitCommand initCommand = receiveInitCommand();
+            if (initCommand == END) {
+                return;
+            }
+            PathCommand pathCommand = receivePathCommand();
+            if (pathCommand == BACK) {
+                continue;
+            }
+            if (pathCommand == MINIMUM_DISTANCE) {
+
+            }
+            if (pathCommand == MINIMUM_TIME) {
+
+            }
+        }
     }
 
     private InitCommand receiveInitCommand() {
         return createInstance(() -> {
-            outputView.askInitCommand();
+            outputView.askCommand();
             return InitCommand.findByCommandInput(scanner.next());
         });
     }
@@ -50,6 +71,20 @@ public class MainController {
 
     private List<CommandResponse> collectInitCommands() {
         return Arrays.stream(InitCommand.values())
+                .map(command -> CommandResponse.of(command.getCommand(), command.getName()))
+                .collect(Collectors.toList());
+    }
+
+    private PathCommand receivePathCommand() {
+        outputView.printPathCommands(collectPathCommands());
+        return createInstance(() -> {
+            outputView.askCommand();
+            return PathCommand.findByCommandInput(scanner.next());
+        });
+    }
+
+    private List<CommandResponse> collectPathCommands() {
+        return Arrays.stream(PathCommand.values())
                 .map(command -> CommandResponse.of(command.getCommand(), command.getName()))
                 .collect(Collectors.toList());
     }

@@ -18,8 +18,18 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
-    public void askInitCommand() {
+    public void askCommand() {
         System.out.println(TITLE_PREFIX + "원하는 기능을 선택하세요.");
+    }
+
+    @Override
+    public void printPathCommands(final List<CommandResponse> commands) {
+        System.out.println();
+        System.out.println(TITLE_PREFIX + "경로 기준");
+        for (CommandResponse command : commands) {
+            System.out.println(command.getCommand() + COMMAND_WORD_DIVIDER + command.getName());
+        }
+        System.out.println();
     }
 
     @Override
