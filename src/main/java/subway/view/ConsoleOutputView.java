@@ -64,7 +64,6 @@ public class ConsoleOutputView implements OutputView {
         for (String station : stations) {
             System.out.println(RESULT_PREFIX + station);
         }
-        System.out.println();
     }
 
     @Override

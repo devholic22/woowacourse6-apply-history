@@ -2,6 +2,8 @@ package subway.domain;
 
 import static subway.domain.command.PathCommand.MINIMUM_DISTANCE;
 import static subway.domain.command.PathCommand.MINIMUM_TIME;
+import static subway.exception.ExceptionMessage.CANNOT_FIND_EXCEPTION;
+import static subway.exception.ExceptionMessage.OTHER_EXCEPTION;
 
 import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
 import org.jgrapht.graph.DefaultWeightedEdge;
@@ -36,7 +38,13 @@ public class PathManager {
             initWeightWithTime();
         }
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
-        return dijkstraShortestPath.getPath(startStation.getName(), endStation.getName()).getVertexList();
+        try {
+            return dijkstraShortestPath.getPath(startStation.getName(), endStation.getName()).getVertexList();
+        } catch (NullPointerException exception) {
+            throw new IllegalArgumentException(CANNOT_FIND_EXCEPTION.getMessage());
+        } catch (Exception exception) {
+            throw new IllegalArgumentException(OTHER_EXCEPTION.getMessage());
+        }
     }
 
     private void initWeightWithDuration() {

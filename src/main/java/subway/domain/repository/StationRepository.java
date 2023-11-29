@@ -1,31 +1,21 @@
 package subway.domain.repository;
 
-import static subway.domain.init.InitStation.FOREST;
-import static subway.domain.init.InitStation.GANGNAM;
-import static subway.domain.init.InitStation.GYODAE;
-import static subway.domain.init.InitStation.MAEBONG;
-import static subway.domain.init.InitStation.TERMINAL;
-import static subway.domain.init.InitStation.YANGJAE;
-import static subway.domain.init.InitStation.YEOKSAM;
 import static subway.exception.ExceptionMessage.STATION_NOT_FOUND;
 import static subway.exception.ExceptionMessage.STATION_SAME_EXCEPTION;
 
 import subway.domain.Station;
+import subway.domain.init.InitStation;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class StationRepository {
 
-    private static final List<Station> stations = List.of(
-            Station.from(GYODAE.getName()),
-            Station.from(GANGNAM.getName()),
-            Station.from(YEOKSAM.getName()),
-            Station.from(TERMINAL.getName()),
-            Station.from(YANGJAE.getName()),
-            Station.from(FOREST.getName()),
-            Station.from(MAEBONG.getName())
-    );
+    private static final List<Station> stations = Arrays.stream(InitStation.values())
+            .map(station -> Station.from(station.getName()))
+            .collect(Collectors.toList());
 
     public static List<Station> stations() {
         return Collections.unmodifiableList(stations);

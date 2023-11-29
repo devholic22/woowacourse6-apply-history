@@ -1,21 +1,18 @@
 package subway.domain.repository;
 
-import static subway.domain.init.InitLine.NEW_BUNDANG;
-import static subway.domain.init.InitLine.THREE_LINE;
-import static subway.domain.init.InitLine.TWO_LINE;
-
 import subway.domain.Line;
+import subway.domain.init.InitLine;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class LineRepository {
 
-    private static final List<Line> lines = List.of(
-            Line.withStations(TWO_LINE.getName(), TWO_LINE.getStations()),
-            Line.withStations(THREE_LINE.getName(), THREE_LINE.getStations()),
-            Line.withStations(NEW_BUNDANG.getName(), NEW_BUNDANG.getStations())
-    );
+    private static final List<Line> lines = Arrays.stream(InitLine.values())
+            .map(line -> Line.withStations(line.getName(), line.getStations()))
+            .collect(Collectors.toList());
 
     public static List<Line> lines() {
         return Collections.unmodifiableList(lines);
