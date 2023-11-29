@@ -13,6 +13,7 @@ import subway.domain.repository.SectionRepository;
 import subway.domain.repository.StationRepository;
 import subway.view.OutputView;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 import java.util.function.Supplier;
@@ -39,14 +40,16 @@ public class MainController {
                 continue;
             }
             List<String> pathStations = calculatePathWithCommand(pathCommand);
+            if (pathStations.isEmpty()) {
+                continue;
+            }
             printResult(pathStations);
         }
     }
 
     private InitCommand receiveInitCommand() {
-        outputView.printMainScreen(collectInitCommands());
-
         return createInstance(() -> {
+            outputView.printMainScreen(collectInitCommands());
             outputView.askCommand();
             return InitCommand.findByCommandInput(scanner.next());
         });
@@ -76,8 +79,8 @@ public class MainController {
     }
 
     private PathCommand receivePathCommand() {
-        outputView.printPathCommands(collectPathCommands());
         return createInstance(() -> {
+            outputView.printPathCommands(collectPathCommands());
             outputView.askCommand();
             return PathCommand.findByCommandInput(scanner.next());
         });
@@ -89,28 +92,34 @@ public class MainController {
                 .collect(Collectors.toList());
     }
 
-    private List<String> calculatePathWithCommand(final PathCommand pathCommand) {
+    private List<String> calculatePathWithCommand(PathCommand pathCommand) {
+        if (pathCommand == BACK) {
+            return Collections.emptyList();
+        }
+
         PathManager pathManager = PathManager.createDefault();
-        Station startStation = receiveStartStation();
-        Station endStation = receiveEndStation(startStation);
-        return pathManager.findPath(startStation, endStation, pathCommand);
+        try {
+            Station startStation = receiveStartStation();
+            Station endStation = receiveEndStation(startStation);
+            return pathManager.findPath(startStation, endStation, pathCommand);
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+            pathCommand = receivePathCommand();
+            return calculatePathWithCommand(pathCommand);
+        }
     }
 
     private Station receiveStartStation() {
-        return createInstance(() -> {
-            outputView.askStartStation();
-            return StationRepository.findByName(scanner.next());
-        });
+        outputView.askStartStation();
+        return StationRepository.findByName(scanner.next());
     }
 
     private Station receiveEndStation(final Station startStation) {
-        return createInstance(() -> {
-            outputView.askEndStation();
-            Station endStation = StationRepository.findByName(scanner.next());
-            StationRepository.validateIsBothNotSame(startStation, endStation);
+        outputView.askEndStation();
+        Station endStation = StationRepository.findByName(scanner.next());
+        StationRepository.validateIsBothNotSame(startStation, endStation);
 
-            return endStation;
-        });
+        return endStation;
     }
 
     private int calculateTotalTime(final List<String> stations) {

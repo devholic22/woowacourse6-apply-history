@@ -18,6 +18,7 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printMainScreen(final List<CommandResponse> commands) {
+        System.out.println();
         System.out.println(TITLE_PREFIX + "메인 화면");
         for (CommandResponse command : commands) {
             System.out.println(command.getCommand() + COMMAND_WORD_DIVIDER + command.getName());
@@ -68,6 +69,7 @@ public class ConsoleOutputView implements OutputView {
 
     @Override
     public void printExceptionMessage(final String message) {
+        System.out.println();
         System.out.println(message);
     }
 }
