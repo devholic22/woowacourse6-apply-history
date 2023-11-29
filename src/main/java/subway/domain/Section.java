@@ -6,13 +6,13 @@ public class Section {
 
     private final Station startStation;
     private final Station endStation;
-    private final int duration;
+    private final int distance;
     private final int time;
 
-    public Section(final Station startStation, final Station endStation, final int duration, final int time) {
+    public Section(final Station startStation, final Station endStation, final int distance, final int time) {
         this.startStation = startStation;
         this.endStation = endStation;
-        this.duration = duration;
+        this.distance = distance;
         this.time = time;
     }
 
@@ -23,16 +23,16 @@ public class Section {
         return new Section(start, end, duration, time);
     }
 
-    public Station getStartStation() {
-        return startStation;
+    public String getStartStation() {
+        return startStation.getName();
     }
 
-    public Station getEndStation() {
-        return endStation;
+    public String getEndStation() {
+        return endStation.getName();
     }
 
-    public int getDuration() {
-        return duration;
+    public int getDistance() {
+        return distance;
     }
 
     public int getTime() {

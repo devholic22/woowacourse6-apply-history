@@ -3,6 +3,7 @@ package subway.controller;
 import static subway.domain.command.InitCommand.END;
 import static subway.domain.command.PathCommand.BACK;
 
+import subway.domain.PathManager;
 import subway.domain.Station;
 import subway.domain.command.InitCommand;
 import subway.domain.command.PathCommand;
@@ -38,6 +39,8 @@ public class MainController {
             }
             Station startStation = receiveStartStation();
             Station endStation = receiveEndStation(startStation);
+            PathManager pathManager = PathManager.createDefault();
+            pathManager.findPath(startStation, endStation, pathCommand);
             /*
             if (pathCommand == MINIMUM_DISTANCE) {
 
