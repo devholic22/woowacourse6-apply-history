@@ -38,12 +38,20 @@ public class PathManager {
             initWeightWithTime();
         }
         DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
+        validateStationsExistInGraph(startStation, endStation);
+
         try {
             return dijkstraShortestPath.getPath(startStation.getName(), endStation.getName()).getVertexList();
         } catch (NullPointerException exception) {
             throw new IllegalArgumentException(CANNOT_FIND_EXCEPTION.getMessage());
         } catch (Exception exception) {
             throw new IllegalArgumentException(OTHER_EXCEPTION.getMessage());
+        }
+    }
+
+    private void validateStationsExistInGraph(final Station first, final Station second) {
+        if (!graph.containsVertex(first.getName()) || !graph.containsVertex(second.getName())) {
+            throw new IllegalArgumentException(CANNOT_FIND_EXCEPTION.getMessage());
         }
     }
 
