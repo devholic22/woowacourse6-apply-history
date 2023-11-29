@@ -6,6 +6,7 @@ import subway.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 public class MainController {
@@ -20,6 +21,31 @@ public class MainController {
 
     public void run() {
         outputView.printMainScreen(collectInitCommands());
+        InitCommand initCommand = receiveInitCommand();
+    }
+
+    private InitCommand receiveInitCommand() {
+        return createInstance(() -> {
+            outputView.askInitCommand();
+            return InitCommand.findByCommandInput(scanner.next());
+        });
+    }
+
+    private <T> T createInstance(final Supplier<T> creator) {
+        T created = null;
+        while (created == null) {
+            created = tryGetInstance(creator, created);
+        }
+        return created;
+    }
+
+    private <T> T tryGetInstance(final Supplier<T> creator, T created) {
+        try {
+            created = creator.get();
+        } catch (IllegalArgumentException exception) {
+            outputView.printExceptionMessage(exception.getMessage());
+        }
+        return created;
     }
 
     private List<CommandResponse> collectInitCommands() {

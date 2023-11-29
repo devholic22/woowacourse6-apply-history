@@ -16,4 +16,14 @@ public class ConsoleOutputView implements OutputView {
         }
         System.out.println();
     }
+
+    @Override
+    public void askInitCommand() {
+        System.out.println(TITLE_PREFIX + "원하는 기능을 선택하세요.");
+    }
+
+    @Override
+    public void printExceptionMessage(final String message) {
+        System.out.println(message);
+    }
 }
