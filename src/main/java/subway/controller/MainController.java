@@ -2,12 +2,12 @@ package subway.controller;
 
 import static subway.domain.command.InitCommand.END;
 import static subway.domain.command.PathCommand.BACK;
-import static subway.domain.command.PathCommand.MINIMUM_DISTANCE;
-import static subway.domain.command.PathCommand.MINIMUM_TIME;
 
+import subway.domain.Station;
 import subway.domain.command.InitCommand;
 import subway.domain.command.PathCommand;
 import subway.domain.dto.CommandResponse;
+import subway.domain.repository.StationRepository;
 import subway.view.OutputView;
 import java.util.Arrays;
 import java.util.List;
@@ -36,12 +36,16 @@ public class MainController {
             if (pathCommand == BACK) {
                 continue;
             }
+            Station startStation = receiveStartStation();
+            Station endStation = receiveEndStation(startStation);
+            /*
             if (pathCommand == MINIMUM_DISTANCE) {
 
             }
             if (pathCommand == MINIMUM_TIME) {
 
             }
+             */
         }
     }
 
@@ -87,5 +91,22 @@ public class MainController {
         return Arrays.stream(PathCommand.values())
                 .map(command -> CommandResponse.of(command.getCommand(), command.getName()))
                 .collect(Collectors.toList());
+    }
+
+    private Station receiveStartStation() {
+        return createInstance(() -> {
+            outputView.askStartStation();
+            return StationRepository.findByName(scanner.next());
+        });
+    }
+
+    private Station receiveEndStation(final Station startStation) {
+        return createInstance(() -> {
+            outputView.askEndStation();
+            Station endStation = StationRepository.findByName(scanner.next());
+            StationRepository.validateIsBothNotSame(startStation, endStation);
+
+            return endStation;
+        });
     }
 }

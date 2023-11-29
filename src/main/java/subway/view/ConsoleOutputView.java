@@ -33,6 +33,18 @@ public class ConsoleOutputView implements OutputView {
     }
 
     @Override
+    public void askStartStation() {
+        System.out.println();
+        System.out.println(TITLE_PREFIX + "출발역을 입력하세요.");
+    }
+
+    @Override
+    public void askEndStation() {
+        System.out.println();
+        System.out.println(TITLE_PREFIX + "도착역을 입력하세요.");
+    }
+
+    @Override
     public void printExceptionMessage(final String message) {
         System.out.println(message);
     }

@@ -2,7 +2,9 @@ package subway.exception;
 
 public enum ExceptionMessage {
 
-    COMMAND_NOT_FOUND("명령어를 찾지 못했습니다.");
+    COMMAND_NOT_FOUND("명령어를 찾지 못했습니다."),
+    STATION_NOT_FOUND("역을 찾을 수 없습니다."),
+    STATION_SAME_EXCEPTION("출발역과 도착역이 동일합니다.");
 
     private static final String DEFAULT_MESSAGE = "[ERROR] ";
 

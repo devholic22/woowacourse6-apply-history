@@ -7,6 +7,8 @@ import static subway.domain.init.InitStation.MAEBONG;
 import static subway.domain.init.InitStation.TERMINAL;
 import static subway.domain.init.InitStation.YANGJAE;
 import static subway.domain.init.InitStation.YEOKSAM;
+import static subway.exception.ExceptionMessage.STATION_NOT_FOUND;
+import static subway.exception.ExceptionMessage.STATION_SAME_EXCEPTION;
 
 import subway.domain.Station;
 import java.util.Collections;
@@ -41,10 +43,16 @@ public class StationRepository {
         stations.clear();
     }
 
+    public static void validateIsBothNotSame(final Station start, final Station end) {
+        if (start.equals(end)) {
+            throw new IllegalArgumentException(STATION_SAME_EXCEPTION.getMessage());
+        }
+    }
+
     public static Station findByName(final String name) {
         return stations().stream()
                 .filter(station -> station.isSame(name))
                 .findFirst()
-                .orElseThrow(IllegalArgumentException::new);
+                .orElseThrow(() -> new IllegalArgumentException(STATION_NOT_FOUND.getMessage()));
     }
 }
